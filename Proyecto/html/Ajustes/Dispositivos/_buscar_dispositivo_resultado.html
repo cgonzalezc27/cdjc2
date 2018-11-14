@@ -1,0 +1,166 @@
+<form>
+    <h4 class="display-4 titulo_pagina">Buscar dispositivo</h4><br>
+
+    <div class="form-row justify-content-center">
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="no_serie">Número de serie</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <input type="text" class="form-control" id="no_serie" placeholder="# de serie">
+                </div>                                
+            </div>
+        </div>    
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6 text-md-left text-lg-right align-self-center">
+                    <label for="clase_dispositivo">Clase de dispositivo</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" id="clase_dispositivo">
+                        <option>Refacción</option>
+                        <option>Equipo</option>
+                    </select>
+                </div>                                
+            </div>
+        </div>    
+    </div>
+
+    <div class="form-row justify-content-center">
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="tipo_dispositivo">Tipo de dispositivo</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" id="tipo_dispositivo">
+                        <option>Mouse</option>
+                        <option>Teclado</option>
+                        <option>Monitor</option>
+                        <option>Disco duro</option>
+                    </select>
+                </div>                                
+            </div>
+        </div>                        
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="marca">Marca</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" id="marca">
+                        <option>Dell</option>
+                        <option>Apple</option>
+                        <option>HP</option>
+                        <option>Asus</option>
+                    </select>
+                </div>                                
+            </div>
+        </div>    
+    </div>
+
+      <div class="form-row justify-content-center">
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="modelo">Modelo</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <input type="text" class="form-control" id="modelo" placeholder="Modelo">
+                </div>                                
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="mesa">Mesa propietaria</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" id="mesa">
+                        <option>Mesa 1</option>
+                        <option>Mesa 2</option>
+                    </select>
+                </div>                                
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row justify-content-center">
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="destino">Último destino</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" id="destino">
+                        <option>Cliente</option>
+                        <option>Mesa</option>
+                    </select>
+                </div>                                
+            </div>
+
+        </div>
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="mesa">Cliente</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" id="mesa">
+                        <option>SAT</option>
+                        <option>INE</option>
+                    </select>
+                </div>                                
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-4">
+            <div class="form-row justify-content-center">
+                <button type = "submit" class="btn btn-primary">Buscar</button>                        
+            </div>
+        </div>
+    </div>  
+</form>
+<br>
+
+    <table class="table table-hover table-responsive-xl">
+      <thead>
+        <tr class="text-center">
+            <th># Serie</th>
+            <th>Clase</th>
+            <th>Tipo</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Mesa</th>
+            <th>Último destino</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class = "row_buscar_dispositivo" onclick="window.location.href='../php/_consultar_dispositivo.php'">
+            <th>000-00000</th>
+            <td>Refacción</td>
+            <td>Mouse</td>
+            <td>Dell</td>
+            <td>140</td>
+            <td>Mesa 1</td>
+            <td>Almacén</td>
+        </tr>
+        <tr class = "row_buscar_dispositivo" onclick="window.location.href='../php/_consultar_dispositivo.php'">
+            <th>000-00001</th>
+            <td>Refacción</td>
+            <td>Teclado</td>
+            <td>HP</td>
+            <td>2230</td>
+            <td>Mesa 2</td>
+            <td>SAT</td>
+        </tr>
+      </tbody>
+    </table>

@@ -1,0 +1,63 @@
+<form method = "post" action="../php/_modificar_usuario.php">
+    <div class="row">
+        <div class="col-lg-9 col-md-8 col-sm-7">
+            <h4>Cambiar contraseña</h4>
+        </div>
+    </div>
+    <input name = "Id_usuario" value ="<?php if ( isset($_GET['Id_usuario'])): ?><?= $_GET['Id_usuario']?><? endif?><?php if (isset($_POST['Id_usuario'])): ?><?= $_POST['Id_usuario']?><? endif?>" hidden>
+    <br>
+    <?php if(isset ($error_contraseña)):?>
+        <div class = "error"><?=$error_contraseña?></div>
+    <?php endif?>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <label for ="contrasena_actual">Contraseña actual:</label>
+            <input type="password" name="contrasena_actual" id="contrasena_actual">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <label for ="contrasena_nueva">Nueva contraseña:</label>
+            <input type="password" name="contrasena_nueva" id="contrasena_nueva" maxlength="15">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-12">
+            <label for ="contrasena_confirmar">Confirmar contraseña:</label>
+            <input type="password" name="contrasena_confirmar" id="contrasena_confirmar" maxlength="15">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
+        </div>
+    </div>
+</form>
+<?php if($_SESSION["Id_rol"] == 3):?>
+    <br>
+    <br>
+    <form method = "post" action="../php/_modificar_usuario.php">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-sm-7">
+                <h4>Restaurar contraseña</h4>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-sm-7">
+                Presiona el siguiente botón para restaurar la contraseña del usuario <b><?= $datos["Nombre_de_usuario"] ?></b>. La nueva contraseña será "<b>admin</b>".
+            </div>
+        </div>
+        <br>
+        <input name = "Id_usuario" value ="<?php if ( isset($_GET['Id_usuario'])): ?><?= $_GET['Id_usuario']?><? endif?><?php if (isset($_POST['Id_usuario'])): ?><?= $_POST['Id_usuario']?><? endif?>" hidden>
+        <input name = "restablecer_contrasena" value ="admin" hidden>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <button type="submit" class="btn btn-primary">Restaurar contraseña</button>
+            </div>
+        </div>
+    </form>
+<?php endif?>

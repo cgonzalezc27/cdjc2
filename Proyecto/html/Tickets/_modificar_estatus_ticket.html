@@ -1,0 +1,31 @@
+<form method="post" action="../php/_modificar_ticket.php">
+    <div class="row">
+        <div class="col-lg-9 col-md-8 col-sm-7">
+            <h4>Modificar Estatus de Ticket</h4>
+        </div>
+    </div><br>
+    <input name="Id_ticket" value ="<?= $_GET['id'] ?>" hidden>
+    <div class="form-row">
+        <div class="form-group col-lg-4 col-md-7 col-sm-6">
+            <label for="No_ticket">Número de Ticket:</label>
+            <input name = "No_ticket" type="text" class="form-control" id="No_ticket" value = "<?= $datos[0]['No_ticket']?>" disabled>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-lg-4 col-md-7 col-sm-6">
+            <label for="Estatus">Estatus:</label>
+                <?= $datos[0]['Estatus']?>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+          <label for="Diagnostico">Comentario Diagnóstico: </label>
+            <textarea class="form-control" id="Diagnostico" rows="3" name="Diagnostico" required maxlength="1900"></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <button class = "btn btn-primary" type="submit">Enviar Diagnóstico</button>
+    </div>
+    
+
+</form>

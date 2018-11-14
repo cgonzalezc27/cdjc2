@@ -1,0 +1,78 @@
+<form>
+    <div class="row">
+        <div class="col-10">
+            <h4 class="display-4 titulo_pagina">Consultar dispositivo</h4>
+        </div>
+        <div class="col-2">
+            <a href="./_modificar_dispositivo.php?id=<?=$_GET['id']?>&fecha=<?=$_GET['fecha']?>"><i class="material-icons">more_horiz</i>Modificar</a><br>
+        </div>
+    </div>
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-4 col-md-10 col-sm-12">
+            <label for="no_serie">Número de serie</label>
+            <input type="text" class="form-control" id="no_serie" value="<?=$dispositivo['No_serie_equipo']?>" disabled>
+        </div>
+        <div class="form-group col-lg-4 col-md-10 col-sm-12">
+            <label for="clase_dispositivo">Clase de dispositivo</label>
+            <input type="text" class="form-control" id="clase_dispositivo" value="<?=$dispositivo['Clase']?>" disabled>
+        </div>
+    </div>
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-4 col-md-10 col-sm-12">
+            <label for="tipo_dispositivo">Tipo de dispositivo</label>
+            <input type="text" class="form-control" id="tipo_dispositivo" value="<?=$dispositivo['Tipo']?>" disabled>
+        </div>
+        <div class="form-group col-lg-4 col-md-10 col-sm-12">
+            <label for="marca">Marca</label>
+            <input type="text" class="form-control" id="marca" value="<?=$dispositivo['marca']?>" disabled>
+        </div>
+    </div>
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-4 col-md-10 col-sm-12">
+            <label for="modelo">Modelo</label>
+            <input type="text" class="form-control" id="modelo" value="<?=$dispositivo['Modelo']?>" disabled>
+        </div>
+        <div class="form-group col-lg-4 col-md-10 col-sm-12">
+            <label for="mesa">Mesa propietaria</label>
+            <input type="text" class="form-control" id="mesa" value="<?=$dispositivo['mesa']?>" disabled>
+        </div>
+    </div>
+  <!--  <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-10 col-sm-12">
+            <label for="comentario">Comentario</label>
+            <input type="text" class="form-control" id="comentario" value="<?=$dispositivo['Clase']?>" disabled>
+            <textarea class="form-control" id="comentario" rows="3" placeholder="Escribe un comentario" disabled></textarea>
+        </div>
+    </div>-->
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-10 col-sm-12">
+          <label for="destino">Ultimo Destino</label>
+          <input type="text" class="form-control" id="destino" value="<?=$dispositivo['destino']?>" disabled>
+        </div>
+      </div>
+      <br><br>
+    <table class="table table-hover table-responsive-sm">
+      <thead>
+        <tr class="text-center">
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Origen</th>
+            <th>Destino</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?=createTable()?>
+      </tbody>
+    </table>
+
+    <div class="form-row justify-content-center">
+        <div class="form-group col-7">
+            <div class="form-row justify-content-center">
+                <div class="col-lg-2 col-md-5 col-sm-7"></div>
+                <div class="col-2">
+                    <button class="btn btn-primary" type = "button" name="button" onclick="history.back()">Atrás</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

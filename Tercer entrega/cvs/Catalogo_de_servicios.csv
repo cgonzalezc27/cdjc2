@@ -1,0 +1,20 @@
+TRAB001~2:00:00~Cambiar Monitor~Se debe cambiar monitor~CAT001~MAN0000001~GR01
+TRAB002~3:00:00~Cambiar Placa base~Se debe cambiar placa base~CAT001~MAN0000002~GR02
+TRAB003~4:00:00~Cambiar CPU~Se debe cambiar cpu~CAT001~MAN0000003~GR03
+TRAB004~2:00:00~Cambiar Memoria~Se debe cambiar memoria~CAT001~MAN0000004~GR04
+TRAB005~5:00:00~Cambiar Tarjeta de expansión~Se debe cambiar tarjeta de expansión~CAT001~MAN0000005~GR05
+TRAB006~2:00:00~Cambiar Fuente de alimentación~Se debe cambiar fuente de alimentación~CAT001~MAN0000006~GR01
+TRAB007~1:00:00~Cambiar Unidad de disco óptico~Se debe cambiar unidad de disco óptico~CAT001~MAN0000007~GR02
+TRAB008~3:00:00~Cambiar Disco duro, Unidad de estado sólido~Se debe cambiar disco duro, unidad de estado sólido~CAT001~MAN0000008~GR03
+TRAB009~1:00:00~Cambiar Teclado~Se debe cambiar teclado~CAT001~MAN0000001~GR04
+TRAB010~5:00:00~Cambiar DVD~Se debe cambiar dvd~CAT001~MAN0000002~GR05
+TRAB011~2:00:00~Reinstalar Sistema operativo~Se debe reinstalar sistema operativo~CAT002~MAN0000003~GR01
+TRAB012~0:00:00~Actualizar Sistema operativo~Se debe actualizar sistema operativo~CAT002~MAN0000004~GR02
+TRAB013~5:00:00~Cambiar Impresora~Se debe cambiar impresora~CAT001~MAN0000005~GR03
+TRAB014~2:00:00~Cambiar Bocinas~Se debe cambiar bocinas~CAT001~MAN0000006~GR04
+TRAB015~4:00:00~Reparar Monitor~Se debe reparar monitor~CAT001~MAN0000007~GR05
+TRAB016~2:00:00~Reparar Placa base~Se debe reparar placa base~CAT001~MAN0000008~GR01
+TRAB017~3:00:00~Reparar CPU~Se debe reparar cpu~CAT001~MAN0000001~GR02
+TRAB018~0:00:00~Reparar Memoria~Se debe reparar memoria~CAT001~MAN0000002~GR03
+TRAB019~0:00:00~Reparar Tarjeta de expansión~Se debe reparar tarjeta de expansión~CAT001~MAN0000003~GR04
+TRAB020~2:00:00~Reparar Fuente de alimentación~Se debe reparar fuente de alimentación~CAT001~MAN0000004~GR05

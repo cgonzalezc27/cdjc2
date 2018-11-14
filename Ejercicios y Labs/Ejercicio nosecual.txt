@@ -1,0 +1,55 @@
+Ejercicio 1:
+
+1FN
+Servicios(cliente, domicilio, estado, anio, retabasica, servicios adicionales, mes)
+
+2FN
+Servicios(noContrato, cliente, domicilio, estado, anio, retabasica, servicios adicionales, mes)
+
+3FN
+Estado(idEstado, Nombre)
+Estado_Cliente(noCliente, idEstado)
+Cliente(idClinete, Nombre Completo, Domicilio)
+Pagos(idCliente, idServicio, Fecha, Monto)
+Paquetes(idPaquete, Nombre, Traifa)
+Paquete_Servicios(idPaquete, idServicio)
+Servicio(idServicio, Nombre, Tarifa)
+
+
+Ejercicio 2:
+Produccion(codigodeparte, descripciondeParte, Fecha, numeroOperador, nombreOperador y cantidad en linea1 turno1, nombreOperador y cantidad en linea1 turno2, nombreOperador y cantidad en linea1 turno3, nombreOperador y cantidad en linea2 turno1, nombreOperador y cantidad en linea2 turno2, nombreOperador y cantidad en linea2 turno3, nombreOperador y cantidad en linea3 turno1, nombreOperador y cantidad en linea3 turno2, nombreOperador y cantidad en linea3 turno3)
+
+1FN
+Produccion(codigodeparte, descripciondeParte, Fecha, numeroOperador, nombreOperador, cantidad en linea1 turno1, cantidad en linea1 turno2, cantidad en linea1 turno3, cantidad en linea2 turno1, cantidad en linea2 turno2, cantidad linea2 turno3, cantidad linea3 turno1, cantidad linea3 turno2, cantidad linea3 turno3)
+
+
+
+2FN
+Produccion(codigodeparte, descripciondeParte, Fecha, numeroOperador, nombreOperador, linea, turno, cantidad)
+
+
+3FN
+Partes (codigodeparte, nombre, descripciondeParte)
+Operacion(codigoParte, numeroOperador, fecha, idTurno, idLinea, cantidad)
+Operadores (numeroOperador, nombreOperador,
+Lineas(idLinea, nombre)
+Turnos(idTurno, nombre, horaInicial, horaFinal)
+
+Ejercicio 3:
+Facturacion(Nombre de Cliente y Direccion, Fecha y Hora, Duracion, Numero de Telefono de Origien, Entidad Federativa de Origen, Ciudad de Origen, Numero de Telefono Destino, Entidad Federativa de Destino, Ciudad de Destino, Tarifa por minuto entre ciudad origen y ciudad destino, Fecha de inicio de facturacion, fecha final de facturacion)
+
+1FN
+Facturacion(Nombre de Cliente, Direccion, Fecha,  Hora, Duracion, Numero de Telefono de Origien, Entidad Federativa de Origen, Ciudad de Origen, Numero de Telefono Destino, Entidad Federativa de Destino, Ciudad de Destino, Tarifa por minuto entre ciudad origen y ciudad destino, Fecha de inicio de facturacion, fecha final de facturacion)
+
+2FN
+Facturacion(noFactura, Nombre de Cliente, Direccion, Fecha,  Hora, Duracion, Numero de Telefono de Origien, Entidad Federativa de Origen, Ciudad de Origen, Numero de Telefono Destino, Entidad Federativa de Destino, Ciudad de Destino, Tarifa por minuto entre ciudad origen y ciudad destino, Fecha de inicio de facturacion, fecha final de facturacion)
+
+3FN
+
+Clientes (idCliente, nombreCliente, telefono, direccion)
+Ciudades(idCiudad, nombre, idEntidad)
+EntidadFederativa(idEntidad, nombreEntidad, 
+Tarifario (idCiudadOrigen, idCiudadDestino, tarifaMinuto)
+Llamadas(idLlamada, idCliente, idCiudadOrigen, idCiudadDestino, duracion, telefonoDestino, fecha, hora)
+Facturas(Nofactura, idCliente, fechaInicioFacturacion, fechaFinFacturacion,  montoTotal)
+

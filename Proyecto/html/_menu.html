@@ -1,0 +1,139 @@
+<body>
+        <div class="wrapper">
+            <!-- Sidebar  -->
+            <div id="navbarToggleExternalContent">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <div class="text-center ">
+                            <a href="/php/_tickets_abiertos_v2.php" class=""><img src="/img/logo_SSyN2.png" alt="logo SSyn" id="logo"></a>
+                        </div>
+                    </div>
+
+                <ul class="list-unstyled components">
+                    <p class="navbar_text"><i class="material-icons">account_circle</i> Usuario: <?= $_SESSION["Usuario"]?></p>
+
+                    <?php if ($_SESSION['Permisos'][1] == TRUE || $_SESSION['Permisos'][17] == TRUE || $_SESSION['Permisos'][2] == TRUE || $_SESSION['Permisos'][3] == TRUE || $_SESSION['Permisos'][5] == TRUE): ?>
+                        <li <?php if ($menu == 'tickets') : ?> class = " active " <?php endif; ?> >
+                            <a href="#tiquesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle navbar_a"><i class="material-icons">receipt</i> Tickets</a>
+                            <ul class="collapse list-unstyled" id="tiquesSubmenu">
+                                <?php if ($_SESSION['Permisos'][5] == TRUE): ?>
+                                <li>
+                                    <a class="navbar_a" href="/php/viewCrearTicket.php">Crear Tickets</a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['Permisos'][2] == TRUE || $_SESSION['Permisos'][3] == TRUE || $_SESSION['Permisos'][1] == TRUE || $_SESSION['Permisos'][17] == TRUE): ?>
+                                <li>
+                                    <a class="navbar_a" href="/php/_tickets_abiertos_v2.php">Tickets Abrietos</a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if($_SESSION['Permisos'][3] == TRUE || $_SESSION['Permisos'][1] == TRUE): ?>
+                                <li>
+                                    <a class="navbar_a" href="/php/_historial_tickets.php">Historial de Tickets</a>
+                                </li>
+                                <?php endif; ?>
+
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <li <?php if ($menu == 'tickets') : ?> class = " active " <?php endif; ?> >
+                            <a href="/php/_tickets_abiertos_v2.php" class=" navbar_a"><i class="material-icons">receipt</i> Tickets Abrietos</a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php if ($_SESSION['Id_rol'] == 3 || $_SESSION['Id_rol'] == 2): ?>
+                        <li <?php if ($menu == 'inventario') : ?> class = " active " <?php endif; ?>>
+                            <a href="#inventarioSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle navbar_a"><i class="material-icons">devices_other</i> Inventario</a>
+                            <ul class="collapse list-unstyled" id="inventarioSubmenu">
+                                <?php if ($_SESSION['Permisos'][11] == TRUE): ?>
+                                <li>
+                                    <a class="navbar_a" href="/php/_registrar_dispositivo.php">Registrar Dispositivo</a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['Permisos'][13] == TRUE): ?>
+                                <li>
+                                    <a class="navbar_a" href="/php/_registrar_movimiento.php">Registrar Movimiento</a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['Permisos'][12] == TRUE || $_SESSION['Permisos'][14] == TRUE || $_SESSION['Permisos'][15] == TRUE): ?>
+                                <li>
+                                    <a class="navbar_a" href="/php/_buscar_dispositivo.php">Buscar Dispositivo</a>
+                                </li>
+                                <?php endif; ?>
+                            </ul>
+                        </li>
+                        <?php endif; ?>
+
+                        <?php if ($_SESSION['Permisos'][8] == TRUE): ?>
+                        <li <?php if ($menu == 'mesas') : ?> class = " active " <?php endif; ?>>
+                            <a href="#mesaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle navbar_a"><i class="material-icons">headset_mic</i> Mesas</a>
+                            <ul class="collapse list-unstyled" id="mesaSubmenu">
+
+                                <li>
+                                    <a class="navbar_a" href="/php/_clientes_todos.php">Mesa 1</a>
+                                </li>
+                                <li>
+                                    <a class="navbar_a" href="/php/_clientes_todos.php">Mesa 2</a>
+                                </li>
+                                <li>
+                                    <a class="navbar_a" href="/php/_clientes_todos.php">Mesa 3</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <?php endif;?>
+
+                        <?php if ($_SESSION['Permisos'][7] == TRUE): ?>
+                        <li <?php if ($menu == 'ingenieros') : ?> class = " active " <?php endif; ?>>
+                            <a class="navbar_a" href="/php/_ingenieros_todos.php"><i class="material-icons">assignment_ind</i> Ingenieros</a>
+                        </li>
+                        <?php endif; ?>
+                        <?php if ($_SESSION['Permisos'][10] == TRUE || $_SESSION['Permisos'][9] == TRUE): ?>
+                        <li <?php if ($menu == 'reportes') : ?> class = " active " <?php endif; ?>>
+                            <a class="navbar_a" href="/php/_reportes.php"><i class="material-icons">table_chart</i> Reportes</a>
+                        </li>
+                        <?php endif; ?>
+                    <?php if ($_SESSION['Permisos'][16] == TRUE || $_SESSION['Permisos'][4] == TRUE): ?>
+                    <li <?php if ($menu == 'manuales') : ?> class = " active " <?php endif; ?>>
+                        <a class="navbar_a" href="/php/_consultar_manuales.php"><i class="material-icons">library_books</i> Manuales</a>
+                    </li>
+                    <?php endif;?>
+                    <li <?php if ($menu == 'ajustes') : ?> class = " active " <?php endif; ?>>
+                      <?=$_SESSION["ajustes"]?>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+            <div id="content">
+                <nav class="navbar sticky-top navbar-expand-lg barra_top">
+                    <div class="container-fluid">
+
+                        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                            <i class="fas fa-align-justify"></i>
+                        </button>
+                        <!--<div class="collapse navbar-collapse" id="navbarText"> esto es para ocultar cuando se hace pequa;a la pantalla -->
+                        <span class="d-none d-md-block">
+                            <div class="text-center align-self-center barra_top">Sistema de Administración de Servicios</div>
+                        </span>
+                        <span class="d-block d-md-none">
+                            <div class="text-center align-self-center barra_top">SS&N</div>
+                        </span>
+                        <span class="d-none d-md-block">
+                            <form action="/php/cerrar_sesion.php" method="post">
+
+                                <button type="submit" class="btn btn-info">
+                                    <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
+                                </button>
+                            </form>
+                        </span>
+                        <span class="d-block d-md-none">
+                            <form action="/php/cerrar_sesion.php" method="post">
+
+                                <button type="submit" class="btn btn-info">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </button>
+                            </form>
+                        </span>
+                    </div>
+                </nav>
+            <div class="content_in_content">

@@ -1,0 +1,60 @@
+<form method="post" action="../php/model_dispositivo.php">
+  <h4 class="display-4 titulo_pagina">Registrar dispositivo</h4><br>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-lg-4 col-md-10 col-sm-12">
+      <label for="no_serie">Número de serie</label>
+      <input type="text" name="NoSerie" class="form-control" id="no_serie" placeholder="# de serie" required>
+    </div>
+    <div class="form-group col-lg-4 col-md-10 col-sm-12">
+      <label for="clase_dispositivo">Clase de dispositivo</label>
+      <select type="list" name="clase_dispositivo" class="form-control" id="clase_dispositivo" onchange="actualizar_tipo_dis()" required>
+        <?=getclase()?>
+      </select>
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-lg-4 col-md-10 col-sm-12">
+      <label for="tipo_dispositivo">Tipo de dispositivo</label>
+      <select type="list" class="form-control" name="tipo_dis" id="tipo_dispositivo" required>
+        <option>selecciona tipo de dispositivo...</option>
+      </select>
+    </div>
+    <div class="form-group col-lg-4 col-md-10 col-sm-12">
+      <label for="marca">Marca</label>
+      <select type="list" name="marca" class="form-control" id="marca" onchange="marca_modelo_dispositivo()" required>
+        <?=getmarca()?>
+      </select>
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-lg-4 col-md-10 col-sm-12">
+      <label for="modelo">Modelo</label>
+      <select type="list" name="modelo_dis" class="form-control" id="modelo" required>
+        <option>selecciona modelo...</option>
+      </select>
+    </div>
+    <div class="form-group col-lg-4 col-md-10 col-sm-12">
+      <label for="mesa">Mesa propietaria</label>
+      <select type="list" name="mesa" class="form-control" id="mesa" required>
+        <?=getmesapropietaria()?>
+      </select>
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-lg-7 col-md-10 col-sm-12">
+      <label for="comentario">Comentario</label>
+      <textarea class="form-control" name="comentario" id="comentario" rows="3" placeholder="Escribe un comentario..."></textarea>
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-7">
+      <div class="form-row justify-content-center">
+        <div class="col-2">
+          <button type="submit" class="btn btn-primary">Registrar dispositivo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div>
+<br><br><br><br><br><br><br><br><br><br><br><br>

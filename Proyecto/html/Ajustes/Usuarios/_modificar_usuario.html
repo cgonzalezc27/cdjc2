@@ -1,0 +1,120 @@
+<div class="row">
+    <?php if ($disabled==1) : ?>
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h4>Consultar Usuario</h4>
+    </div>
+    <? else : ?>
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h4>Modificar Usuario</h4>
+    </div>
+    <?php endif; ?>
+    <?php if ($disabled==0) : ?>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <a href="./_modificar_usuario.php?Id_usuario=<?= $Id_usuario?>"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+    </div>
+    <? else : ?>
+    <?php if ($_SESSION["Permisos"] == 6) : ?>
+    <? else : ?>
+    <div class="col-lg-3 col-md-4 col-sm-5" >
+        <a href="./_modificar_usuario.php?editar=1&Id_usuario=<?= $Id_usuario?>"><i class="material-icons">create</i> Editar Usuario</a>
+    </div>
+    <?php endif; ?>
+    <?php endif; ?>
+</div>
+<?php if ($disabled==1) : ?>
+<div class="row">
+    <div class="col-lg-5 col-md-3 col-sm-12">
+        <a href="./_modificar_usuario.php?cambio_contrasena=1&Id_usuario=<?= $Id_usuario?>"><i class="material-icons">create</i> Cambiar contraseña</a>
+    </div>
+</div>
+<? else : ?>
+<div class="row">
+    <div class="col-lg-5 col-md-3 col-sm-12">
+        <a href="./_modificar_usuario.php?eliminar_usuario=1&Id_usuario=<?= $Id_usuario?>"><i class="material-icons">delete_sweep</i> Eliminar Usuario</a>
+    </div>
+</div>  
+<?php endif; ?>
+<br>                  
+
+<form method="post" action="../php/_modificar_usuario.php" enctype="multipart/form-data">
+    <input type="text" hidden value="<?= $Id_usuario?>" name="Id_usuario">
+    <div class="form-row align-items-end">
+        <div class="form-group col-lg-4 col-md-7 col-sm-8">
+            <label>Foto de usuario:</label><br>
+            <div class="text-center">
+                <img alt="imagen" class = "foto_usuario" src = "<?= $datos['Foto']?>">
+            </div>
+        </div>
+        <?php if ($disabled==1) : ?>
+        <? else : ?>
+        <div class="form-group col-lg-7 col-md-7 col-sm-6 ">
+            <label>Subir Nueva Foto de Usuario:</label>
+            <input type="file" name = "Foto">
+        </div>
+        <?php endif; ?>
+    </div> 
+    <br>
+    <div class="form-row">
+        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+            <label for="inputPassword4">Nombre(s)</label>
+            <input name = "Nombre" type="text" class="form-control" id="#" required maxlength = "50" value = "<?= $datos['Nombre']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+            <label for="inputEmail4">Apellido Paterno</label>
+            <input name = "Apellido1" type="text" class="form-control" id="#" placeholder="Ej. Hernández" required maxlength = "25" value = "<?= $datos['Apellido1']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+            <label for="inputEmail4">Apellido Materno</label>
+            <input name = "Apellido2" type="text" class="form-control" id="#" placeholder="Ej. Llapur" required maxlength = "25" value = "<?= $datos['Apellido2']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+            <label for="inputPassword4">RFC</label>
+            <input name = "RFC" type="text" class="form-control" required maxlength = "13" id="#" placeholder="RFC" value = "<?= $datos['RFC']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+            <label for="inputEmail4">Nombre de Usuario</label>
+            <input name = "Nombre_de_usuario" type="text" required maxlength = "30" class="form-control" id="#" placeholder="Ej. JAHL" value = "<?= $datos['Nombre_de_usuario']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>  
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Calle</label>
+        <input name = "Calle" type="text" class="form-control" id="inputAddress2" required maxlength = "30" placeholder="Epigmenio González" value = "<?= $datos['Calle']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+            <label for="#">Número Exterior</label>
+            <input name = "Numero_exterior" type="text" class="form-control" id="#" required maxlength = "6" placeholder="520" value = "<?= $datos['Numero_exterior']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+            <label for="#">Número Interior</label>
+            <input name = "Numero_interior" type="text" class="form-control" maxlength = "6" id="#" placeholder="" value = "<?= $datos['Numero_interior']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+            <label for="inputCity">Ciudad</label>
+            <input name = "Ciudad" type="text" class="form-control" required maxlength = "20" id="inputCity" placeholder="Querétaro" value = "<?= $datos['Ciudad']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+            <label for="inputState">Estado</label>
+            <input name = "Estado" type="text" class="form-control" required maxlength = "20" id="inputCity" placeholder="Querétaro" value = "<?= $datos['Estado']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+        <div class="form-group col-lg-2 col-md-12 col-sm-12">
+            <label for="inputZip">Código Postal</label>
+            <input name = "CP" type="number" class="form-control" id="inputZip" placeholder="76130" required min ="10000" max ="99999" value = "<?= $datos['CP']?>" <?php if ($disabled==1) : ?> <?= 'disabled' ?> <?php endif; ?>>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-lg-4 col-md-7 col-sm-12">
+            <label for="exampleFormControlSelect1">Rol de Usuario</label>
+                <?= $datos['Roles']?>
+        </div>
+    </div>
+    <br>
+    <?php if ($disabled==1) : ?>
+    <? else : ?>
+    <button type="submit" class="btn btn-primary">Guardar modificación</button>
+    <?php endif; ?>
+</form>   

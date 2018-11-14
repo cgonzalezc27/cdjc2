@@ -1,0 +1,484 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+.navbar_text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+.navbar_a,
+.navbar_a:hover,
+.navbar_a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.select_sub_menu{
+
+}
+.navbar {
+     text-align: center;
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+   
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #f3f2f3;
+    color: #000000;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 5px;
+    background: #2ab9d1;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #ffffff;
+}
+
+#sidebar ul p {
+    color: #343434;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #2ab9d1;
+    background: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #000000;
+    background: #e0e0e0;
+}
+
+.navbar_a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #e0e0e0;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+#logo{
+    height: 42pt;
+}
+#content {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-bottom: 20px;
+}
+#logoWSD{
+    height: 30pt;
+}
+.content_in_content{
+    width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    right: 0;
+    padding-bottom: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+#titulo_aplicacion{
+    font-size: 140%
+}
+
+h4, div{
+    ;
+}
+
+.barra_top{
+    background-color: #2ab9d1;
+    color: #212121;
+    font-size: 115%;
+}
+.barra_top_index{
+    background-color: #2ab9d1;
+    color: #212121;
+    font-size: 115%;
+    height: 10%;
+}
+.footer{
+    position:absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    background-color: #e2e2e2 !important;
+    z-index: auto;
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+.submenu{
+    margin-left: 15%;
+    font-size: 60%;
+    line-height: 150%;
+}
+#menu_lateral{
+    font-size: 150%;
+    background-color: rgb(243,242,243);
+    color: #353535;
+    border-right-style: solid;
+    border-right-width: thin;
+    border-right-color: rgb(235, 234, 235);
+    height: 100%;
+}
+.menu{
+    line-height: 150%;
+}
+
+.titulo_pagina{
+    font-size: 150%;
+}
+
+.texto-ajustes{
+    color: black;
+    background-color: #f3f2f3;
+    text-decoration: none;
+    width: 100%;
+    padding: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-style: none;
+    text-align: left;
+}
+
+.texto-ajustes:hover{
+    color: #2ab9d1;
+    background-color: #ffffff;
+    text-decoration: none;
+    width: 100%;
+    padding: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-style: none;
+    text-align: left;
+}
+
+.texto-ajustes:focus{
+    color: #2ab9d1;
+    background-color: #f3f2f3;
+    text-decoration: none;
+    width: 100%;
+    padding: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-style: none;
+    text-align: left;
+}
+
+.card-header-ajustes{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+    padding: 0px;
+}
+
+.tarjeta_main{
+    width: 17rem;
+    height: 25rem;
+}
+
+
+.imagen_superior_tarjeta {
+    padding: 4%;
+    height: 50%;
+}
+#columna1_registrar_movimiento{
+    width: 30%;
+}
+#columna2_registrar_movimiento{
+    width: 70%;
+}
+
+.table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+.Terminado{
+    background-color: rgb(37, 176, 68);
+    width: 100%;
+    height: 100%;
+}
+.En_atencion{
+    background-color: rgb(37, 176, 68);
+    width: 100%;
+    height: 100%;
+}
+.Cancelado{
+    background-color: rgb(242, 34, 14);
+    width: 100%;
+    height: 100%;
+}
+.Confirmado{
+    background-color: rgb(14, 119, 242);
+    width: 100%;
+    height: 100%;
+}
+.Por_llegar{
+    background-color: rgb(240, 184, 65);
+    width: 100%;
+    height: 100%;
+}
+.cliente_ingeniero{
+    background-color: rgb(39, 171, 198);
+    width: 100%;
+    height: 100%;
+}
+@media (max-width: 880px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+
+.text-xs-left {
+    text-align: left !important;
+}
+
+.text-xs-right {
+    text-align: right !important;
+}
+
+.text-xs-center {
+    text-align: center !important;
+}
+
+.text-xs-justify {
+    text-align: justify !important;
+}
+
+@media (min-width: 768px) {
+    .text-sm-left {
+        text-align: left !important;
+    }
+
+    .text-sm-right {
+        text-align: right !important;
+    }
+
+    .text-sm-center {
+        text-align: center !important;
+    }
+
+    .text-sm-justify {
+        text-align: justify !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .text-md-left {
+        text-align: left !important;
+    }
+
+    .text-md-right {
+        text-align: right !important;
+    }
+
+    .text-md-center {
+        text-align: center !important;
+    }
+
+    .text-md-justify {
+        text-align: justify !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .text-lg-left {
+        text-align: left !important;
+    }
+
+    .text-lg-right {
+        text-align: right !important;
+    }
+
+    .text-lg-center {
+        text-align: center !important;
+    }
+
+    .text-lg-justify {
+        text-align: justify !important;
+    }
+}
+
+.mod_btn:focus{
+    color: #101010;
+    background-color: none;
+    text-decoration: none;
+}
+
+.boton_crear_ticket{
+  color: #ffffff; /*#2ab9d1 color azul de la empresa #007bff color de boton*/
+}
+.row_buscar_dispositivo:hover{
+     cursor: pointer;
+ }
+.window-card{
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px; /
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 20%;
+    bottom: 30px;
+}
+
+
+#snackbar.show {
+    visibility: visible;
+   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+.ticket{
+    margin-left: -5%;
+    margin-top: 2%;
+}
+.error{
+    color: red;
+}
+.foto_usuario{
+    width:70%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 0.5 !important;
+ 
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    opacity: 0.5 !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    opacity: 0.5 !important;
+}

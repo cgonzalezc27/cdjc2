@@ -1,0 +1,112 @@
+<?php if (empty($_POST["serie1"])) : ?>
+<form method="POST" action="_registrar_movimiento.php">
+    <h4 class="display-4 titulo_pagina">Registrar movimiento</h4><br>
+    <div class="form-row">
+        <div class="form-group col-lg-6 col-md-9 col-sm-11">
+            <label for="no_serie">Número de serie</label>
+            <input type="text" class="form-control" id="no_serie" placeholder="# de serie" name="serie1">
+            <?php if (isset($error)) : ?>
+                <?=$error?>
+            <?php endif; ?>
+            <br>
+            <button type = "submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </div>
+</form>
+<?php endif; ?>
+
+<?php if (isset($datos)) : ?>
+<form method="POST" action="_registrar_movimiento.php">
+    <h4 class="display-4 titulo_pagina">Registrar movimiento</h4><br>
+    <div class="form-row">
+        <div class="form-group col-lg-6 col-md-9 col-sm-11">
+            <label for="no_serie">Número de serie</label>
+            <input type="text" class="form-control" id="no_serie" placeholder="# de serie" name="serie2" value="<?= $datos['No_serie_equipo']?>">
+            <br>
+            <button type = "submit" class="btn btn-primary">Buscar</button> 
+            
+        </div>
+    </div>
+    
+    <?php if (isset($error)) : ?>
+        <?=$error."<br>"?>
+    <?php endif; ?>
+</form>
+<form method="POST" action="_registrar_movimiento.php">
+        
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-10 col-sm-12">
+            <input name = "serie" value = "<?= $datos['No_serie_equipo']?>" hidden>
+            <table class="table table-responsive">
+              <thead>
+                <tr>
+                  <th id = "columna1_registrar_movimiento">Característica</th>
+                  <th id = "columna2_registrar_movimiento">Detalle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>No. Serie</th>
+                  <td><?= $datos['No_serie_equipo']?></td>
+                </tr>
+                <tr>
+                  <th>Clase</th>
+                  <td><?= $datos['NombreC']?></td>
+                </tr>
+                <tr>
+                  <th>Tipo</th>
+                  <td><?= $datos['NombreT']?></td>
+                </tr>
+                <tr>
+                  <th>Marca</th>
+                  <td><?= $datos['NombreM']?></td>
+                </tr>
+                <tr>
+                  <th>Modelo</th>
+                  <td><?= $datos['NombreMO']?></td>
+                </tr>
+                <tr>
+                  <th>Mesa propietaria</th>
+                  <td><?= $datos['NombreME']?></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-6 col-md-9 col-sm-11">
+            <label for="ultima_ubicacion">Última ubicación</label>
+            <input type="text" class="form-control" id="ultima_ubicacion" placeholder="Almacén SS&N" value="<?= $datos['NombreD']?>" disabled>
+        </div>
+    </div>
+    <br>
+    <div class="form-row">
+        <input type="checkbox" id="relacionar_ticket" name="relacionar_ticket" onchange="ticket_relacionado()" value="off"> &nbsp ¿Desea relacionar este movimiento a un ticket abierto?
+    </div>
+     <div class="form-row" id = "ticket_select" style ="display:none">
+        <div id="response2"></div>
+    </div>
+    <br>
+    <div class="form-row">
+        <div class="col-lg-6 col-md-9 col-sm-11">
+            <label for="tipo_destino">Destino</label>
+            <select type="list" class="form-control" id="tipo_destino" name="tipo_destino" onchange="dependencias_mesas()">
+                <option>Seleccione uno</option>
+                <option>Dependencia</option>
+                <option>Mesa</option>
+            </select>
+        </div>
+    </div>   
+    <br>
+    <div class="form-row" id = "destino_select" style ="display:none">
+        <div id="response"></div>
+    </div>
+    <br>
+    <div class="form-row">
+        <div class="col-4">
+            <button type = "submit" class="btn btn-primary">Registrar movimiento</button>
+        </div>
+    </div>
+    <br>
+</form> 
+<?php endif; ?>

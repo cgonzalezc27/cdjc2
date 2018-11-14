@@ -1,0 +1,39 @@
+PER01~Iniciar Sesión~Permite al usuario iniciar sesión
+PER02~Consultar tiques~Permite hacer consulta de tickets individual
+PER03~Modificar estatus de tique~Permite modificar solo el estatus del ticket
+PER04~Modificar perfil de usuario~Permite cambiar la contraseña
+PER05~Cerrar sesión~Permite cerrar la sesión
+PER06~Consultar manual~Permite ver los manuales
+PER07~Registrar tique~Permite hacer el registro de un nuevo ticket
+PER08~Consultar categoría de mesa~Permite revisar la categoría de la mesa
+PER09~Consultar perfil de ingeniero~Permite consultar el perfil del ingeniero
+PER10~Consultar perfil de cliente/ cuenta~Permite revisar el perfil de la dependencia
+PER11~Generar Reportes personalizados~Permite al usuario hacer reportes personalizados
+PER12~Consultar Reportes~Permite revisar reportes prestablecidos
+PER13~Registrar dispositivo~Permite registrar dispositivos
+PER14~Modificar dispositivo~Permite modificar un dipositivo
+PER15~Registrar movimiento de dispositivo~Permite registrar el movimiento del dispositivo
+PER16~Modificar movimiento de dispositivo~Permite modificar el movimiento
+PER17~Consultar dispositivo~Permite revisar el dispositvio
+PER18~Registrar marca de dispositivo~Permite ingresar una marca
+PER19~Modificar marca de dispositivo~Permite modificar una mar
+PER20~Registrar usuario~Permite Registrar usuario
+PER21~Registrar rol~Permite Registrar rol
+PER22~Modificar rol~Permite Modificar rol
+PER23~Cargar Manual~Permite Cargar Manual
+PER24~Registrar cliente/ cuenta~Permite Registrar cliente/ cuenta
+PER25~Modificar cliente/ cuenta~Permite Modificar cliente/ cuenta
+PER26~Registrar servicio~Permite Registrar servicio
+PER27~Modificar servicio~Permite Modificar servicio
+PER28~Registrar mesa~Permite Registrar mesa
+PER29~Modificar mesa~Permite Modificar mesa
+PER30~Registrar marca de dispositivo~Permite Registrar marca de dispositivo
+PER31~Modificar marca de dispositivo~Permite Modificar marca de dispositivo
+PER32~Registrar modelo de dispositivo~Permite Registrar modelo de dispositivo
+PER33~Modificar modelo de dispositivo~Permite Modificar modelo de dispositivo
+PER34~Registrar tipo de dispositivo~Permite Registrar tipo de dispositivo
+PER35~Modificar tipo de dispositivo~Permite Modificar tipo de dispositivo
+PER36~Modificar usuario~Permite Modificar usuario
+PER37~Modificar marca de dispositivo~Permite Modificar marca de dispositivo
+PER38~Registrar marca de dispositivo~Permite Registrar marca de dispositivo
+PER39~Modificar marca de dispositivo~Permite Modificar marca de dispositivo

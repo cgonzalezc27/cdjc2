@@ -1,0 +1,46 @@
+<form>
+    <h4 class="display-4 titulo_pagina">Consultar Usuarios </h4><br>
+        <form>
+            <div class="row">
+                <div class="form-row col-12 justify-content-center">
+                    <div class="form-group col-lg-8 col-md-8 col-sm-12 align-self-center">
+                        <label for="inputPassword4">Nombre(s)</label>
+                        <input type="text" class="form-control" id="#" placeholder="Ej. Juan Francisco">
+                    </div>
+                </div>
+                <div class="form-row col-12 justify-content-center">
+                    <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                        <label for="inputEmail4">Apellido Paterno</label>
+                        <input type="text" class="form-control" id="#" placeholder="Ej. Prado">
+                    </div>
+                    <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                        <label for="inputEmail4">Apellido Materno</label>
+                        <input type="text" class="form-control" id="#" placeholder="Ej. Robles">
+                    </div> 
+                </div>
+                <div class="form-row col-12 justify-content-center">
+                    <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                        <label for="inputPassword4">RFC</label>
+                        <input type="text" class="form-control" id="#" placeholder="Ej. JPR01234567891">
+                    </div>
+                    <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                        <label for="inputEmail4">Nombre de Usuario</label>
+                        <input type="text" class="form-control" id="#" placeholder="Ej. jfpr3264">
+                    </div> 
+                </div>
+                <div class="form-row col-12 justify-content-center">
+                    <div class="form-group col-1">
+                        <button class="btn btn-primary">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="form-text col">
+            <h4>Usuarios</h4>
+        </div><br>
+        <?= $tabla ?>
+
+
+    </form>
+

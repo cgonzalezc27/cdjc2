@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset = "utf-8">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <title ></title>
+    </head>
+    <body>
+        <div class="container-fluid sticky-top" id = "barra_top">
+            <div class="row">
+                <div class = "col-1 align-self-center">
+                    <a href="#" id = "boton_desplegar_menu"><img class="navbar-brand" src="../img/menu-2x.png" alt="menu"></a>
+                </div>
+                <div class="col-1"></div>
+                <div class = "col-7 align-self-center">
+
+                   <h4 class="display-1 text-center align-self-center" id = "titulo_aplicacion">Sistema de Administración de Servicios</h4>
+                </div>
+                <div class = "col-3 align-self-center">
+                        <div class="col-10">
+                            <div class="row justify-content-end">
+                                <a class = "" href="#"><img src="../img/account-logout-2x.png" alt = "boton_logout"> Logout</a>
+                            </div>
+                            <div class="row justify-content-end">
+                                Nombre
+                            </div>
+                            <div class="row justify-content-end">
+                                Hora
+                            </div>
+                        </div>
+                        <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <nav class="display-1" id="menu_lateral">
+                <div class="container">
+                    <ul class="list-unstyled">
+                        <li class="menu">
+                            <a href="#" id = "menu_tickets">Tickets</a>
+                            <ul class="list-unstyled submenu collapse" id = "submenu_tickets">
+                                <li><a href="#">Abiertos</a></li>
+                                <li><a href="#">Historial</a></li>
+                                <li><a href="#">Crear ticket</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu"><a href="#" id = "menu_inventario">Inventario</a>
+                            <ul class="list-unstyled submenu collapse" id = "submenu_inventario">
+                                <li><a href="#">Registrar dispositivo</a></li>
+                                <li><a href="#">Registrar movimiento</a></li>
+                                <li><a href="#">Buscar dispositivo</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu"><a href="#" id = "menu_clientes">Clientes</a>
+                            <ul class="list-unstyled submenu collapse" id = "submenu_clientes">
+                                <li><a href="#">Todos</a></li>
+                                <li><a href="#">Mesa 1</a></li>
+                                <li><a href="#">Mesa 2</a></li>
+                                <li><a href="#">Mesa 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu"><a href="#">Ingenieros</a></li>
+                        <li class="menu"><a href="#">Reportes</a></li>
+                        <li class="menu"><a href="#">Manuales</a></li>
+                        <li class="menu"><a href="#">Ajustes</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+
+        </div>
+
+        <footer>
+            <div class="container-fluid" id = "barra">
+                
+                <div class="text-center ">
+                    <a href="#" class=""><img src="../img/logo_SSyN.png" alt="logo SSyn" id="logo"></a>
+                </div>
+            </div>
+       <br>
+        <footer>
+            <div class="container footer" id = "barra">
+                <div class="text-center ">copyright
+                    <a href="#" class=""><img src="../img/logo_SSyN.png" alt="logo SSyn" id="logo"></a>
+                </div>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script type="text/jscript" src="../js/functions.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script type="text/jscript" src="../js/functions.js"></script>
+        </footer>
+    </body>
+
+</html>

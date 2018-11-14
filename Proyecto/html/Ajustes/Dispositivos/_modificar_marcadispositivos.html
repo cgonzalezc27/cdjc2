@@ -1,0 +1,54 @@
+
+                <form action="../php/_modificar_marcadispositivos.php" method="post">
+                    <?php if($disabled == 1): ?>
+                        <div class="row">
+
+                            <div class="col-lg-8 col-md-6 col-sm-6">
+                                <h4>Consultar Marca de Dispositivo</h4>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-3 align-self-end">
+                                <a href="./_consultar_marcadis.php"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+                                &nbsp
+                                <a href="./_modificar_marcadispositivos.php?Id_marca_dispositivo=<?= $Id_marca_dispositivo?>&editar=1"><i class="material-icons">create</i> Editar</a>
+                            </div>
+                        </div>
+                        
+                    <?php elseif($disabled == 0): ?>
+                        <div class="row">
+
+                            <div class="col-lg-8 col-md-6 col-sm-6">
+                                <h4>Modificar Marca de Dispositivo</h4>
+                            </div>
+                      
+                        <div class="col-lg-4 col-md-3 col-sm-3">
+                            <a href="../php/_modificar_marcadispositivos.php?Id_marca_dispositivo=<?= $Id_marca_dispositivo?>"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5 col-md-3 col-sm-12">
+                                <a href="../php/_modificar_marcadispositivos.php?Id_marca_dispositivo=<?= $Id_marca_dispositivo?>&eliminar_marca=1"><i class="material-icons">delete_sweep</i> Eliminar</a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <br>
+                    <div class="form-row">
+                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                            <label for="inputPassword4">Nombre</label>
+                            <input required maxlength="30" type="text" class="form-control" id="#" name = "NombreM" value="<?= $data['Nombre'][0]?>" <?php if($disabled == 1): ?> disabled <?php endif; ?>>
+                        </div>
+                    </div>
+                    <input type="text" hidden value="<?= $Id_marca_dispositivo?>" name="Id_marca_dispositivo">
+                    <div class="form-row">
+                        <div class="form-group col-lg-7 col-md-8 col-sm-12">
+                            <label for="inputCity">Descripción</label>
+                            <textarea maxlength="150" name="DescripcionM" class="form-control " rows="4" <?php if($disabled == 1): ?> disabled <?php endif; ?>><?= $data['Descripcion'][0]?></textarea>
+                        </div>
+                    </div>
+                    <?php if($disabled == 0): ?>
+                        <button type="submit" class="btn btn-primary">Terminar</button>
+                    <?php endif; ?>
+                </form>
+
+
+            
+       

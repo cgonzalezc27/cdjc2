@@ -1,0 +1,74 @@
+                <form id="forma_buscar_dep">
+                    <h4 class="display-4 titulo_pagina">Buscar Dependencias </h4><br>
+                    <form>
+                        <div class="form-row justify-content-center">
+                            <div class="form-row">
+                                 <div class="form-group col-lg-6 col-md-6 col-sm-12 align-self-center">
+                                    <label for="inputPassword4">Razón Social</label>
+                                    <input type="text" class="form-control" name="razonS" placeholder="Instituto Nacional Electoral">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 align-self-center">
+                                    <label for="inputEmail4">RFC</label>
+                                    <input type="text" class="form-control" name="rfc" placeholder="INE01234567891">
+                                </div>
+                            </div>
+
+
+                            <div class="form-row col-12 justify-content-center">
+                                <div class="form-group col-1">
+                                    <button type="button" class="btn btn-primary" onclick="actualizar_busqueda_dependencias()">Buscar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <h4 class="display-4 titulo_pagina">Dependencias </h4><br>
+                    <div class="table-responsive col-12 ">
+                        <table class="table table-hover table-responsive-xl">
+                          <div id="table_query">
+                            <div id="table">
+
+                            </div>
+                          </div>
+                          <!--  <thead>
+
+                                <tr class="text-center">
+                                    <th scope="col">Razón Social</th>
+                                    <th scope="col">RFC</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Ciudad</th>
+                                    <th scope="col">Persona Encargada</th>
+                                    <th scope="col">Tiempo de Espera</th>
+                                    <th scope="col">Comentario</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="row_buscar_dispositivo" onclick="window.location.href='./_modificar_cliente.php'">
+                                    <td>Cliente 1</td>
+                                    <td>ITE1234567KI0</td>
+                                    <td>Fracc. San Pablo, Epigmenio González 500, 76130</td>
+                                    <td>Querétaro</td>
+                                    <td>San Juan del Río</td>
+                                    <td>Juan del Rocío Puch</td>
+                                    <td>15:00</td>
+                                    <td>Sucursal que esta por los tacos San Javier</td>
+                                </tr>
+                                <tr class="row_buscar_dispositivo" onclick="window.location.href='./_modificar_cliente.php'">
+                                    <td>Cliente 2</td>
+                                    <td>IKA1234567KZ0</td>
+                                    <td>Fracc. San Francisquito, Av. de la Luz 520, 76131</td>
+                                    <td>Querétaro</td>
+                                    <td>Querétaro</td>
+                                    <td>Dpto. Finanzas</td>
+                                    <td>30:00</td>
+                                    <td>El cliente es muy exigente</td>
+                                </tr>
+                            </tbody>
+                            -->
+                        </table>
+                    </div>
+
+                </form>
+                <br><br><br><br><br>

@@ -1,0 +1,148 @@
+<form id="forma_buscar_dis">
+
+    <h4 class="display-4 titulo_pagina">Buscar dispositivo</h4><br>
+
+    <div class="form-row justify-content-center">
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="no_serie">Número de serie</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <input type="text" class="form-control" id="no_serie" name="NoSerie" placeholder="# de serie">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6 text-md-left text-lg-right align-self-center">
+                    <label for="clase_dispositivo">Clase de dispositivo</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" name="clase_dispositivo" class="form-control" id="clase_dispositivo" onchange="actualizar_tipo_dis()">
+                      <?=getdispositivo()?>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row justify-content-center">
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="tipo_dispositivo">Tipo de dispositivo</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" name="tipo_dis" id="tipo_dispositivo">
+                        <option value="">selecciona tipo de dispositivo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="marca">Marca</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" name="marca" class="form-control" id="marca" onchange="marca_modelo_dispositivo()">
+                        <?=getmarca()?>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <div class="form-row justify-content-center">
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="modelo">Modelo</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                  <select type="list" name="modelo_dis" class="form-control" id="modelo">
+                    <option value="">selecciona modelo...</option>
+                  </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="mesa">Mesa propietaria</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" name="mesaP" id="mesaP">
+                        <?=getmesapropietaria()?>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-row justify-content-center">
+      <div class="col-lg-5 col-md-10 col-sm-12">
+          <div class="form-row justify-content-center">
+              <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                  <label for="destino">Último destino</label>
+              </div>
+              <div class="form-group col-lg-8 col-md-8">
+                  <select type="list" class="form-control" name="destino" id="destino" onchange="desplegar_destino()">
+                      <option value="">seleccione destino</option>
+                      <option value="1">dependencia</option>
+                      <option value="2">Mesa</option>
+                  </select>
+              </div>
+          </div>
+      </div>
+
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12" style="display: none;" id="div_cliente">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="mesa">dependencia</label>
+                </div>
+                <div class="form-group col-lg-8 col-md-8">
+                    <select type="list" class="form-control" name="cliente" id="forma_buscar_dep">
+                      <?=getdependencia()?>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-lg-5 col-md-10 col-sm-12" style="display: none;" id="div_mesa">
+            <div class="form-row justify-content-center">
+                <div class="form-group col-lg-4 col-md-6  align-self-center text-md-left text-lg-right">
+                    <label for="mesa">Mesa</label>
+                </div>
+                <select type="list" class="form-control" name="mesa" id="mesa">
+                    <?=getmesa()?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-lg-1 col-md-0"></div>
+        <div class="col-4">
+            <div class="form-row justify-content-center">
+                <button type = "button" class="btn btn-primary" onclick="actualizar_busqueda()">Buscar</button>
+            </div>
+        </div>
+    </div>
+
+
+      <div id="table_query">
+        <div id="table">
+
+        </div>
+      </div>
+
+
+</form>

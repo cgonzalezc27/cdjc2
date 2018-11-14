@@ -1,0 +1,5 @@
+ET00000001~En atencion~El ingeniero se encuentra atendiendo el ticket
+ET00000002~Terminado~El ingeniero ha terminado de atender el ticket
+ET00000003~Cancelado~Por alguna razón, el ticket ha sido cancelado
+ET00000004~Por llegar~El ingeniero está en camino hacia la dependencia
+ET00000005~Confirmado~Se registró el ticket en el sistema y se le asignó un ingeniero y hora

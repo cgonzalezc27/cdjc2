@@ -1,0 +1,100 @@
+<form ><!--post:guardar infor-->
+  <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+      <h4 class="display-4 titulo_pagina">Consultar Ticket</h4>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5 text-right">
+      <a href="./_modificar_ticket.php?id=<?= $datos[0]['Id_ticket']?>">
+        <i class="material-icons">create</i>
+        Modificar Ticket
+      </a>
+    </div>    
+  </div>
+
+  <br>
+  <div class="form-row">
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+      <label for="numTicket">Ticket #: </label>
+      <input type="text" class="form-control" id="numTicket" name="numTicket" value="<?= $datos[0]['No_ticket']?>" disabled>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+      <label for="numTicket">Estatus: </label>
+        <select class="form-control" disabled>
+            <option><?= $datos[0]['NombreE']?></option>
+        </select>
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+      <label for="mesa">Mesa: </label>
+        <select class="form-control" id="mesa" name="mesa" disabled>
+          <option><?= $datos[0]['NombreM']?></option>
+        </select>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+      <label for="cliente">Dependencia: </label>
+        <select class="form-control" id="cliente" name="cliente" disabled>
+          <option><?= $datos[0]['NombreD']?></option>
+        </select>
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+     <?= $datos[0]['Servicios']?>
+  </div>
+  <div class="form-row justify-content-left">
+    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+            <label for="duracion">Duración Estandar (horas): </label>
+            <select class="form-control" id="duracion" name="duracion" disabled>
+               <?= $datos [0]['Duracion'] ?> 
+            </select>
+        </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+        <label for="date">Fecha y Hora Inicial: </label>
+        <input class="form-control" type="datetime-local" value="<?= $datos[0]['FechaI']?>" id="date" name="dateIni" disabled>
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+        <label for="date">Fecha y Hora Final: </label><input class="form-control" type="datetime-local" value="<?= $datos[0]['FechaF']?>" id="date" name="dateFini" disabled>
+
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+      <?= $datos[0]['Ingenieros']?>
+      
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+      <label for="transporte" class="form-group">Medio de Transporte:</label>
+        <select class="form-control" id="transporte" name="transporte" disabled>
+          <option><?= $datos[0]['NombreMT']?></option>
+        </select>
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+      <label for="coment">Comentario: </label>
+        <textarea class="form-control" id="coment" rows="3" name="conment" disabled><?= $datos[0]['Comentario']?></textarea>
+    </div>
+  </div>
+    <?php if($datos[0]['Comentario_diagnostico'] != ""): ?>
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+          <label for="coment">Comentario Diagnóstico del Ingeniero: </label>
+            <textarea class="form-control" id="coment" rows="3" name="conment" disabled><?= $datos[0]['Comentario_diagnostico']?></textarea>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if($datos[0]['Comentario_final'] != ""): ?>
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+          <label for="coment">Comentario final: </label>
+            <textarea class="form-control" id="coment" rows="3" name="conment" disabled><?= $datos[0]['Comentario_final']?></textarea>
+        </div>
+    </div>
+    <?php endif; ?>
+    <br>
+<!--  <div class="text-center">
+    <button type="submit" name="button" class="btn btn-primary btn-md" style="font-size:24px">
+    Crear Ticket
+    </button>
+  </div>-->
+</form>

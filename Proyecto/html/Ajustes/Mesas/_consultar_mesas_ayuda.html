@@ -1,0 +1,73 @@
+<form id="forma_buscar_mesa">
+  <h4 class="display-4 titulo_pagina">Buscar Mesas de Ayuda </h4><br>
+  <form>
+    <div class="form-row justify-content-center">
+      <div class="form-row">
+        <div class="form-group col-lg-6 col-md-6 col-sm-12 align-self-center">
+          <label for="inputPassword4">Razón Social</label>
+          <input type="text" class="form-control" name="razonS" placeholder="Razón Social">
+        </div>
+          <div class="form-group col-lg-6 col-md-6 col-sm-12 align-self-center">
+            <label for="inputEmail4">RFC</label>
+            <input type="text" class="form-control" name="rfc" placeholder="RFC">
+        </div>
+      </div>
+
+
+      <div class="form-row col-12 justify-content-center">
+        <div class="form-group col-1">
+          <button type="button" class="btn btn-primary" onclick="actualizar_busqueda_mesas()">Buscar</button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+
+
+  <h4 class="display-4 titulo_pagina">Mesas de Ayuda </h4><br>
+  <div class="table-responsive col-12 ">
+    <table class="table table-hover table-responsive-xl">
+      <div id="table_query">
+        <div id="table">
+
+        </div>
+      </div>
+
+          <!--      <thead>
+                  <tr class="text-center">
+                    <th scope="col">Razón Social</th>
+                    <th scope="col">RFC</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Comentario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="row_buscar_dispositivo" onclick="window.location.href='./_modificar_mesa_ayuda.php'">
+                    <td>Mesa 1</td>
+                    <td>ITE1234567KI0</td>
+                    <td>Fracc. San Pablo, Epigmenio González 500, 76130</td>
+                    <td>Querétaro</td>
+                    <td>San Juan del Río</td>
+                    <td>correo@correo.com.mx</td>
+                    <td>Sucursal que esta por los tacos San Javier</td>
+                  </tr>
+                  <tr class="row_buscar_dispositivo" onclick="window.location.href='./_modificar_mesa_ayuda.php'">
+                    <td>Mesa 2</td>
+                    <td>IKA1234567KZ0</td>
+                    <td>Fracc. San Francisquito, Av. de la Luz 520, 76131</td>
+                    <td>Querétaro</td>
+                    <td>Querétaro</td>
+                    <td>al911911@itesm.mx</td>
+                    <td>El cliente es muy exigente</td>
+                  </tr>
+                </tbody>
+                -->
+    </table>
+  </div>
+
+</form>
+<br><br><br><br>

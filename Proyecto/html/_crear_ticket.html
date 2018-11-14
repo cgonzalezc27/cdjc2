@@ -1,0 +1,203 @@
+    <form method="POST" action="viewCrearTicket.php">
+<!--Numero de Tique-->
+<section>
+      <h4 class="display-4 titulo_pagina">Crear Ticket</h4><br>
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12">
+          <label for="numTicket">Ticket #: </label>
+          <input type="text" class="form-control" id="numTicket" name="numTicket" placeholder="Ej. EF00000001345">
+        </div>
+      </div>
+</section>
+        
+<!--Seleccionar Mesa-->  
+<section>        
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12">
+          <label for="mesa">Mesa: </label>
+            <select class="form-control" id="SelMesa" name="SelMesa" onchange = "dependencias_mesas_crearT()">
+                <!--<option>Mesa1</option>
+                <option>Mesa2</option>
+                -->
+                <?php
+                    registrar_ticket(0);
+                ?>
+            </select>
+        </div>
+        <!--  
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="dependencia">Dependencia: </label>
+            <select type="list" class="form-control" id="dependencia_select" name="dependencia" style ="display:block">
+
+                <div id="response"></div>
+            </select>
+        </div>
+        -->
+        
+          
+      </div>
+</section>
+        
+<!--Seleccionar Dependencia-->
+<section>
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "dependencia_select" style ="display:none">
+            <div id="response" ></div>
+        </div>          
+      </div>
+</section>
+        
+<!--Seleccionar Categoria de Servicio-->
+<section>
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "categoria_select" style ="display:none">
+          <label for="cateSer">Categoría de Servicio: </label>
+            <select class="form-control" id="cateSer" name="cateSer" onchange = "categoria_servicio()">
+                <?php
+                    registrar_ticket(2);
+                ?>
+            </select>
+        </div>
+       </div>
+</section>
+
+<!--Seleccionar Servicio-->
+<section>
+       <div class="form-row justify-content-center">
+            <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "cat_ser_select" style ="display:none">
+                <div id="response_cat_ser"></div>
+            </div>
+
+      </div>
+</section>
+
+<!--Duracion Estimada de Trabajo-->
+<section>
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "testimado_select" style ="display:none">
+          <label for="duracion">Duracion Estándar (HH:MM:SS): </label>
+          <input type="text" class="form-control" placeholder="Ej. 02:34:00" id="duracion" name="duracion">
+        </div>
+      </div>
+</section>
+
+<!--Fecha y Hora Inicial-->
+<section>
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "fecha_hora_select" style ="display:none">
+                <label for="date">Fecha y Hora Inicial: </label>
+                  <input class="form-control" type="datetime-local" value="2018-14-09 06:42" id="fecha_inicio" name="fecha_inicio" onchange="muestra_num_inges()">
+        </div>
+      </div>
+</section>
+        
+<!--Fecha y Hora Final-->
+<section>
+    <!--
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="date">Fecha Final: </label>
+
+              <input class="form-control" type="date" value="2018-14-09" id="date" name="dateFini">
+
+        </div>
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="time">Tiempo Final: </label>
+
+              <input class="form-control" type="time" value="13:45:00" id="time" name="timeFini">
+
+        </div>
+      </div>
+    -->
+</section>
+
+<!--Número de Ingenieros-->
+<section>
+    
+     <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "num_inges_select" style ="display:none">
+          <label for="mesa">Número de ingenieros: </label>
+            <select class="form-control" id="num_inges" name="num_inges" onchange = "ingeniero_elegible()">
+                <option value = "NULL">Seleccione el número de ingenieros a asignar...</option>
+                <option value = "1">1</option>
+                <option value = "2">2</option>
+                <option value = "3">3</option>
+                <option value = "4">4</option>
+            </select>
+        </div>
+        <!--  
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="dependencia">Dependencia: </label>
+            <select type="list" class="form-control" id="dependencia_select" name="dependencia" style ="display:block">
+
+                <div id="response"></div>
+            </select>
+        </div>
+        -->
+        
+          
+      </div>
+</section>
+<!--Ingenieros-->
+<section>
+        <div class="form-row justify-content-center">
+
+            <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "ser_select" style ="display:none">
+                <div id="response_ser"></div>
+            </div> 
+    </div>
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "ing2_select" style ="display:none">
+            <div id="response_ing2"></div>
+        </div> 
+    </div>
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "ing3_select" style ="display:none">
+            <div id="response_ing3"></div>
+        </div> 
+    </div>
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "ing4_select" style ="display:none">
+            <div id="response_ing4"></div>
+        </div> 
+    </div>
+    
+</section>
+        
+<!--Medio de Transporte-->
+<section>
+       <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "trans_select" style ="display:none">
+          <label for="transporte" class="form-group">Medio de Transporte:</label>
+            <select class="form-control" id="transporte" name="transporte" onchange="boton_aparece()">
+                <?php
+                    registrar_ticket(5);
+                ?>
+            </select>
+        </div>
+      </div>
+</section>
+        
+<!--Comentario-->
+<section>
+      <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "comentario_select" style ="display:none">
+          <label for="coment">Comentario: </label>
+            <textarea class="form-control" id="coment" rows="3" name="coment"></textarea>
+        </div>
+      </div>
+</section>
+        
+<!--Boton-->
+<section>
+        <br>
+      <div class="text-center" id = "boton_select" style ="display:none">
+        <button type="submit" name="button" class="btn btn-primary btn-md">
+        Crear Ticket
+        </button>
+      </div>
+</section>
+    </form>
