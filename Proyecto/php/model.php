@@ -1,7 +1,7 @@
 <?php
 require_once('globals.php');
 
-require_once ($_SERVER["DOCUMENT_ROOT"].'/vendor/autoload.php');
+require_once ($_SERVER["DOCUMENT_ROOT"].'./cdjc2/Proyecto/vendor/autoload.php');
 require_once ('./correo.php');
 use Mailgun\Mailgun;
 
@@ -363,7 +363,7 @@ function consulta_ticket($id){
         </div>
       ';
     }
-    
+
     $asignador = 0;
     $duracion = "";
     for ($c=1;$c <= 20; $c++){
@@ -373,9 +373,9 @@ function consulta_ticket($id){
         } else {
             $duracion .=  "<option>".$asignador." horas</option>";
         }
-        
+
     }
-    
+
     $query="SELECT T.Id_ticket, S.Nombre AS 'NombreS', CS.Nombre AS 'NombreCS'
 
 
@@ -410,8 +410,8 @@ function consulta_ticket($id){
         </div>
       ';
     }
-    
-    
+
+
     $FechaI = convertir_arreglo_fecha($rows [0]['FechaI']);
     $hora_duracion = floor($rows [0]['Duracion']);
     $minutos_duracion = ($rows [0]['Duracion'] - $hora_duracion)*60;
@@ -419,7 +419,7 @@ function consulta_ticket($id){
     $FechaF['hour'] = $FechaI['hour'] + $hora_duracion;
     $FechaF['minute'] = $FechaI['minute'] + $minutos_duracion;
     $FechaF = convertir_arreglo_a_output_string_fecha ($FechaF);
-    
+
     $rows [0]['Ingenieros'] = $ingenieros;
     $rows [0]['Servicios'] = $servicios;
     $rows [0]['Duracion'] = $duracion;
@@ -462,13 +462,13 @@ function consulta_modificar_ticket($id){
         $i++;
     }
     mysqli_free_result($results);
-    
+
     $no_ingenieros = $i;
-    
+
     for ($a = 0; $a <= $i-1; $a++){
         $Id_ingenieros_ticket_actual[$a] = $ticket_actual [$a]['Id_ingeniero'];
     }
-    
+
     $asignador = 0;
     $duracion = "";
     for ($c=1;$c <= 20; $c++){
@@ -478,9 +478,9 @@ function consulta_modificar_ticket($id){
         } else {
             $duracion .=  "<option>".$asignador." horas</option>";
         }
-        
+
     }
-    
+
     $mesas = "<option>".$ticket_actual [0]['NombreM']."</option>";
     $query = "SELECT ME.NombreM FROM NombresMesas ME WHERE ME.Id_mesa != ".$ticket_actual [0]['Id_mesa'];
     $results = mysqli_query($conexion, $query);
@@ -513,41 +513,41 @@ function consulta_modificar_ticket($id){
         $estatus .= "<option>".$row['NombreE']."</option>";
     }
     mysqli_free_result($results);
-    
+
     $query = "SELECT I.Id_ingeniero, U.Nombre, U.Apellido1, U.Apellido2 FROM Usuarios U, Ingenieros I WHERE I.Id_usuario = U.Id_usuario AND I.Visible = 1 GROUP BY I.Id_ingeniero";
     $results = mysqli_query($conexion, $query);
-    
+
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
         $ingenieros_todos['Nombre'][$i] = $row['Nombre'].' '.$row['Apellido1'].' '.$row['Apellido2'];
         $ingenieros_todos['Id_ingeniero'][$i] = $row['Id_ingeniero'];
         $i++;
     }
-    
+
     for($x = 1; $x <= $no_ingenieros; $x++){
         $y = 0;
         $resto_ingenieros [$x] = "";
-        $ingenieros_en_resto = [];  
-        
-        foreach ($ingenieros_todos ['Id_ingeniero'] as $a){   
+        $ingenieros_en_resto = [];
+
+        foreach ($ingenieros_todos ['Id_ingeniero'] as $a){
             if (in_array($a,$Id_ingenieros_ticket_actual) == FALSE){
                 $id_resto_ingenieros [$x][$y] = $a;
                 $nombre_resto_ingenieros [$x][$y] = $ingenieros_todos ['Nombre'][$y];
             }
-            $y++;       
+            $y++;
         }
     }
     $ingenieros= "";
     for($x = 1; $x <= $no_ingenieros; $x++){
         $y = 0;
         $resto_ingenieros = "";
-        
+
         $ingenieros_en_resto = [];
-        foreach ($ingenieros_todos ['Id_ingeniero'] as $a){   
+        foreach ($ingenieros_todos ['Id_ingeniero'] as $a){
             if (in_array($a,$Id_ingenieros_ticket_actual) == FALSE){
                 $resto_ingenieros .= '<option id="'.$a.'">'.$ingenieros_todos ['Nombre'][$y].'</option>';
             }
-            $y++;       
+            $y++;
         }
         if(isset($ticket_actual [$x - 1]['Id_ingeniero'])){
             $ingenieros .= '
@@ -555,7 +555,7 @@ function consulta_modificar_ticket($id){
                 <label for="inge'.$x.'" class="form-group">Ingeniero asignado # '.$x.': </label>
                 <select class="form-control" id="inge'.$x.'" name="inge'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_ingeniero('.$x.')">
                     <option id="'.$ticket_actual [$x - 1]['Id_ingeniero'].'">'.$ticket_actual [$x - 1]['NombreI'].' '.$ticket_actual [$x - 1]['Apellido1I'].' '.$ticket_actual [$x - 1]['Apellido2I'].'</option>'
-                
+
                 .$resto_ingenieros.'
 
                     </select>
@@ -575,7 +575,7 @@ function consulta_modificar_ticket($id){
 
     }
     $ingenieros .= '<input type="text" hidden id="no_listas" value="'.($x - 1).'">';
-    
+
     $i = $x - 1;
     $NoIngenieros = "";
     for($x = 1; $x <= 4; $x++){
@@ -585,14 +585,14 @@ function consulta_modificar_ticket($id){
             $NoIngenieros .= '<option value = "'.$x.'" >'.$x.'</option>';
         }
     }
-    
+
     $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1";
     $results = mysqli_query($conexion, $query);
-    
+
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
         $servicios_todos['NombreS'][$i] = $row['NombreS'];
-        $servicios_todos['Id_trabajo'][$i] = $row['Id_trabajo'];        
+        $servicios_todos['Id_trabajo'][$i] = $row['Id_trabajo'];
         $servicios_todos['NombreCS'][$i] = $row['NombreCS'];
         $servicios_todos['Id_categoria'][$i] = $row['Id_categoria'];
         $i++;
@@ -608,7 +608,7 @@ function consulta_modificar_ticket($id){
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH))
     {
         $servicios_ticket_actual ['NombreCS'] [$i]= $row['NombreCS'];
-        $servicios_ticket_actual ['NombreS'][$i] = $row['NombreS'];        
+        $servicios_ticket_actual ['NombreS'][$i] = $row['NombreS'];
         $servicios_ticket_actual ['Id_trabajo'] [$i]= $row['Id_trabajo'];
         $servicios_ticket_actual ['Id_categoria'][$i] = $row['Id_categoria'];
         $i++;
@@ -618,44 +618,44 @@ function consulta_modificar_ticket($id){
     for($x = 1; $x <= $no_servicios; $x++){
         $y = 0;
         $resto_servicios [$x] = "";
-        $servicios_en_resto = [];  
-        
-        foreach ($servicios_todos ['Id_trabajo'] as $a){   
+        $servicios_en_resto = [];
+
+        foreach ($servicios_todos ['Id_trabajo'] as $a){
             if (in_array($a,$servicios_ticket_actual['Id_trabajo']) == FALSE){
                 $id_resto_servicios [$x][$y] = $a;
                 $nombre_resto_servicios [$x][$y] = $servicios_todos ['NombreS'][$y];
                 $id_resto_categorias [$x][$y] = $servicios_todos ['Id_categoria'][$y];
                 $nombre_resto_categorias [$x][$y] = $servicios_todos ['NombreCS'][$y];
             }
-            $y++;       
+            $y++;
         }
     }
     $servicios= "";
     $categorias_todos = $servicios_todos ['Id_categoria'];
     $servicios_todos ['Id_categoria'] = array_values( array_filter( array_unique ($servicios_todos ['Id_categoria'])));
     $servicios_todos ['NombreCS'] = array_values( array_filter( array_unique($servicios_todos ['NombreCS'])));
-    
+
     for($x = 1; $x <= $no_servicios; $x++){
         $y = 0;
         $resto_servicios = "";
         $resto_categorias = "";
-       
+
         $servicios_en_resto = [];
-        foreach ($servicios_todos ['Id_trabajo'] as $a){   
+        foreach ($servicios_todos ['Id_trabajo'] as $a){
             if (in_array($a,$servicios_ticket_actual['Id_trabajo']) == FALSE && $servicios_ticket_actual['Id_categoria'][$x-1] == $categorias_todos[$y]){
                 $resto_servicios .= '<option id="'.$a.'">'.$servicios_todos ['NombreS'][$y].'</option>';
             }
-            $y++;       
+            $y++;
         }
         $y = 0;
 
-        foreach ($servicios_todos ['Id_categoria'] as $a){   
+        foreach ($servicios_todos ['Id_categoria'] as $a){
             if ($a != $servicios_ticket_actual['Id_categoria'][$x-1]){
                 $resto_categorias .= '<option id="'.$a.'">'.$servicios_todos ['NombreCS'][$y].'</option>';
             }
-            $y++;    
+            $y++;
         }
-        
+
         if(isset($servicios_ticket_actual ['Id_trabajo'] [$x-1])){
             $servicios .= '
             <div class="form-group col-lg-6 col-md-6 col-sm-12" id="Categorias">
@@ -690,7 +690,7 @@ function consulta_modificar_ticket($id){
 
     }
     $servicios .= '<input type="text" hidden id="no_listas_servicio" value="'.($x - 1).'">';
-    
+
     $i = $x - 1;
     $NoServicios = "";
     for($x = 1; $x <= 4; $x++){
@@ -700,7 +700,7 @@ function consulta_modificar_ticket($id){
             $NoServicios .= '<option value = "'.$x.'" >'.$x.'</option>';
         }
     }
-        
+
     $ticket_actual [0]['NoIngenieros'] =$NoIngenieros;
     $ticket_actual [0]['NoServicios'] =$NoServicios;
     $ticket_actual [0]['Ingenieros'] = $ingenieros;
@@ -1013,7 +1013,7 @@ function modificar_usuario($Id_usuario,$Nombre_de_usuario,$Nombre,$Apellido1,$Ap
         }
 
     } else {
- 
+
         // $fecha = $fecha->getTimestamp();
         $fecha = "";
         $query = 'UPDATE Usuarios SET Nombre = "'.$Nombre.'", Apellido1 = "'.$Apellido1.'", Apellido2 = "'.$Apellido2.'", RFC = "'.$RFC.'", Nombre_de_usuario = "'.$Nombre_de_usuario.'", Calle = "'.$Calle.'", Numero_exterior = "'.$Numero_exterior.'", Numero_interior = "'.$Numero_interior.'", Ciudad = "'.$Ciudad.'", Estado = "'.$Estado.'", CP = "'.$CP.'", Foto = "'.$Foto.'", Ultima_actualizacion = "CURRENT_TIMESTAMP" WHERE Id_usuario = '.$Id_usuario;
@@ -1134,7 +1134,7 @@ function modificar_usuario($Id_usuario,$Nombre_de_usuario,$Nombre,$Apellido1,$Ap
             }
         }
 
-        
+
     }
     disconnect($conexion);
     return $resultado;
@@ -1239,9 +1239,9 @@ function modificar_ticket($Id_ticket,$No_ticket,$NombreE,$NombreM,$NombreD,$Nomb
         $Id_dependencia = $row['Id_dependencia'];
     }
     mysqli_free_result($results);
-    
+
     $Duracion = floatval(str_replace(" horas","",$Duracion));
-    
+
     $query="UPDATE Tickets SET No_ticket ='".$No_ticket."', Fecha_y_hora_de_inicio_programada = '".$Fecha_y_hora_de_inicio_programada."', Duracion_estimada_por_admin = '".$Duracion."', Comentario_inicial = '".$Comentario."', Id_medio = ".$Id_medio.", Id_dependencia = ".$Id_dependencia." WHERE Id_ticket = ".$Id_ticket;
     if ($conexion->query($query) === TRUE) {
         $resultado[1] = TRUE;
@@ -1367,7 +1367,7 @@ function eliminar_usuario($Id_usuario) {
     } else {
         $resultado = FALSE;
     }
-    
+
     $query = "SELECT Id_rol FROM Ultimo_rol_por_usuario WHERE Id_usuario = '".$Id_usuario."'";
     $results = mysqli_query($conexion, $query);
     $rows = [];
@@ -1415,7 +1415,7 @@ function eliminar_usuario($Id_usuario) {
     }
     disconnect($conexion);
     return $resultado;
-    
+
 }
 
 function restablecer_contrasena($Id_usuario){
@@ -1426,7 +1426,7 @@ function restablecer_contrasena($Id_usuario){
     } else {
         $resultado = FALSE;
     }
-    
+
     disconnect($conexion);
     return $resultado;
 }
@@ -1503,7 +1503,7 @@ function modificar_marca($Id_marca_dispositivo, $NombreM, $DescripcionM){
     } else {
         $resultado = FALSE;
     }
-    
+
     disconnect($conexion);
     return $resultado;
 }
@@ -1515,7 +1515,7 @@ function eliminar_marca($Id_marca_dispositivo){
     } else {
         $resultado = FALSE;
     }
-    
+
     disconnect($conexion);
     return $resultado;
 }
@@ -1528,7 +1528,7 @@ function eliminar_movimiento($Id_destino, $Id_dispositivo, $Fecha_hora){
     } else {
         $resultado = FALSE;
     }
-    
+
     disconnect($conexion);
     return $resultado;
 }

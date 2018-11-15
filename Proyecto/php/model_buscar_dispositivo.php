@@ -63,7 +63,7 @@ $query.=' GROUP BY d.Id_dispositivo ORDER BY Fecha_hora DESC';
 
 $result=get_data($query);
 //echo $query;
-$res='<table>
+$res='<table class="table table-hover table-responsive-sm">
         <thead>
           <tr style="text-align:center;">
             <th># Serie </th>
@@ -75,13 +75,13 @@ $res='<table>
             <th>Último Destino </th>
           </tr>
         </thead>
-      <tbody> <hr/>';
+      <tbody>';
 if($result){
   foreach ($result as $fila) {
     //redirect=>modificar_depedencia
   $redirect="redirectto('".$fila['id']."', '".$fila['fecha']."')";
 
-    $res.='<tr style="cursor:pointer;text-align:center;" onclick="'.$redirect.'">
+    $res.='<tr class="text-center" style="cursor:pointer;text-align:center;" onclick="'.$redirect.'">
                 <td>'.$fila['No_serie_equipo'].'</td>
                 <td>'.$fila['Clase'].'</td>
                 <td>'.$fila['Tipo'].'</td>
@@ -94,7 +94,7 @@ if($result){
 }
 
 
-$res.="</tbody></table><hr/>";
+$res.="</tbody></table>";
 
 echo $res;
 
