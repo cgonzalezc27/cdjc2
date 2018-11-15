@@ -2,7 +2,7 @@
 require_once('globals.php');
 
 require_once ($_SERVER["DOCUMENT_ROOT"].'/vendor/autoload.php');
-require_once ('./correo.php');
+require_once ('correo.php');
 use Mailgun\Mailgun;
 
 function connect(){
