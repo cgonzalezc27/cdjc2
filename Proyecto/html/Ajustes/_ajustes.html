@@ -920,18 +920,18 @@
                                             <div class="form-row">
                                                 <div class="form-group col-lg-8 col-md-6 col-sm-12">
                                                     <label for="exampleFormPhoto">Nombre del Manual</label>
-                                                    <input name = "NombreManual" type="text" class="form-control" id="#" placeholder="Ej. Instalación de Windows" >
+                                                    <input name = "NombreManual" type="text" class="form-control" id="#" placeholder="Ej. Instalación de Windows" required maxlength="150">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                     <label for="customFile">Subir Archivo PDF</label>
-                                                    <input type="file" id="customFile" name = "ManualArchivo" >
+                                                    <input type="file" id="customFile" name = "ManualArchivo" required>
                                                         
                                                 </div>
                                                 <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                                     <label for="exampleFormPhoto">Versión del archivo</label>
-                                                    <input type="text" class="form-control" id="#" placeholder="Ej. ver. 1.2"  name ="VersionManual">
+                                                    <input type="text" class="form-control" id="#" placeholder="Ej. ver. 1.2"  name ="VersionManual" required maxlength="5">
                                                 </div>
 
 
@@ -950,7 +950,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="inputCity">Descripción</label>
-                                                    <textarea name = "DescripcionManual" class="form-control" rows="4"></textarea>
+                                                    <textarea name = "DescripcionManual" class="form-control" rows="4" maxlength="150"></textarea>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Terminar</button>

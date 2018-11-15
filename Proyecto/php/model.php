@@ -73,7 +73,7 @@ function convertir_arreglo_a_input_string_fecha($x){
 
 function connect_correo(){
 
-    $mgClient = new Mailgun($clave);
+    $mgClient = new Mailgun(clave());
     return $mgClient;
 }
 
