@@ -30,7 +30,7 @@ if (isset($_SESSION["Usuario"])){
             $disabled = 1;
             include('../html/Ajustes/Dispositivos/_modificar_marcadispositivos.html');
             
-        } else if (isset($_GET["eliminar_marca"])&&$_GET["eliminar_marca"]==1){
+        } else if (isset($_GET["eliminar_marca"]) && $_GET["eliminar_marca"]==1){
             $Id_marca_dispositivo = $_GET['Id_marca_dispositivo'];
                 $resultado = eliminar_marca($Id_marca_dispositivo);
                if($resultado == TRUE){

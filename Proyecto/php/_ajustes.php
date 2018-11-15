@@ -18,10 +18,10 @@ if (isset($_SESSION["Usuario"])){
         $lista_servicios_manuales = lista_servicios_manuales();
         
         if(isset($_POST['NombreManual'])){
-            /*if(isset($_FILES["ManualArchivo"]) && $_FILES["ManualArchivo"]["name"] != ""){
+            if(isset($_FILES["ManualArchivo"]) && $_FILES["ManualArchivo"]["name"] != ""){
                 $ManualArchivo = $_FILES['ManualArchivo'];
-                $target_dir = "../manuales/";
-                $target_file = $target_dir . basename($_FILES["ManualArchivo"]["name"]);
+                $target_dir = "../manuales/".$_POST['NombreManual'].$_POST['VersionManual']."_";
+                $target_file = str_replace(" ","_",$target_dir .basename($_FILES["ManualArchivo"]["name"]));
                 $uploadOk = 1;
                 $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
                 $check = filesize($_FILES["ManualArchivo"]["tmp_name"]);
@@ -38,7 +38,7 @@ if (isset($_SESSION["Usuario"])){
                     $uploadOk = 0;
                     $ManualArchivo = "no_modificar";
                 }
-                if ($_FILES["ManualArchivo"]["size"] > 1000000) {
+                if ($_FILES["ManualArchivo"]["size"] > 10000000) {
                     $error_archivo_manual =  " / El tamaño del manual que subiste es muy grande.";
                     $uploadOk = 0;
                     $ManualArchivo = "no_modificar";
@@ -54,7 +54,7 @@ if (isset($_SESSION["Usuario"])){
                         } 
                     }
                 }
-                if($uploadOk == 1){*/
+                if($uploadOk == 1){
                     $NombreManual = $_POST['NombreManual'];
                     $VersionManual = $_POST['VersionManual'];
                     $DescripcionManual = $_POST['DescripcionManual'];
@@ -67,8 +67,8 @@ if (isset($_SESSION["Usuario"])){
                             $x++;
                         }
                     }
-                    $resultado = registrar_manual($NombreManual, $VersionManual, $DescripcionManual, $Id_trabajo);
-                // }
+                    $resultado = registrar_manual($NombreManual, $VersionManual, $DescripcionManual, $Id_trabajo,$ManualArchivo);
+                }
                 
                 if($uploadOk == 1 && $resultado == 1){
                     echo '<div id="notify" class="alert alert-success" role="alert">
@@ -93,7 +93,7 @@ if (isset($_SESSION["Usuario"])){
                         setTimeout(function(){$("#notify").remove();}, 4000);
                         </script>';
             }
-        //}
+        }
         
         if(isset($_POST['nombreMarca'])){
             $nombreM = $_POST['nombreMarca'];

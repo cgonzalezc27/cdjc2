@@ -22,7 +22,7 @@
             if (isset($_FILES["Foto"]) && $_FILES["Foto"]["name"] != ""){
                 $Foto = $_FILES['Foto'];
                 $target_dir = "../img_usuarios/".$Id_usuario;
-                $target_file = $target_dir . basename($_FILES["Foto"]["name"]);
+                $target_file = str_replace(" ","_",$target_dir . basename($_FILES["Foto"]["name"]));
                 $uploadOk = 1;
                 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
                 $check = getimagesize($_FILES["Foto"]["tmp_name"]);

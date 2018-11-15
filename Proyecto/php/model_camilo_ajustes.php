@@ -53,12 +53,28 @@ function lista_servicios_manuales(){
     return $select;    
 }
 
-function registrar_manual($NombreManual, $VersionManual, $DescripcionManual, $Id_trabajo){
+function registrar_manual($NombreManual, $VersionManual, $DescripcionManual, $Id_trabajo, $ManualArchivo){
     $conexion = connect2();
-    $query= "INSERT INTO Manuales (Nombre, Version, Descripcion)
-    VALUES ('".$NombreManual."','".$VersionManual."','".$DescripcionManual."');";
+    $query= "INSERT INTO Manuales (Nombre, Version, Descripcion, Archivo)
+    VALUES ('".$NombreManual."','".$VersionManual."','".$DescripcionManual."','".$ManualArchivo."');";
+    if ($conexion->query($query) === TRUE) {
+        $resultado = TRUE;     
+    } else {
+        $resultado = FALSE;
+    }
+    $query = "SELECT Id_manual FROM Manuales WHERE Nombre = '".$NombreManual."' AND Version = '".$VersionManual."' AND Descripcion = '".$DescripcionManual."' ORDER BY Id_manual DESC LIMIT 1";
+    $results = mysqli_query($conexion, $query);
+    while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+        $Id_manual = $row['Id_manual'];
+    }
+    
     for($i = 0; $i < sizeof($Id_trabajo); $i++){
-        $query .= " ";
+        $query = "INSERT INTO Catalogo_de_servicios_Manuales (Id_trabajo, Id_manual) VALUES (".$Id_trabajo[$i].",".$Id_manual.")";
+        if ($conexion->query($query) === TRUE) {
+            $resultado = $resultado * TRUE;     
+        } else {
+            $resultado = $resultado * FALSE;
+        }
     }
     disconnect2($conexion);
     return $resultado;

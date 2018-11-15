@@ -1,45 +1,64 @@
 
-                <form><br>
-                    <div class="row">
-                        <div class="col-lg-9 col-md-8 col-sm-7">
-                            <h4>Modificar Manual</h4>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-5">
-                            <a href="#"><i class="material-icons">create</i> Editar Manual</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-3 col-sm-12">
-                            <a href="#"><i class="material-icons">delete_sweep</i> Eliminar Manual</a>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-lg-8 col-md-6 col-sm-12">
-                            <label for="inputPassword4">Nombre</label>
-                            <input type="text" class="form-control" id="#" value="Instalación de Windows INE">
-                        </div>
-                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                            <label for="inputPassword4">Versión</label>
-                            <input type="text" class="form-control" id="#" value="ver 1.2">
-                        </div>
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                            <label for="inputPassword4">Archivo</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose  file</label>
-                            </div>
-                        </div>
+<form action="../php/_modificar_manual.php" method="post">
+    <?php if($disabled == 1): ?>
+    <div class="row">
 
-                    </div>
+        <div class="col-lg-8 col-md-6 col-sm-6">
+            <h4>Consultar Manual</h4>
+        </div>
+        <?php if ($_SESSION["Permisos"][6] == TRUE ): ?>
+        <div class="col-lg-4 col-md-3 col-sm-3 align-self-end">
+            <a href="./_consultar_manuales.php"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+            &nbsp
+            <a href="./_modificar_manual.php?Id_manual=<?= $Id_manual?>&editar=1"><i class="material-icons">create</i> Editar</a>
+        </div>
+        <?php endif; ?>
+    </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-12">
-                            <label for="inputCity">Descripción</label>
-                            <textarea class="form-control " rows="4">Contiene el SO con Office 2018</textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Terminar</button>
-                </form>
+    <?php elseif($disabled == 0 && $_SESSION["Permisos"][6] == TRUE): ?>
+    <div class="row">
 
-            
-         
+        <div class="col-lg-8 col-md-6 col-sm-6">
+            <h4>Modificar Manual</h4>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-3">
+            <a href="../php/_modificar_manual.php?Id_manual=<?= $Id_manual?>"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-3 col-sm-12">
+            <a href="../php/_modificar_manual.php?Id_manual=<?= $Id_manual?>&eliminar_manual=1"><i class="material-icons">delete_sweep</i> Eliminar</a>
+        </div>
+    </div>
+    <?php endif; ?>
+    <br>
+    <div class="form-row">
+        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+            <label for="inputPassword4">Nombre</label>
+            <input required maxlength="30" type="text" class="form-control" id="#" name = "NombreManual" value="<?= $data['Nombre'][0]?>" <?php if($disabled == 1): ?> disabled <?php endif; ?>>
+        </div>
+        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+            <label for="inputPassword4">Versión</label>
+            <input required maxlength="30" type="text" class="form-control" id="#" name = "VersionManual" value="<?= $data['Version'][0]?>" <?php if($disabled == 1): ?> disabled <?php endif; ?>>
+        </div>
+    </div>
+    <input type="text" hidden value="<?= $Id_manual?>" name="Id_manual">
+    <div class="form-row">
+        <div class="form-group col-lg-8 col-md-8 col-sm-12">
+            <label for="inputCity">Descripción</label>
+            <textarea maxlength="150" name="DescripcionManual" class="form-control " rows="4" <?php if($disabled == 1): ?> disabled <?php endif; ?>><?= $data['Descripcion'][0]?></textarea>
+        </div>
+    </div>
+    <?php if($disabled == 1): ?>
+    <div class="form-row">
+        <button type="" class="btn btn-primary">Descargar manual</button>
+    </div>
+    <?php endif; ?>
+<?php if($disabled == 0): ?>
+<button type="submit" class="btn btn-primary">Terminar</button>
+<?php endif; ?>
+</form>
+
+
+

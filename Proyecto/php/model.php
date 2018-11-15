@@ -1,8 +1,8 @@
 <?php
 require_once('globals.php');
 
-require_once ($_SERVER["DOCUMENT_ROOT"].'./cdjc2/Proyecto/vendor/autoload.php');
-require_once ('./correo.php');
+require_once ($_SERVER["DOCUMENT_ROOT"].'/vendor/autoload.php');
+require_once ('correo.php');
 use Mailgun\Mailgun;
 
 function connect(){
@@ -73,7 +73,7 @@ function convertir_arreglo_a_input_string_fecha($x){
 
 function connect_correo(){
 
-    $mgClient = new Mailgun($clave);
+    $mgClient = new Mailgun(clave());
     return $mgClient;
 }
 
@@ -1545,4 +1545,73 @@ function fecha_hora_eliminar_movimiento($Id_dispositivo){
     return $rows['Fecha_hora'];
 }
 
+function buscar_manual($buscar){
+    $conexion = connect();
+    $query = "SELECT M.Nombre, M.Id_manual, M.Version, M.Descripcion FROM Catalogo_de_servicios_Manuales SM, Catalogo_de_servicios S, Manuales M WHERE SM.Id_trabajo = S.Id_trabajo AND SM.Id_manual = M.Id_manual AND (M.Nombre LIKE '%".$buscar."%' OR S.Nombre LIKE '%".$buscar."%' OR S.Descripcion LIKE '%".$buscar."%' OR M.Version LIKE '%".$buscar."%' OR M.Descripcion LIKE '%".$buscar."%') GROUP BY M.Id_manual";
+    $results = mysqli_query($conexion, $query);
+    $i=0;
+    while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+        $rows['Id_manual'] [$i] = $row['Id_manual'];
+        $rows['Nombre'] [$i] = $row['Nombre'];
+        $rows['Version'] [$i] = $row['Version'];
+        if(strlen($row['Descripcion'])>50){
+            $rows['Descripcion'] [$i] = substr($row['Descripcion'],0,50)."...";
+        }else{
+        $rows['Descripcion'] [$i] = $row['Descripcion'];
+        }
+        $i++;
+    }
+    mysqli_free_result($results);
+    if (isset($rows['Id_manual'] [0]) && $rows['Id_manual'] [0] != ""){
+    $tabla = '
+        <div class="form-text col">
+            <h4>Manuales</h4>
+        </div><br>
+        <div class="table-responsive col-12">
+        <table class="table table-hover table-responsive-xl">
+            <thead>
+                <tr class="text-center">
+                    <th>Nombre</th>
+                    <th>Versión</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>';
+    $link = 'window.location.href="./_modificar_manual.php?Id_manual=';
+    $i=0;
+    foreach ($rows['Nombre'] as $a){
+        $tabla .= '
+        <tr class="row_buscar_dispositivo text-center" onclick='.$link.$rows['Id_manual'][$i].'">
+            <td>'.$rows['Nombre'][$i].'</td>
+            <td>'.$rows['Version'][$i].'</td>
+            <td>'.$rows['Descripcion'][$i].'</td>
+        </tr>';
+        $i++;
+    }
+    $tabla .= '</tbody></table></div>';
+    } else {
+        $tabla = '<div class = "error"> *Sin resultados en la base de datos';
+    }
+
+    disconnect($conexion);
+    return $tabla;
+}
+
+function consultar_manual($Id_manual){
+    $conexion = connect();
+    $query = "SELECT M.Nombre, M.Descripcion, M.Version, M.Archivo FROM Manuales M WHERE M.Id_manual = '".$Id_manual."'";
+    $results = mysqli_query($conexion, $query);
+    $i=0;
+    while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+        $resultado['Nombre'] [$i] = $row['Nombre'];
+        $resultado['Descripcion'] [$i] = $row['Descripcion'];
+        $resultado['Version'] [$i] = $row['Version'];
+        $resultado['Archivo'] [$i] = $row['Archivo'];
+        $i++;
+    }
+    mysqli_free_result($results);
+
+    disconnect($conexion);
+    return $resultado;
+}
 ?>
