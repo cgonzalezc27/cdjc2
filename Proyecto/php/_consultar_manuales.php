@@ -1,5 +1,5 @@
 <?php
-$menu = "ajustes";
+$menu = "manuales";
 session_start();
 require_once("./model.php");
 if (isset($_SESSION["Usuario"])){

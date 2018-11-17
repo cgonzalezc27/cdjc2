@@ -1,4 +1,19 @@
 <br>
-<h4 class="display-4 titulo_pagina">Tickets Abiertos</h4>
+<form method="post" action="../php/_tickets_abiertos_v2.php">
+    
+    <div class = "form-row">
+        <div class="form-group col-lg-4 col-md-4 col-sm-12 ">
+            <h4 class="display-4 titulo_pagina">Tickets Abiertos</h4>
+        </div>
+        <div class="form-group col-lg-3 col-md-3 col-sm-0 ">
+        </div>
+        <div class="form-group col-lg-5 col-md-6 col-sm-12 input-group">
+                <input type="text" name = "buscar" class="form-control" id="#" placeholder="Número, dependencia, servicio..." <?php if (isset($buscar)): ?>value="<?=$buscar?>"<?php endif ?>>  
+                <span>
+                    <button class="btn btn-primary">Buscar</button>
+               </span>
+        </div>
+    </div>
+</form>
 <br>
 <?= $tickets?>
