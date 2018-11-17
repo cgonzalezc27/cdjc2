@@ -1607,10 +1607,34 @@ function consultar_manual($Id_manual){
         $resultado['Descripcion'] [$i] = $row['Descripcion'];
         $resultado['Version'] [$i] = $row['Version'];
         $resultado['Archivo'] [$i] = $row['Archivo'];
+        $resultado['Archivoonclick'] [$i] = "onclick='window.open(";
+        $resultado['Archivoonclick'] [$i] .= '"'.$row['Archivo'].'") return true;';
+        $resultado['Archivoonclick'] [$i] .= "'";
         $i++;
     }
     mysqli_free_result($results);
 
+    disconnect($conexion);
+    return $resultado;
+}
+
+function modificar_manual($Id_manual, $NombreManual,$DescripcionManual,$VersionManual, $ManualArchivo){
+    $conexion = connect();
+    if ($ManualArchivo == "no_modificar"){
+        $query = "UPDATE Manuales SET Nombre ='".$NombreManual."', Descripcion ='".$DescripcionManual."', Version = '".$VersionManual."' WHERE Id_manual = ".$Id_manual;
+        if ($conexion->query($query) === TRUE) {
+            $resultado = TRUE;
+        } else {
+            $resultado = FALSE;
+        }   
+    } else {
+         $query = "UPDATE Manuales SET Nombre ='".$NombreManual."', Descripcion ='".$DescripcionManual. "', Version = '".$VersionManual."', Archivo = '".$ManualArchivo."' WHERE Id_manual = ".$Id_manual;
+        if ($conexion->query($query) === TRUE) {
+            $resultado = TRUE;
+        } else {
+            $resultado = FALSE;
+        }   
+    }
     disconnect($conexion);
     return $resultado;
 }
