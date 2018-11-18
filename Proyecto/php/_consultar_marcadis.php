@@ -10,6 +10,10 @@ if (isset($_SESSION["Usuario"])){
             $nombreM = $_POST['nombreM'];
             $tabla = buscar_marca($nombreM);
             include('../html/Ajustes/Dispositivos/_consultar_marcadis.html');
+        } else if (isset($_GET['buscar'])){
+            $nombreM = $_GET['buscar'];
+            $tabla = buscar_marca($nombreM);
+            include('../html/Ajustes/Dispositivos/_consultar_marcadis.html');
         } else {
             include('../html/Ajustes/Dispositivos/_consultar_marcadis.html');
         }

@@ -11,7 +11,13 @@ if (isset($_SESSION["Usuario"])){
             
             $tabla = buscar_manual($buscar);
             include('../html/Ajustes/Manuales/_consultar_manuales.html');
-        } else {
+        } else if (isset($_GET['buscar'])){
+            $buscar = $_GET['buscar'];
+            
+            $tabla = buscar_manual($buscar);
+            include('../html/Ajustes/Manuales/_consultar_manuales.html');
+        
+        }else {
             include('../html/Ajustes/Manuales/_consultar_manuales.html');
         }
         include('../html/_footer.html');

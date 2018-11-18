@@ -16,7 +16,15 @@
     <?php if ($_SESSION["Permisos"] == 6) : ?>
     <? else : ?>
     <div class="col-lg-3 col-md-4 col-sm-5" >
-        <a href="./_modificar_usuario.php?editar=1&Id_usuario=<?= $Id_usuario?>"><i class="material-icons">create</i> Editar Usuario</a>
+         <a 
+        <?php if (isset($_GET['buscar'])): ?>
+        href="./_consultar_usuarios_general.php?buscar=<?= $_GET['buscar'] ?>"
+        <?php else: ?>
+        href="./_consultar_usuarios_general.php?"
+        <?php endif;?>    
+        ><i class="material-icons">keyboard_backspace</i> Atrás</a>
+                                &nbsp
+        <a href="./_modificar_usuario.php?editar=1&Id_usuario=<?= $Id_usuario?>"><i class="material-icons">create</i> Modificar</a>
     </div>
     <?php endif; ?>
     <?php endif; ?>

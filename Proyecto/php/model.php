@@ -1024,9 +1024,9 @@ function registrar_movimiento($destino,$ticket,$dispositivo){
     disconnect($conexion);
 }
 
-function mostrar_todos_usuarios(){
+function buscar_usuario($buscar){
     $conexion = connect();
-    $query="SELECT U.Id_usuario, U.Nombre_de_usuario AS 'Nombre_usuario', U.Nombre AS 'Nombre', U.Apellido1, U.RFC, R.Nombre AS 'ROL' FROM Usuarios U, Ultimo_rol_por_usuario UR, Roles R WHERE U.Id_usuario = UR.Id_usuario AND UR.Id_rol = R.Id_rol AND U.Visible = TRUE";
+    $query="SELECT U.Id_usuario, U.Nombre_de_usuario AS 'Nombre_usuario', U.Nombre AS 'Nombre', U.Apellido1, U.RFC, R.Nombre AS 'ROL' FROM Usuarios U, Ultimo_rol_por_usuario UR, Roles R WHERE U.Id_usuario = UR.Id_usuario AND UR.Id_rol = R.Id_rol AND U.Visible = TRUE AND (U.Nombre LIKE '%".$buscar."%' OR U.Apellido1 LIKE '%".$buscar."%' OR U.Apellido2 LIKE '%".$buscar."%' OR concat(U.Nombre, ' ', U.Apellido1, ' ', U.Apellido2) LIKE '%".$buscar."%' OR U.Nombre_de_usuario LIKE '%".$buscar."%' OR U.RFC LIKE '%".$buscar."%' OR R.Nombre LIKE '%".$buscar."%')";
     $results = mysqli_query($conexion, $query);
     $rows = [];
     $i=0;
@@ -1053,7 +1053,7 @@ function mostrar_todos_usuarios(){
                 </thead>
                 <tbody>';
     for($x = 0; $x < $i; $x++){
-        $link = "'./_modificar_usuario.php?Id_usuario=".$rows [$x]['Id_usuario']."'";
+        $link = "'./_modificar_usuario.php?Id_usuario=".$rows [$x]['Id_usuario']."&buscar=".$buscar."'";
         $tabla .= '
             <tr class="row_buscar_dispositivo" onclick="window.location.href='.$link.'">
                 <td>'.$rows [$x]['Nombre_usuario'].'</td>
@@ -1432,7 +1432,7 @@ function enviar_diagnostico($Id_ticket,$NombreE,$ComentarioD){
     disconnect($conexion);
 }
 
-function modificar_ticket($Id_ticket,$No_ticket,$NombreE,$NombreM,$NombreD,$NombreCS,$NombreS,$Duracion,$Fecha_y_hora_de_inicio_programada,$NombreMT,$Comentario){
+function modificar_ticket($Id_ticket,$No_ticket,$NombreE,$NombreM,$NombreD,$Duracion,$Fecha_y_hora_de_inicio_programada,$NombreMT,$Comentario, $Nombre_servicio, $Nombre_cat, $Nombre_inge){
     $conexion = connect();
     $query = "SELECT Id_estatus FROM Estatus_de_tickets WHERE Nombre = '".$NombreE."'";
     $results = mysqli_query($conexion, $query);
@@ -1452,14 +1452,7 @@ function modificar_ticket($Id_ticket,$No_ticket,$NombreE,$NombreM,$NombreD,$Nomb
     }
     mysqli_free_result($results);
 
-    $query = "SELECT Id_trabajo FROM Catalogo_de_servicios WHERE Nombre = '".$NombreS."'";
-    $results = mysqli_query($conexion, $query);
-    $rows = [];
-    $i=0;
-    while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-        $Id_trabajo = $row['Id_trabajo'];
-    }
-    mysqli_free_result($results);
+    
 
     $query = "SELECT D.Id_dependencia FROM Dependencias D, Destino DE WHERE D.Id_destino = DE.Id_destino AND DE.Razon_social = '".$NombreD."'";
     $results = mysqli_query($conexion, $query);
@@ -1493,7 +1486,52 @@ function modificar_ticket($Id_ticket,$No_ticket,$NombreE,$NombreM,$NombreD,$Nomb
 
     }
     mysqli_free_result($results);
-
+    
+    $query = "DELETE FROM Ingenieros_Tickets WHERE Id_ticket = ".$Id_ticket;
+    if ($conexion->query($query) === TRUE) {
+        $resultado [1] = $resultado[1] * TRUE;
+    } else {
+        $resultado [1] = $resultado[1] * FALSE;
+    }
+    
+    foreach ($Nombre_inge as $a){
+        $query = "SELECT I.Id_ingeniero FROM Usuarios U, Ingenieros I WHERE I.Id_usuario = U.Id_usuario AND concat(U.Nombre, ' ', U.Apellido1, ' ', U.Apellido2) = '".$a."'";
+        $results = mysqli_query($conexion, $query);
+        $rows = [];
+        $i=0;
+        while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+            $Id_ingeniero = $row['Id_ingeniero'];
+        }
+        mysqli_free_result($results);
+        $query = "INSERT INTO Ingenieros_Tickets (Id_ingeniero, Id_ticket) VALUES (".$Id_ingeniero.",".$Id_ticket.")";
+        if ($conexion->query($query) === TRUE) {
+            $resultado [1] = $resultado[1] * TRUE;
+        } else {
+            $resultado [1] = $resultado[1] * FALSE;
+        }
+    }
+    $query = "DELETE FROM Catalogo_de_servicios_Tickets WHERE Id_ticket = ".$Id_ticket;
+    if ($conexion->query($query) === TRUE) {
+        $resultado [1] = $resultado[1] * TRUE;
+    } else {
+        $resultado [1] = $resultado[1] * FALSE;
+    }
+    foreach ($Nombre_servicio as $a){
+        $query = "SELECT S.Id_trabajo FROM Catalogo_de_servicios S WHERE S.Nombre = '".$a."'";
+        $results = mysqli_query($conexion, $query);
+        $rows = [];
+        $i=0;
+        while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+            $Id_trabajo = $row['Id_trabajo'];
+        }
+        mysqli_free_result($results);
+        $query = "INSERT INTO Catalogo_de_servicios_Tickets (Id_trabajo, Id_ticket) VALUES (".$Id_trabajo.",".$Id_ticket.")";
+        if ($conexion->query($query) === TRUE) {
+            $resultado [1] = $resultado[1] * TRUE;
+        } else {
+            $resultado [1] = $resultado[1] * FALSE;
+        }
+    }
     return $resultado;
     disconnect($conexion);
 }
@@ -1663,7 +1701,7 @@ function restablecer_contrasena($Id_usuario){
 
 function buscar_marca($nombreM){
     $conexion = connect();
-    $query = "SELECT M.Nombre, M.Descripcion, M.Id_marca_dispositivo FROM Marca_de_dispositivos M WHERE M.Nombre LIKE '%".$nombreM."%' ORDER BY M.Nombre";
+    $query = "SELECT M.Nombre, M.Descripcion, M.Id_marca_dispositivo FROM Marca_de_dispositivos M WHERE M.Nombre LIKE '%".$nombreM."%' OR M.Descripcion LIKE '%".$nombreM."%' ORDER BY M.Nombre";
     $results = mysqli_query($conexion, $query);
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
@@ -1691,7 +1729,7 @@ function buscar_marca($nombreM){
                 </tr>
             </thead>
             <tbody>';
-    $link = 'window.location.href="./_modificar_marcadispositivos.php?Id_marca_dispositivo=';
+    $link = 'window.location.href="./_modificar_marcadispositivos.php?buscar='.$nombreM.'&Id_marca_dispositivo=';
     $i=0;
     foreach ($rows['Nombre'] as $a){
         $tabla .= '
@@ -1807,7 +1845,7 @@ function buscar_manual($buscar){
                 </tr>
             </thead>
             <tbody>';
-    $link = 'window.location.href="./_modificar_manual.php?Id_manual=';
+    $link = 'window.location.href="./_modificar_manual.php?buscar='.$buscar.'&Id_manual=';
     $i=0;
     foreach ($rows['Nombre'] as $a){
         $tabla .= '
@@ -1865,6 +1903,27 @@ function modificar_manual($Id_manual, $NombreManual,$DescripcionManual,$VersionM
             $resultado = FALSE;
         }   
     }
+    disconnect($conexion);
+    return $resultado;
+}
+
+function eliminar_manual($Id_manual){
+    
+    $conexion = connect();
+    
+    $query = "DELETE FROM Catalogo_de_servicios_Manuales WHERE Id_manual= ".$Id_manual;
+    if ($conexion->query($query) === TRUE) {
+        $resultado = TRUE;
+    } else {
+        $resultado = FALSE;
+    }
+    $query = "DELETE FROM Manuales WHERE Id_manual= ".$Id_manual;
+    if ($conexion->query($query) === TRUE) {
+        $resultado = $resultado * TRUE;
+    } else {
+        $resultado = $resultado * FALSE;
+    }
+    
     disconnect($conexion);
     return $resultado;
 }

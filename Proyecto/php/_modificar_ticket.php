@@ -54,15 +54,35 @@
                 $NombreE = $_POST['estatus'];
                 $NombreM = $_POST['mesa'];
                 $NombreD = $_POST['dependencia'];
-                $NombreCS = $_POST['categoria_de_servicio'];
-                $NombreS = $_POST['servicio'];
                 $Duracion = $_POST['duracion'];
                 $Fecha_y_hora_de_inicio_programada = $_POST['fechaini'];
                 $NombreMT = $_POST['medio'];
                 $Comentario = $_POST['comentario'];
                 $datos = consulta_ticket($Id_ticket);
                 $Estatus_anterior = $datos[0]['NombreE'];
-                $resultado = modificar_ticket($Id_ticket,$No_ticket,$NombreE,$NombreM,$NombreD,$NombreCS,$NombreS,$Duracion,$Fecha_y_hora_de_inicio_programada,$NombreMT,$Comentario);
+                $No_inge = $_POST['NoIngenieros'];
+                $No_serv = $_POST['NoServicios'];
+                for ($x =1; $x <= $No_serv; $x++){
+                    if (isset($_POST['servicio'.$x])){
+                        $Nombre_servicio[$x] = $_POST['servicio'.$x];
+                    } else {
+                         $Nombre_servicio[$x] = "";
+                    }
+                    if (isset($_POST['servicio'.$x])){
+                        $Nombre_cat[$x] = $_POST['servicio'.$x];
+                    } else {
+                         $Nombre_cat[$x] = "";
+                    }
+                }
+                for ($x =1; $x <= $No_inge; $x++){
+                    if (isset($_POST['inge'.$x])){
+                        $Nombre_inge[$x]= $_POST['inge'.$x];
+                    } else {
+                         $Nombre_inge[$x] = "";
+                    }
+                }
+                
+                $resultado = modificar_ticket($Id_ticket,$No_ticket,$NombreE,$NombreM,$NombreD,$Duracion,$Fecha_y_hora_de_inicio_programada,$NombreMT,$Comentario, $Nombre_servicio, $Nombre_cat, $Nombre_inge);
                 $datos = consulta_ticket($Id_ticket);
                 if($resultado [1] == TRUE){
                     echo '<div id="notify" class="alert alert-success" role="alert">

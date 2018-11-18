@@ -7,7 +7,12 @@
                                 <h4>Consultar Marca de Dispositivo</h4>
                             </div>
                             <div class="col-lg-4 col-md-3 col-sm-3 align-self-end">
-                                <a href="./_consultar_marcadis.php"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+                                <a <?php if (isset($_GET['buscar'])): ?>
+                                href="./_consultar_marcadis.php?buscar=<?= $_GET['buscar'] ?>"
+                                <?php else: ?>
+                                href="./_consultar_marcadis.php?"
+                                <?php endif;?>
+                                ><i class="material-icons">keyboard_backspace</i> Atrás</a>
                                 &nbsp
                                 <a href="./_modificar_marcadispositivos.php?Id_marca_dispositivo=<?= $Id_marca_dispositivo?>&editar=1"><i class="material-icons">create</i> Modificar</a>
                             </div>

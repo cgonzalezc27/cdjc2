@@ -4,7 +4,7 @@
       <h4 class="display-4 titulo_pagina">Consultar Ticket</h4>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-5 text-right">
-        <a href="./<?= $_GET['h'] ?>?buscar=<?= $_GET['buscar'] ?>"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+        <a <?php if(isset($_GET['h'])): ?> href="./<?= $_GET['h'] ?>?buscar=<?= $_GET['buscar'] ?>" <?php else: ?> href = "./_tickets_abiertos_v2.php" <?php endif; ?> ><i class="material-icons">keyboard_backspace</i> Atrás</a>
                                 &nbsp
       <a href="./_modificar_ticket.php?id=<?= $datos[0]['Id_ticket']?>">
         <i class="material-icons">create</i>
