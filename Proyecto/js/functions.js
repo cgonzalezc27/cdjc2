@@ -97,11 +97,7 @@ function dependencias_modificar_ticket(){
     })
 }
 // Generar servicios para modificar ticket
-function servicios_modificar_ticket(x){
-    eval(
-        '$.get("../php/controller_registrar_movimientos.php",{categoria_de_servicio_modificar_ticket: document.getElementById("Catservicio'+ x +'").value,lista: x}).done(function(data){var response = document.getElementById("servicio'+ x +'");response.innerHTML = data;})'
-    )
-}
+
 
 // Generar ingenieros para modificar ticket
 function no_ingenieros_modificar_ticket(){
@@ -146,7 +142,7 @@ function no_servicios_modificar_ticket(){
     })
 }
 
-function no_ingenieros_modificar_ticket_cambio_servicio(x){        
+function no_ingenieros_modificar_ticket_cambio_servicio(x,z){        
     var y = document.getElementById("no_listas_servicio").value;
     
     var id_categorias = "";
@@ -167,7 +163,9 @@ function no_ingenieros_modificar_ticket_cambio_servicio(x){
     for (a = 1; a <= y; a++){
         var id_servicios = id_servicios + "id_servicio" + a + ":document.getElementById('servicio" + a + "')[document.getElementById('servicio" + a + "').selectedIndex].id,";
     }
-    
+    if (z == 1){
+        var id_servicios = id_servicios + "cambio_categoria:" + z + ",";
+    }
     var nombre_servicios = "";
     
     for (a = 1; a <= y; a++){
@@ -178,10 +176,15 @@ function no_ingenieros_modificar_ticket_cambio_servicio(x){
 
     }
     eval(
-        '$.get("../php/controller_registrar_movimientos.php",{ingeniero_elegido: document.getElementById("inge"+x).value,id:document.getElementById("Id_ticket").value, listaserv:x, no_listas:' + y + ',' + id_categorias + nombre_categorias + id_servicios + nombre_servicios +'}).done(function(data){var response = document.getElementById("listas_serv");response.innerHTML = data;})'
+        '$.get("../php/controller_registrar_movimientos.php",{id:document.getElementById("Id_ticket").value, listaserv:' + x + ', no_listas:' + y + ',' + id_categorias + nombre_categorias + id_servicios + nombre_servicios +'}).done(function(data){var response = document.getElementById("listas_serv");response.innerHTML = data;})'
     )
 }
 
+function servicios_modificar_ticket(x){
+    
+    no_ingenieros_modificar_ticket_cambio_servicio(x,1);
+    
+}
 
 //Genera Dependencia
 function dependencias_mesas_crearT(){

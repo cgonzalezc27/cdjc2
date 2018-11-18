@@ -895,7 +895,7 @@ function consulta_modificar_ticket($id){
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sm-12" id="Servicios">
                 <label for="servicio'.$x.'" class="form-group">Servicio # '.$x.': </label>
-                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.')">
+                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.',0)">
                     <option id="'.$servicios_ticket_actual ['Id_trabajo'] [$x-1].'">'.$servicios_ticket_actual ['NombreS'] [$x-1].'</option>'.$resto_servicios.'
                     </select>
             </div>
@@ -909,7 +909,7 @@ function consulta_modificar_ticket($id){
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sm-12" id="ingenieros">
                 <label for="servicio'.$x.'" class="form-group">Servicio # '.$x.': </label>
-                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.')">
+                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.',0)">
                     '.$resto_servicios.'
 
                     </select>
