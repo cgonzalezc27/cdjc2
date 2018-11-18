@@ -26,7 +26,7 @@ if(sizeof($conditions)>0){
 
 $result=get_data($query);
 
-$res='<table>
+$res='<table class="table table-hover table-responsive-sm>
         <thead>
             <tr style="text-align:center;">
               <th>Razón Social</th>
@@ -46,7 +46,7 @@ if($result){
   foreach ($result as $fila) {
    $redirect="redirecttoDep('".$fila['Id_destino']."', '".$fila['RFC']."')";
 
-    $res.='<tr style="cursor:pointer;text-align:center;" onclick="'.$redirect.'">
+    $res.='<tr clas="text-center" style="cursor:pointer;text-align:center;" onclick="'.$redirect.'">
               <td>'.$fila['Razon_social'].'</td>
               <td>'.$fila['RFC'].'</td>
               <td>'.$fila['Calle'].'</td>

@@ -1,72 +1,71 @@
             <div class="row">
                 <div class="col-lg-9 col-md-8 col-sm-7">
-                    <h4>Modificar Mesa</h4>
+                    <h4>Consultar Mesa</h4>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-5">
-                    <a href="#"><i class="material-icons">create</i> Editar Mesa</a>
+                    <a href="./modificar_mesa.php?id=<?=$mesa['Id_mesa']?>&rfc=<?=$mesa['RFC']?>"><i class="material-icons">create</i> Modificar Mesa</a>
                 </div>
             </div>
+            <!--
             <div class="row">
                 <div class="col-lg-5 col-md-3 col-sm-12">
                     <a href="#"><i class="material-icons">delete_sweep</i> Eliminar Mesa</a>
                 </div>
             </div>
+            -->
         <div class="form-row">
             <div class="col-12">
                 <form>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                             <label for="inputPassword4">Razón Social</label>
-                            <input type="text" class="form-control" id="#" value="Instituto Nacional Electoral">
+                            <input type="text" class="form-control" id="#" value="<?=$mesa['Razon_social']?>" disabled>
                         </div>
                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                             <label for="inputEmail4">RFC</label>
-                            <input type="text" class="form-control" id="#" value="RFC12345IT0">
+                            <input type="text" class="form-control" id="#" value="<?=$mesa['RFC']?>" disabled>
                         </div>
                     </div>
-                    <!--<div class="form-group">
-                        <label for="inputAddress">Colonia</label>
-                        <input type="text" class="form-control" id="inputAddress" value="Fracc. San Pablo">
-                    </div>-->
                     <div class="form-group">
                         <label for="inputAddress2">Calle</label>
-                        <input type="text" class="form-control" id="inputAddress2" value="Epigmenio González">
+                        <input type="text" class="form-control" id="inputAddress2" value="<?=$mesa['Calle']?>" disabled>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                             <label for="#">Número Exterior</label>
-                            <input type="text" class="form-control" id="#" value="520">
+                            <input type="text" class="form-control" id="#" value="<?=$mesa['Numero_exterior']?>" disabled>
                         </div>
                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                             <label for="#">Número Interior</label>
-                            <input type="text" class="form-control" id="#" placeholder="">
+                            <input type="text" class="form-control" id="#" placeholder="1A" value="<?=$mesa['Numero_interior']?>" disabled>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                             <label for="inputCity">Ciudad</label>
-                            <input type="text" class="form-control" id="inputCity" value="Querétaro">
+                            <input type="text" class="form-control" id="inputCity" value="<?=$mesa['Ciudad']?>" disabled>
                         </div>
                         <div class="form-group col-lg-4 col-md-6 col-sm-12">
                             <label for="inputState">Estado</label>
-                            <input type="text" class="form-control" id="inputCity" value="Querétaro">
+                            <input type="text" class="form-control" id="inputCity" value="<?=$mesa['Estado']?>" disabled>
                         </div>
                         <div class="form-group col-lg-2 col-md-12 col-sm-12">
                             <label for="inputZip">Código Postal</label>
-                            <input type="number" class="form-control" id="inputZip" value="76130">
+                            <input type="number" class="form-control" id="inputZip" value="<?=$mesa['CP']?>" disabled>
                         </div>
                         <div class="form-group col">
                             <label for="inputCorreo">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="inputEmail" value="A01701000@itesms.mx">
+                            <input type="email" class="form-control" id="inputEmail" value="<?=$mesa['Correo_electronico']?>" disabled>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label for="inputCity">Comentario</label>
-                            <textarea class="form-control" rows="4">Esta mesa de ayuda es muy exigente y no se que más poner aquí</textarea>
+                            <textarea class="form-control" rows="4" disabled><?=$mesa['Descripcion']?></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Terminar</button>
-                </form>   
+
+                  <!--  <button type="submit" class="btn btn-primary">Terminar</button> -->
+                </form>
             </div>
         </div>

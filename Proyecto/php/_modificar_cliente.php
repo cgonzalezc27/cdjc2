@@ -23,10 +23,10 @@
           $dependencia=$dependencias[0];
 
           if(isset($_GET["result"]) &&  $_GET["result"]==1){
-            echo '<div id="notify" class="alert alert-success" role="alert"> ¡El dispositivo se ha sido registrado de manera exitosa! </div>';
+            echo '<div id="notify" class="alert alert-success" role="alert"> ¡La dependencia ha sido modificado de manera exitosa! </div>';
             echo '<script>setTimeout(function(){$("#notify").remove();}, 3000);</script>';
           }else if(isset($_GET["result"]) &&  $_GET["result"]==0){
-            echo '<div id="notify" class="alert alert-danger" role="alert"> Hubo un error al crear el dispositivo </div>';
+            echo '<div id="notify" class="alert alert-danger" role="alert"> Hubo un error al modificar la dependencia </div>';
             echo '<script>setTimeout(function(){$("#notify").remove();}, 3000);</script>';
           }else{
 

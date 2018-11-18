@@ -1,0 +1,64 @@
+<div class="col-lg-9 col-md-8 col-sm-7">
+    <h4>Consultar Mesa</h4>
+</div>
+<div class="form-row">
+    <div class="col-12">
+        <form method="POST" action="./update_mesa.php?id=<?=$_GET['id']?>&rfc=<?=$_GET['rfc']?>">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 text-right">
+            <a href="#"><i class="material-icons">delete_sweep</i> Eliminar Mesa</a>
+          </div>
+        </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label for="inputPassword4">Razón Social</label>
+                    <input type="text" class="form-control" id="#" name="razonSocial" value="<?=$mesa['Razon_social']?>">
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label for="inputEmail4">RFC</label>
+                    <input type="text" class="form-control" id="#" name="rfc" value="<?=$mesa['RFC']?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Calle</label>
+                <input type="text" class="form-control" id="inputAddress2" name="calle" value="<?=$mesa['Calle']?>">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label for="#">Número Exterior</label>
+                    <input type="text" class="form-control" id="#" name="numExterior" value="<?=$mesa['Numero_exterior']?>">
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label for="#">Número Interior</label>
+                    <input type="text" class="form-control" id="#" name="numInterior" value="<?=$mesa['Numero_interior']?>">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label for="inputCity">Ciudad</label>
+                    <input type="text" class="form-control" id="inputCity" name="ciudad" value="<?=$mesa['Ciudad']?>">
+                </div>
+                <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                    <label for="inputState">Estado</label>
+                    <input type="text" class="form-control" id="inputCity" name="estado" value="<?=$mesa['Estado']?>">
+                </div>
+                <div class="form-group col-lg-2 col-md-12 col-sm-12">
+                    <label for="inputZip">Código Postal</label>
+                    <input type="number" class="form-control" id="inputZip" name="cp" value="<?=$mesa['CP']?>">
+                </div>
+                <div class="form-group col">
+                    <label for="inputCorreo">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="inputEmail" name="correo" value="<?=$mesa['Correo_electronico']?>">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="inputCity">Comentario</label>
+                    <textarea class="form-control" rows="4" name="comentario"><?=$mesa['Descripcion']?></textarea>
+                </div>
+            </div>
+
+           <button type="submit" class="btn btn-primary">Modificar Mesa</button>
+        </form>
+    </div>
+</div>

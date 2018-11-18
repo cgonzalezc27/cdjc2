@@ -88,22 +88,6 @@ function actualizar_busqueda(){
   })
 }
 
-/*function actualizar_busqueda_dependencias(){
-  let forma=$('#forma_buscar_dep').serialize();
-  $('#table').remove();
-
-  $.ajax({
-    url: "model_consultar_dependencia.php", //procesamiento
-    type: 'post',
-    data: forma,
-    success:function(response){
-
-      $("#table_query").append('<div id="table"></div>');
-     $("#table").append(response);
-
-    }
-  })
-}*/
 function actualizar_busqueda_dependencias(){
   let forma=$('#forma_buscar_dep').serialize();
   $('#table').remove();
@@ -145,5 +129,11 @@ function redirectto(id,fecha){
 function redirecttoDep(Id_destino,RFC){
 
   window.location.replace("./_modificar_cliente.php?id="+Id_destino+"&rfc="+RFC);
+
+}
+
+function redirecttoMesa(Id_mesa,RFC){
+
+  window.location.replace("./_modificar_mesa_ayuda.php?id="+Id_mesa+"&rfc="+RFC);
 
 }
