@@ -15,7 +15,15 @@
         } else {
             $desplegar_todos = 0;
         }   
-        $tickets = consultar_tickets_abiertos($Id_usuario,$desplegar_todos);
+        if(isset($_POST['buscar'])){
+            $buscar = $_POST['buscar'];
+            $tickets = buscar_tickets($buscar,$Id_usuario,  $desplegar_todos);
+        } else if (isset($_GET['buscar'])){
+            $buscar = $_GET['buscar'];
+            $tickets = buscar_tickets($buscar,$Id_usuario,  $desplegar_todos);
+        } else {
+            $tickets = consultar_tickets_abiertos($Id_usuario,$desplegar_todos);
+        }
         if(isset($_GET['ticket_creado']) && $_GET['ticket_creado'] == 1){
           echo '<div id="notify" class="alert alert-success" role="alert">
                 Tu Ticket ha sido creado
