@@ -1,5 +1,5 @@
 <?php
- $GLOBALS["env"] = "dev_camilo";
+ $GLOBALS["env"] = "prod";
 
  switch($GLOBALS["env"]){
      case "dev_camilo":
