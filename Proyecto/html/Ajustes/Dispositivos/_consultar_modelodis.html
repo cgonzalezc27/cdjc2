@@ -1,12 +1,12 @@
-                <form>
+
                     <h4 class="display-4 titulo_pagina">Consultar Modelo de dispositivo </h4><br>
-                    <form>
+                    <form action="../php/_consultar_modelodis.php" method="post">
                         <div class="form-row justify-content-center">
                             <div class="form-row">
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12 align-self-center">
-                                    <label for="inputPassword4">Nombre</label>
-                                    <input type="text" class="form-control" id="#" placeholder="Instituto Nacional Electoral">
-                                </div>                               
+                                    <label for="nombreModeloBus">Nombre del modelo</label>
+                                    <input type="text" class="form-control" id="nombreModeloBus" name="nombreModeloBus" placeholder="Em654sGjh5hJ, 10XXXXXXXXX01..." <?php if (isset($nombreModeloBus)): ?>value="<?=$nombreModeloBus?>"<?php endif ?>>
+                                </div>
                             </div>
                             <div class="form-row col-12 justify-content-center">
                                 <div class="form-group col-1">
@@ -15,12 +15,15 @@
                             </div>
                         </div>
                     </form>
-                    
+
                     <div class="form-text col">
                         <h4>Modelos de Dispositivos</h4>
                     </div><br>
-                    
+
+                    <?php if(isset($tabla)): ?> <?= $tabla ?> <?php endif; ?>
+
                     <!--<div class="container">-->
+                    <!--
                         <div class="table-responsive col-12 ">
                             <table class="table table-hover table-responsive-xl">
                                 <thead>
@@ -41,9 +44,6 @@
                                 </tbody>
                             </table>
                         </div>
-                     <!--</div>--
+                     </div>
 
-                </form>
-            </div>
-            
-           
+            </div>-->

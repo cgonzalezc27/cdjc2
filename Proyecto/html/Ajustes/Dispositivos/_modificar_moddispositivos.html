@@ -1,39 +1,94 @@
 
-                <form><br>
-                    <div class="row">
-                        <div class="col-lg-9 col-md-8 col-sm-7">
-                            <h4>Modificar Modelo de Dispositivo</h4>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-5">
-                            <a href="#"><i class="material-icons">create</i> Editar Modelo de Dispositivo</a>
-                        </div>
-                    </div>
-            <div class="row">
-                <div class="col-lg-5 col-md-3 col-sm-12">
-                    <a href="#"><i class="material-icons">delete_sweep</i> Eliminar Modelo de Dispositivo</a>
-                </div>
-            </div>
-                    <div class="form-row">
-                        <div class="form-text col">
-                            <h4>Modificar Modelo de Dispositivos</h4>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label for="inputPassword4">Nombre</label>
-                            <input type="text" class="form-control" id="#" value="EM134VW">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-12">
-                            <label for="inputCity">Descripción</label>
-                            <textarea class="form-control " rows="4">Difícil de conseguir</textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Terminar</button>
-                </form>
-
-
-            
+<form action = "../php/_modificar_moddispositivos.php" method="post">
     
+    <?php if($disabled == 1): ?>
+        <div class="row">
+
+            <div class="col-lg-7 col-md-8 col-sm-7">
+                <h4>Consultar Modelo de Dispositivo</h4>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-3 align-self-end">
+                <a <?php if (isset($_GET['buscar'])): ?>
+                href="./_consultar_modelodis.php?buscar=<?= $_GET['buscar'] ?>"
+                <?php else: ?>
+                href="./_consultar_modelodis.php?"
+                <?php endif;?>
+                ><i class="material-icons">keyboard_backspace</i> Atrás</a>
+                &nbsp
+                <a href="./_modificar_moddispositivos.php?Id_modelo_dispositivo=<?= $Id_modelo_dispositivo?>&editar=1"><i class="material-icons">create</i> Modificar</a>
+            </div>
+        </div>
+    
+    <?php elseif($disabled == 0): ?>
+    
+    
+    <div class="row">
+        
+        <div class="col-lg-8 col-md-6 col-sm-6">
+            <h4>Modificar Modelo de Dispositivos</h4>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-3">
+            <a href="../php/_modificar_moddispositivos.php?Id_modelo_dispositivo=<?= $Id_modelo_dispositivo?>"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5 col-md-3 col-sm-12">
+            <a href="../php/_modificar_moddispositivos.php?Id_modelo_dispositivo=<?= $Id_modelo_dispositivo?>&eliminar_modelo=1"><i class="material-icons">delete_sweep</i> Eliminar</a>
+        </div>
+    </div>
+    <?php endif; ?>
+
+
+    <br>
+    <div class="form-row ">
+        <div class="form-group col-lg-3 col-md-6 col-sm-12">
+            <label for="inputPassword4">Nombre</label>
+            <input required maxlength="30" type="text" class="form-control" id="#" name = "NombreMod" value="<?= $data['Nombre'][0]?>" <?php if($disabled == 1): ?> disabled <?php endif; ?>>
+        </div>
+    
+        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+            <label for="inputPassword4">Marca</label>
+            <select class="form-control" id="NombreMarSel" name = "NombreMarSel" required <?php if($disabled == 1): ?> disabled <?php endif; ?>>
+                <option selected value="<?= $data['Id_marca_dispositivo'][0]?>"><?= $data['NombreMar'][0]?></option>
+                <?php
+                    obtener_marcas($data['NombreMar'][0]);
+                ?>
+            </select>
+            
+            
+        </div>
+    
+    <input type="text" hidden value="<?= $Id_modelo_dispositivo?>" name="Id_modelo_dispositivo">
+    
+        <div class="form-group col-lg-7 col-md-12 col-sm-12">
+            <label for="inputCity">Descripción</label>
+            <textarea maxlength="150" name="DescripcionMod" class="form-control " rows="4" <?php if($disabled == 1): ?> disabled <?php endif; ?>><?= $data['Descripcion'][0]?></textarea>
+        </div>
+    </div>
+    <?php if($disabled == 0): ?>
+        <button type="submit" class="btn btn-primary">Terminar</button>
+    <?php endif; ?>
+</form>
+    
+    <!--
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="inputPassword4">Nombre</label>
+            <input type="text" class="form-control" id="#" value="EM134VW">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-12">
+            <label for="inputCity">Descripción</label>
+            <textarea class="form-control " rows="4">Difícil de conseguir</textarea>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Terminar</button>
+    
+</form>
+-->
+
+
