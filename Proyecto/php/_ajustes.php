@@ -9,15 +9,22 @@ if (isset($_SESSION["Usuario"])){
         require_once("./model_registrar_dependencia.php");
         require_once("./model_registrar_modeloDis.php");
         require_once("./model_registrar_usuario.php");
+        require_once("./_registrar_servicio.php");
+        require_once("./_registrar_rol.php");
 
 
 
         include('../html/_header.html');
         include('../html/_menu.html');
         
+        $lista_permisos = lista_permisos();
         $lista_servicios_manuales = lista_servicios_manuales();
         
+        
+        
         if(isset($_POST['NombreManual'])){
+            
+            
             if(isset($_FILES["ManualArchivo"]) && $_FILES["ManualArchivo"]["name"] != ""){
                 $ManualArchivo = $_FILES['ManualArchivo'];
                 $target_dir = "../manuales/".$_POST['NombreManual'].$_POST['VersionManual']."_";
@@ -457,6 +464,50 @@ if (isset($_SESSION["Usuario"])){
                 
             }
             
+                        if(isset($_POST['categoriaSer']) && $_POST['categoriaSer'] != ""){
+                
+            
+                if(!isset($_POST['nombreSer']) ||  $_POST['nombreSer'] == ""){
+                    $errorn = '<a class ="error">*</a>';
+                }else{
+                    $nombreSer = $_POST['nombreSer'];
+                }
+                if(!isset($_POST['tiempEdeT']) ||  $_POST['tiempEdeT'] == ""){
+                    $errort = '<a class ="error">*</a>';
+                }else{
+                    $tiempEdeT = $_POST['tiempEdeT'];
+                }
+                if(!isset($_POST['categoriaSer']) ||  $_POST['categoriaSer'] == ""){
+                    $errorc = '<a class ="error">*</a>';
+                }else{
+                    $categoriaSer = $_POST['categoriaSer'];
+                }
+                if(!isset($_POST['esc']) ||  $_POST['esc'] == ""){
+                    $errord = '<a class ="error">*</a>';
+                }else{
+                    $esc = $_POST['esc'];
+                }
+                
+                $resultdep = registrar_servcio($nombreSer, $tiempEdeT, $categoriaSer, $esc);
+                
+                //MENSAJE DE RETROALIMENTACION
+                if($resultdep == TRUE){
+                    echo '<div id="notify" class="alert alert-success" role="alert">
+                        ¡El servicio ha sido registrado de manera exitosa!
+                        </div>';
+                    echo '<script>
+                        setTimeout(function(){$("#notify").remove();}, 4000);
+                        </script>';
+                }else{
+                    echo '<div id="notify" class="alert alert-danger"    role="alert">
+                        Hubo un error al crear el servicio
+                        </div>';
+                    echo '<script>
+                        setTimeout(function(){$("#notify").remove();}, 4000);
+                        </script>';
+                }
+                
+            }
             
             
 //COSAS DE DORIS NO TOCAR    

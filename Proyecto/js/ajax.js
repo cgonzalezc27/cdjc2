@@ -137,9 +137,3 @@ function redirecttoMesa(Id_mesa,RFC){
   window.location.replace("./_modificar_mesa_ayuda.php?id="+Id_mesa+"&rfc="+RFC);
 
 }
-
-function redirecttoConsultaDep(Id_destino,RFC){
-
-  window.location.replace("./_consulta_mesa_dep.php?id="+Id_destino+"&rfc="+RFC);
-
-}
