@@ -8,7 +8,7 @@ $query='SELECT m.Id_mesa,d.Razon_social, d.RFC, d.Calle,d.Estado,d.Ciudad, m.Cor
         ';
 $conditions=[];
 if(isset($_POST["razonS"]) && $_POST["razonS"]!=""){
-  $conditions[]='Razon_social LIKE "%'.$_POST["RazonS"].'%"';
+  $conditions[]='Razon_social LIKE "%'.$_POST["razonS"].'%"';
 }
 
 if(isset($_POST["rfc"]) && $_POST["rfc"]!=""){
@@ -44,7 +44,7 @@ $res='<table class="table table-hover table-responsive-sm>
 
         foreach ($result as $fila) {
          $redirect="redirecttoMesa('".$fila['Id_mesa']."', '".$fila['RFC']."')";
-           $res.='<tr clas="text-center" style="cursor:pointer;text-align:center;" onclick="'.$redirect.'">
+           $res.='<tr class="text-center" style="cursor:pointer;text-align:center;" onclick="'.$redirect.'">
                      <td>'.$fila['Razon_social'].'</td>
                      <td>'.$fila['RFC'].'</td>
                      <td>'.$fila['Calle'].'</td>

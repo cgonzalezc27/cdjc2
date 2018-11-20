@@ -1,12 +1,13 @@
 <div class="col-lg-9 col-md-8 col-sm-7">
-    <h4>Consultar Mesa</h4>
+    <h4>Modificar Mesa</h4>
 </div>
 <div class="form-row">
     <div class="col-12">
         <form method="POST" action="./update_mesa.php?id=<?=$_GET['id']?>&rfc=<?=$_GET['rfc']?>">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 text-right">
-            <a href="#"><i class="material-icons">delete_sweep</i> Eliminar Mesa</a>
+            <a href = "./_modificar_mesa_ayuda.php?id=<?=$mesa['Id_mesa']?>&rfc=<?=$mesa['RFC']?>"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+            <!--<a href="#"><i class="material-icons">delete_sweep</i> Eliminar Mesa</a>-->
           </div>
         </div>
             <div class="form-row">

@@ -65,7 +65,10 @@
 
                         <?php if ($_SESSION['Permisos'][8] == TRUE): ?>
                         <li <?php if ($menu == 'mesas') : ?> class = " active " <?php endif; ?>>
-                            <a href="#mesaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle navbar_a"><i class="material-icons">headset_mic</i> Mesas</a>
+                            <a href="/php/_clientes_todos.php" class="navbar_a"><i class="material-icons">headset_mic</i> Mesas</a>
+                            <!--
+                            <a data-toggle="collapse"
+
                             <ul class="collapse list-unstyled" id="mesaSubmenu">
 
                                 <li>
@@ -77,7 +80,7 @@
                                 <li>
                                     <a class="navbar_a" href="/php/_clientes_todos.php">Mesa 3</a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <?php endif;?>
 
