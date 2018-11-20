@@ -316,7 +316,7 @@ if(isset($_GET['no_servicios'])){
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sm-12" id="Servicios">
                 <label for="servicio'.$x.'" class="form-group">Servicio # '.$x.': </label>
-                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.')">
+                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.',0)">
                     <option id="'.$servicios_ticket_actual ['Id_trabajo'] [$x-1].'">'.$servicios_ticket_actual ['NombreS'] [$x-1].'</option>'.$resto_servicios.'
                     </select>
             </div>
@@ -332,7 +332,7 @@ if(isset($_GET['no_servicios'])){
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sm-12" id="Servicios">
                 <label for="servicio'.$x.'" class="form-group">Servicio # '.$x.': </label>
-                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.')">
+                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.',0)">
                     <option id="'.$servicios_ticket_actual ['Id_trabajo'] [$x-1].'">'.$servicios_ticket_actual ['NombreS'] [$x-1].'</option>'.$resto_servicios.'
                     </select>
             </div>
@@ -347,7 +347,7 @@ if(isset($_GET['no_servicios'])){
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sm-12" id="Servicios">
                 <label for="servicio'.$x.'" class="form-group">Servicio # '.$x.': </label>
-                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.')">
+                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.',0)">
                     '.$resto_servicios.'
 
                     </select>
@@ -415,14 +415,19 @@ if(isset($_GET['listaserv'])){
     $conexion = connect();
     $no_listas = $_GET['no_listas'];
     $servicios = "";
-    for ($x = 1; $x <= $no_listas; $x++){
-        $id_servicios_seleccionados = [];
+    if(isset($_GET['cambio_categoria']) && $_GET['cambio_categoria'] == 1){
+        
         for ($y = 1; $y <= $no_listas; $y++){
             $id_servicios_seleccionados [$y] = $_GET['id_servicio'.$y];
             $nombre_servicios_seleccionados [$y] = $_GET['nombre_servicio'.$y];
             $id_categorias_seleccionadas [$y] = $_GET['id_categoria'.$y];
             $nombre_categorias_seleccionadas [$y] = $_GET['nombre_categoria'.$y];
         }
+        
+        
+        $id_categorias_seleccionadas [$_GET['listaserv']] = $_GET['id_categoria'.$_GET['listaserv']];
+        $nombre_categorias_seleccionadas [$_GET['listaserv']] = $_GET['nombre_categoria'.$_GET['listaserv']];
+        
         $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1";
         $results = mysqli_query($conexion, $query);
     
@@ -435,9 +440,64 @@ if(isset($_GET['listaserv'])){
             $i++;
         }
         mysqli_free_result($results);
+        
+        $y=0;
+        $categorias_todos = $servicios_todos ['Id_categoria'];
+        
+        foreach ($servicios_todos['Id_trabajo'] as $a){
+            if(in_array($a,$id_servicios_seleccionados) == FALSE  && $id_categorias_seleccionadas [$_GET['listaserv']] == $categorias_todos[$y]){
+                $servicio_elegido_id[$y] = $a;
+                $servicio_elegido_nombre [$y] = $servicios_todos ['NombreS'][$y];
+            }
+            $y++;
+        }
+        $servicio_elegido_id = array_values( array_filter( array_unique ($servicio_elegido_id)));
+        
+        $servicio_elegido_nombre = array_values( array_filter( array_unique($servicio_elegido_nombre)));
+        $id_servicios_seleccionados [$_GET['listaserv']] = $servicio_elegido_id[0];
+        $nombre_servicios_seleccionados [$_GET['listaserv']] = $servicio_elegido_nombre[0];
+    }
+    
+    
+    
+    for ($x = 1; $x <= $no_listas; $x++){
+        
+        
+        for ($y = 1; $y <= $no_listas; $y++){
+            if(isset($_GET['cambio_categoria']) && $_GET['cambio_categoria'] == 1){
+                if ($y != $_GET['listaserv']){
+                    $id_servicios_seleccionados [$y] = $_GET['id_servicio'.$y];
+                    $nombre_servicios_seleccionados [$y] = $_GET['nombre_servicio'.$y];
+                    $id_categorias_seleccionadas [$y] = $_GET['id_categoria'.$y];
+                    $nombre_categorias_seleccionadas [$y] = $_GET['nombre_categoria'.$y];
+                    
+                }
+            } else {
+                $id_servicios_seleccionados [$y] = $_GET['id_servicio'.$y];
+                $nombre_servicios_seleccionados [$y] = $_GET['nombre_servicio'.$y];
+                $id_categorias_seleccionadas [$y] = $_GET['id_categoria'.$y];
+                $nombre_categorias_seleccionadas [$y] = $_GET['nombre_categoria'.$y];  
+            }
+        }
+        
+       
+        $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1";
+        $results = mysqli_query($conexion, $query);
+    
+        $i=0;
+        while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+            $servicios_todos['NombreS'][$i] = $row['NombreS'];
+            $servicios_todos['Id_trabajo'][$i] = $row['Id_trabajo'];        
+            $servicios_todos['NombreCS'][$i] = $row['NombreCS'];
+            $servicios_todos['Id_categoria'][$i] = $row['Id_categoria'];
+            $i++;
+        }
+        mysqli_free_result($results);
+        
         $resto_servicios = "";
         $y=0;
         $categorias_todos = $servicios_todos ['Id_categoria'];
+        
         
         foreach ($servicios_todos['Id_trabajo'] as $a){
             if(in_array($a,$id_servicios_seleccionados) == FALSE  && $id_categorias_seleccionadas[$x] == $categorias_todos[$y]){
@@ -455,6 +515,7 @@ if(isset($_GET['listaserv'])){
             }
             $y++;    
         }
+        
         $servicios .= '
             <div class="form-group col-lg-6 col-md-6 col-sm-12" id="Categorias">
                 <label for="Catservicio'.$x.'" class="form-group">Categoría de servicio # '.$x.': </label>
@@ -465,14 +526,15 @@ if(isset($_GET['listaserv'])){
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sm-12" id="servicios">
                 <label for="servicio'.$x.'" class="form-group">Servicio # '.$x.': </label>
-                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.')">
-                    <option id="'.$id_servicios_seleccionados[$x].'">'.$nombre_servicios_seleccionados[$x].'</option>'.$resto_servicios.'
+                <select class="form-control" id="servicio'.$x.'" name="servicio'.$x.'" onchange = "no_ingenieros_modificar_ticket_cambio_servicio('.$x.',0)">';
+            $servicios .= '<option id="'.$id_servicios_seleccionados[$x].'">'.$nombre_servicios_seleccionados[$x].'</option>'.$resto_servicios.'
 
                     </select>
             </div>
           ';
+        
     }
-
+    
     $servicios .= '<input type="text" hidden id="no_listas_servicio" value="'.($x - 1).'">';
     disconnect($conexion);
     $seleccion = $servicios;
@@ -494,6 +556,7 @@ if(isset($_GET['categoria_de_servicio_modificar_ticket'])){
     $seleccion = $rows;
     echo $seleccion;
 }
+
 if(isset($_GET['mesa'])){
     $mesa = $_GET['mesa'];
     $conexion = connect();

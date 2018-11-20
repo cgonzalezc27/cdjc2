@@ -60,7 +60,7 @@
                 $uploadOk = 1;
             }
             $Rol = $_POST['Rol'];
-
+            
             $resultado = modificar_usuario($Id_usuario,$Nombre_de_usuario,$Nombre,$Apellido1,$Apellido2,$RFC,$Estado,$Ciudad,$Calle,$Numero_exterior,$Numero_interior,$CP,$Foto,$Rol);
             $disabled = 1;
 

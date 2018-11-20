@@ -1,5 +1,5 @@
 <?php
-$menu = "ajustes";
+$menu = "manuales";
 session_start();
 require_once('./model.php');
 if (isset($_SESSION["Usuario"])){
@@ -89,7 +89,7 @@ if (isset($_SESSION["Usuario"])){
                   setTimeout(function(){$("#notify").remove();}, 3000);
                 </script>'; 
             } 
-            include('../html/Ajustes/Manuales/_consultar_manual.html');
+            include('../html/Ajustes/Manuales/_consultar_manuales.html');
             
         } else  if( isset($_GET['Id_manual']) && isset($_GET['editar']) && $_GET['editar']==1 && $_SESSION["Permisos"][6] == TRUE ){
             $Id_manual = $_GET['Id_manual'];

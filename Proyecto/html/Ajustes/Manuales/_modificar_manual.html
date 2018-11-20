@@ -8,7 +8,13 @@
         </div>
         <?php if ($_SESSION["Permisos"][6] == TRUE ): ?>
         <div class="col-lg-4 col-md-3 col-sm-3 align-self-end">
-            <a href="./_consultar_manuales.php"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+            <a 
+            <?php if (isset($_GET['buscar'])): ?>
+            href="./_consultar_manuales.php?buscar=<?= $_GET['buscar'] ?>"
+            <?php else: ?>
+            href="./_consultar_manuales.php?"
+            <?php endif;?>
+            ><i class="material-icons">keyboard_backspace</i> Atrás</a>
             &nbsp
             <a href="./_modificar_manual.php?Id_manual=<?= $Id_manual?>&editar=1"><i class="material-icons">create</i> Editar</a>
         </div>

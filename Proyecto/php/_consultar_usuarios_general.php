@@ -5,8 +5,21 @@
         require_once('./model.php');
         include('../html/_header.html');
         include('../html/_menu.html');
-       $tabla = mostrar_todos_usuarios();
+        if(isset($_POST['buscar'])){
+            $buscar = $_POST['buscar'];
+            
+            $tabla = buscar_usuario($buscar);
+            include('../html/Ajustes/Usuarios/_consultar_usuarios_general.html');
+        } else if (isset($_GET['buscar'])){
+            $buscar = $_GET['buscar'];
+            
+            $tabla = buscar_usuario($buscar);
+            include('../html/Ajustes/Usuarios/_consultar_usuarios_general.html');
+            
+        } else {
            include('../html/Ajustes/Usuarios/_consultar_usuarios_general.html');
+        
+        }
         include('../html/_footer.html');
     } else {
         header("location:/index.php");
