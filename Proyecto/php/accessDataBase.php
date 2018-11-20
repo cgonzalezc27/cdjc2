@@ -57,4 +57,19 @@ require_once('globals.php');
    return false;
  }
 
+ function delete ($query, $values){
+   $con= connect();
+   $con->query("SET NAMES 'utf8'");
+   if($con){
+     $affectedRows=$con->prepare($query)->execute($values);
+     $result=false;
+     if($affectedRows !== false){
+       $result = true;
+     }
+     $con=NULL;
+     return $result;
+   }
+   return false;
+ }
+
 ?>
