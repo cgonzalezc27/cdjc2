@@ -1701,7 +1701,7 @@ function restablecer_contrasena($Id_usuario){
 
 function buscar_marca($nombreM){
     $conexion = connect();
-    $query = "SELECT M.Nombre, M.Descripcion, M.Id_marca_dispositivo FROM Marca_de_dispositivos M WHERE M.Nombre LIKE '%".$nombreM."%' OR M.Descripcion LIKE '%".$nombreM."%' ORDER BY M.Nombre";
+    $query = "SELECT M.Nombre, M.Descripcion, M.Id_marca_dispositivo FROM Marca_de_dispositivos M WHERE M.Visible = TRUE AND (M.Nombre LIKE '%".$nombreM."%' OR M.Descripcion LIKE '%".$nombreM."%') ORDER BY M.Nombre";
     $results = mysqli_query($conexion, $query);
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
@@ -1749,7 +1749,7 @@ function buscar_marca($nombreM){
 
 function consultar_marca($Id_marca_dispositivo){
     $conexion = connect();
-    $query = "SELECT M.Nombre, M.Descripcion FROM Marca_de_dispositivos M WHERE M.Id_marca_dispositivo = '".$Id_marca_dispositivo."'";
+    $query = "SELECT M.Nombre, M.Descripcion FROM Marca_de_dispositivos M WHERE M.Id_marca_dispositivo = '".$Id_marca_dispositivo."' AND M.Visible = TRUE";
     $results = mysqli_query($conexion, $query);
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
