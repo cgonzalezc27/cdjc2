@@ -8,93 +8,17 @@ if (isset($_SESSION["Usuario"])){
         require_once("./model_camilo_ajustes.php");
         require_once("./model_registrar_dependencia.php");
         require_once("./model_registrar_modeloDis.php");
+        require_once("./model_registrar_tipoDis.php");
         require_once("./model_registrar_usuario.php");
+        //require_once("./_registrar_servicio.php");
 
 
 
         include('../html/_header.html');
         include('../html/_menu.html');
-        
+
         $lista_servicios_manuales = lista_servicios_manuales();
-        
-        if(isset($_POST['NombreManual'])){
-            if(isset($_FILES["ManualArchivo"]) && $_FILES["ManualArchivo"]["name"] != ""){
-                $ManualArchivo = $_FILES['ManualArchivo'];
-                $target_dir = "../manuales/".$_POST['NombreManual'].$_POST['VersionManual']."_";
-                $target_file = str_replace(" ","_",$target_dir .basename($_FILES["ManualArchivo"]["name"]));
-                $uploadOk = 1;
-                $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-                $check = filesize($_FILES["ManualArchivo"]["tmp_name"]);
-                if($check != false) {
-                    $uploadOk = 1;
-                    $error_archivo_manual = "";
-                } else {
-                    $error_archivo_manual = " / El archivo subido no es un manual.";
-                    $uploadOk = 0;
-                    $ManualArchivo = "no_modificar";
-                }
-                if (file_exists($target_file)) {
-                    $error_archivo_manual =  " / Ya existe un manual con el nombre del archivo que intentaste subir.";
-                    $uploadOk = 0;
-                    $ManualArchivo = "no_modificar";
-                }
-                if ($_FILES["ManualArchivo"]["size"] > 10000000) {
-                    $error_archivo_manual =  " / El tamaño del manual que subiste es muy grande.";
-                    $uploadOk = 0;
-                    $ManualArchivo = "no_modificar";
-                }
-                if($FileType != "pdf") {
-                    $error_archivo_manual =  " / El manual debe ser PDF.";
-                    $uploadOk = 0;
-                    $ManualArchivo = "no_modificar";
-                } else {
-                    if ($uploadOk == 1){
-                        if (move_uploaded_file($_FILES["ManualArchivo"]["tmp_name"], $target_file)) {
-                            $ManualArchivo = $target_file;
-                        } 
-                    }
-                }
-                if($uploadOk == 1){
-                    $NombreManual = $_POST['NombreManual'];
-                    $VersionManual = $_POST['VersionManual'];
-                    $DescripcionManual = $_POST['DescripcionManual'];
-                    $NoServicios = $_POST['no_servicios'];
-                    $x = 0;
-                    $Id_trabajo = [];
-                    for ($i = 0; $i < $NoServicios; $i++){
-                        if (isset($_POST['s'.$i])){
-                            $Id_trabajo[$x] = $_POST['s'.$i];
-                            $x++;
-                        }
-                    }
-                    $resultado = registrar_manual($NombreManual, $VersionManual, $DescripcionManual, $Id_trabajo,$ManualArchivo);
-                }
-                
-                if($uploadOk == 1 && $resultado == 1){
-                    echo '<div id="notify" class="alert alert-success" role="alert">
-                        ¡El manual se creó de manera exitosa!
-                        </div>';
-                    echo '<script>
-                      setTimeout(function(){$("#notify").remove();}, 3000);
-                        </script>';
-                } else if (isset($error_archivo_manual)){
-                    echo '<div id="notify" class="alert alert-danger"    role="alert">
-                        Hubo un error al crear el manual. '.$error_archivo_manual.'
-                        </div>';
-                    echo '<script>
-                      setTimeout(function(){$("#notify").remove();}, 6000);
-                    </script>'; 
-                } 
-            } else {
-                echo '<div id="notify" class="alert alert-danger"    role="alert">
-                        No se pudo crear el manual, faltó agregar el archivo.
-                        </div>';
-                echo '<script>
-                        setTimeout(function(){$("#notify").remove();}, 4000);
-                        </script>';
-            }
-        }
-        
+
         if(isset($_POST['nombreMarca'])){
             $nombreM = $_POST['nombreMarca'];
             $descripcionMarca = $_POST['descripcionMarca'];
@@ -116,12 +40,12 @@ if (isset($_SESSION["Usuario"])){
             }
 
         }
-        
-        
+
+
 //Obtiene y registra dentro de la tabla de Dependencia
             if(isset($_POST['mesadep']) && $_POST['mesadep'] != ""){
-                
-            
+
+
                 if(!isset($_POST['razonSdep']) ||  $_POST['razonSdep'] == ""){
                     $errorrazon = '<a class ="error">*</a>';
                 }else{
@@ -187,11 +111,11 @@ if (isset($_SESSION["Usuario"])){
                 }else{
                     $comentariodep = $_POST['comentariodep'];
                 }
-            
+
                 $resultdep = registrar_dependencia($razonSdep, $rfcdep, $calledep, $num1dep, $num2dep, $ciudaddep, $estadodep, $cpdep, $encargadodep, $tesperadep, $mesadep, $comentariodep);
                 //echo "CACA";
-                
-                
+
+
                 //MENSAJE DE RETROALIMENTACION
                 if($resultdep == TRUE){
                     echo '<div id="notify" class="alert alert-success" role="alert">
@@ -208,21 +132,21 @@ if (isset($_SESSION["Usuario"])){
                         setTimeout(function(){$("#notify").remove();}, 4000);
                         </script>';
                 }
-                
+
             }
-            
-            
-            
+
+
+
 //obtiene los valores de la forma del documento html para modelo de dispositivo
             if(isset($_POST['marcaDisSelect']) && $_POST['marcaDisSelect'] != ""){
-            //if($_POST['nombreModDis'] != ""){
+
                 //echo "SI ESTA ENTRANDO";
                 if(!isset($_POST['nombreModDis']) ||  $_POST['nombreModDis'] == ""){
                     $errorrazon = '<a class ="error">*</a>';
                 }else{
                     $nombreModDis = $_POST['nombreModDis'];
                 }
-                
+
                 if(!isset($_POST['marcaDisSelect']) ||  $_POST['marcaDisSelect'] == ""){
                     $errorrazon = '<a class ="error">*</a>';
                 }else{
@@ -233,11 +157,11 @@ if (isset($_SESSION["Usuario"])){
                 }else{
                     $descripcionModDis = $_POST['descripcionModDis'];
                 }
-            
+
                 $resultadomod = registrar_modeloDispositivo($nombreModDis, $marcaDisSelect, $descripcionModDis);
                 //echo "CACA";
-                
-                
+
+
                 //MENSAJE DE RETROALIMENTACION
                 if($resultadomod == TRUE){
                     echo '<div id="notify" class="alert alert-success" role="alert">
@@ -254,13 +178,13 @@ if (isset($_SESSION["Usuario"])){
                         setTimeout(function(){$("#notify").remove();}, 4000);
                         </script>';
                 }
-                
+
             }
-            
-            
+
+
 //obtiene los valores de la forma del registro de usuario
             if(isset($_POST['rol_usr']) && $_POST['rol_usr'] != ""){
-            //if($_POST['nombreModDis'] != ""){
+
                 //echo "SI ESTA ENTRANDO";
                 if(!isset($_POST['nombre_usr']) ||  $_POST['nombre_usr'] == ""){
                     $errorrazon = '<a class ="error">*</a>';
@@ -373,7 +297,7 @@ if (isset($_SESSION["Usuario"])){
                     if ($uploadOk == 1){
                         if (move_uploaded_file($_FILES["Foto"]["tmp_name"], $target_file)) {
                             $Foto = $target_file;
-                        } 
+                        }
                     }
                 }
             } else {
@@ -381,63 +305,16 @@ if (isset($_SESSION["Usuario"])){
                 $error_foto = "";
                 $uploadOk = 1;
             }
-                
-                
-                
-                /*
-                
-                if(!isset($_FILES['foto_usr']) ||  $_FILES['foto_usr']["name"] == ""){
-                    //echo "ERROR AL LEER LA FOTO";
-                    $foto_usr = "https://www.dpreview.com/files/p/articles/7395606096/Google-Photos.jpeg";
-                    $error_foto = "";
-                }else{
-                    
-                    $id_usuario = obten_id();
-                    //echo $id_usuario;
-                    
-                    $foto_usr = $_FILES['foto_usr'];
-                    $target_dir = "../img_usuarios/".$id_usuario;
-                    $target_file = $target_dir . basename($_FILES["foto_usr"]["name"]);
-                    $uploadOk = 1;
-                    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-                    $check = getimagesize($_FILES["foto_usr"]["tmp_name"]);
-                    if($check != false) {
-                        $uploadOk = 1;
-                        $error_foto = "";
-                    } else {
-                        $error_foto = " / El archivo subido no es una imagen.";
-                        $uploadOk = 0;
-                        
-                    }
-                    if (file_exists($target_file)) {
-                        $error_foto =  " / Ya existe una imagen con el nombre del archivo que intentaste subir.";
-                        $uploadOk = 0;
-                    
-                    }
-                    if ($_FILES["foto_usr"]["size"] > 10000000) {
-                        $error_foto =  " / El tamaño de la imagen que subiste es muy grande.";
-                        $uploadOk = 0;
-                        
-                    }
-                    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-                        $error_foto =  " / La imagen debe ser JPG, PNG o JPEG.";
-                        $uploadOk = 0;
-                        $Foto = "no_modificar";
-                    } else {
-                        if ($uploadOk == 1){
-                            if (move_uploaded_file($_FILES["foto_usr"]["tmp_name"], $target_file)) {
-                                $foto_usr = $target_file;
-                            } 
-                        }
-                    }
-                }
-            */
+
+
+
+
                 $resultadousr = registrar_usuario($nombre_usr, $apellido1_usr, $apellido2_usr, $rfc_usr, $mote_usr, $pass_usr, $calle_usr, $num1_usr, $num2_usr, $ciudad_usr, $estado_usr, $cp_usr, $mail_usr, $rol_usr, $Foto);
                 //echo $foto_usr;
-                
-                
-                
-                
+
+
+
+
                 //MENSAJE DE RETROALIMENTACION
                 if($resultadousr == TRUE || $uploadOk == 1){
                     echo '<div id="notify" class="alert alert-success" role="alert">
@@ -454,15 +331,106 @@ if (isset($_SESSION["Usuario"])){
                         setTimeout(function(){$("#notify").remove();}, 4000);
                         </script>';
                 }
-                
+
             }
-            
-            
-            
-//COSAS DE DORIS NO TOCAR    
+
+//Registra un tipo de dispositivo en la base de datos
+        if(isset($_POST['claseTipoDis']) && $_POST['claseTipoDis'] != ""){
+
+            //echo "SI ESTA ENTRANDO";
+            if(!isset($_POST['nombreTipoDis']) ||  $_POST['nombreTipoDis'] == ""){
+                $errorrazon = '<a class ="error">*</a>';
+            }else{
+                $nombreTipoDis = $_POST['nombreTipoDis'];
+            }
+
+            if(!isset($_POST['claseTipoDis']) ||  $_POST['claseTipoDis'] == ""){
+                $errorrazon = '<a class ="error">*</a>';
+            }else{
+                $claseTipoDis = $_POST['claseTipoDis'];
+            }
+            if(!isset($_POST['comentarioTipoDis']) ||  $_POST['comentarioTipoDis'] == ""){
+                $comentarioTipoDis = NULL;
+            }else{
+                $comentarioTipoDis = $_POST['comentarioTipoDis'];
+            }
+
+            $resultadomod = registrar_tipoDispositivo($nombreTipoDis, $claseTipoDis, $comentarioTipoDis);
+            //echo "CACA";
+
+
+            //MENSAJE DE RETROALIMENTACION
+            if($resultadomod == TRUE){
+                echo '<div id="notify" class="alert alert-success" role="alert">
+                    ¡El tipo de dispositivo ha sido registrado de manera exitosa!
+                    </div>';
+                echo '<script>
+                    setTimeout(function(){$("#notify").remove();}, 4000);
+                    </script>';
+            }else{
+                echo '<div id="notify" class="alert alert-danger"    role="alert">
+                    Hubo un error al crear el modelo de dispositivo :c
+                    </div>';
+                echo '<script>
+                    setTimeout(function(){$("#notify").remove();}, 4000);
+                    </script>';
+            }
+
+        }
+
+
+
+//COSAS DE JAVIER. NO TOCAR.
+                if(isset($_POST['categoriaSer']) && $_POST['categoriaSer'] != ""){
+
+
+                if(!isset($_POST['nombreSer']) ||  $_POST['nombreSer'] == ""){
+                    $errorn = '<a class ="error">*</a>';
+                }else{
+                    $nombreSer = $_POST['nombreSer'];
+                }
+                if(!isset($_POST['tiempEdeT']) ||  $_POST['tiempEdeT'] == ""){
+                    $errort = '<a class ="error">*</a>';
+                }else{
+                    $tiempEdeT = $_POST['tiempEdeT'];
+                }
+                if(!isset($_POST['categoriaSer']) ||  $_POST['categoriaSer'] == ""){
+                    $errorc = '<a class ="error">*</a>';
+                }else{
+                    $categoriaSer = $_POST['categoriaSer'];
+                }
+                if(!isset($_POST['esc']) ||  $_POST['esc'] == ""){
+                    $errord = '<a class ="error">*</a>';
+                }else{
+                    $esc = $_POST['esc'];
+                }
+
+                $resultdep = registrar_servcio($nombreSer, $tiempEdeT, $categoriaSer, $esc);
+
+                //MENSAJE DE RETROALIMENTACION
+                if($resultdep == TRUE){
+                    echo '<div id="notify" class="alert alert-success" role="alert">
+                        ¡El servicio ha sido registrada de manera exitosa!
+                        </div>';
+                    echo '<script>
+                        setTimeout(function(){$("#notify").remove();}, 4000);
+                        </script>';
+                }else{
+                    echo '<div id="notify" class="alert alert-danger"    role="alert">
+                        Hubo un error al crear el servicio
+                        </div>';
+                    echo '<script>
+                        setTimeout(function(){$("#notify").remove();}, 4000);
+                        </script>';
+                }
+
+            }
+
+
+//COSAS DE DORIS NO TOCAR
             if(isset($_GET["result"]) &&  $_GET["result"]==1){
                 switch($_GET["creo"]){
-                    case 'mesa':   
+                    case 'mesa':
                         echo '<div id="notify" class="alert alert-success" role="alert">
                             ¡La mesa se ha sido registrado de manera exitosa!
                             </div>';
@@ -485,7 +453,9 @@ if (isset($_SESSION["Usuario"])){
           include('../html/Ajustes/_ajustes.html');
           include('../html/_footer.html');
         } else {
-            echo "nop";
+            session_unset();
+            session_destroy();
+            header("location:/index.php");
         }
     } else {
         header("location:/index.php");
