@@ -18,6 +18,104 @@ if (isset($_SESSION["Usuario"])){
         include('../html/_menu.html');
 
         $lista_servicios_manuales = lista_servicios_manuales();
+        
+        if(isset($_POST['NombreManual'])){
+            $NoServicios = $_POST['no_servicios'];
+            $x = 0;
+            $Id_trabajo = [];
+            for ($i = 0; $i < $NoServicios; $i++){
+                if (isset($_POST['s'.$i])){
+                    $Id_trabajo[$x] = $_POST['s'.$i];
+                    $x++;
+                }
+            }
+            
+            if(isset($_FILES["ManualArchivo"]) && $_FILES["ManualArchivo"]["name"] != ""){
+                if ($Id_trabajo == []){
+                    $resultado = "falta_permiso";
+                } else {
+                    $ManualArchivo = $_FILES['ManualArchivo'];
+                    $target_dir = "../manuales/".$_POST['NombreManual'].$_POST['VersionManual']."_";
+                    $target_file = str_replace(" ","_",$target_dir .basename($_FILES["ManualArchivo"]["name"]));
+                    $uploadOk = 1;
+                    $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                    $check = filesize($_FILES["ManualArchivo"]["tmp_name"]);
+                    if($check != false) {
+                        $uploadOk = 1;
+                        $error_archivo_manual = "";
+                    } else {
+                        $error_archivo_manual = " / El archivo subido no es un manual.";
+                        $uploadOk = 0;
+                        $ManualArchivo = "no_modificar";
+                    }
+                    if (file_exists($target_file)) {
+                        $error_archivo_manual =  " / Ya existe un manual con el nombre del archivo que intentaste subir.";
+                        $uploadOk = 0;
+                        $ManualArchivo = "no_modificar";
+                    }
+                    if ($_FILES["ManualArchivo"]["size"] > 10000000) {
+                        $error_archivo_manual =  " / El tamaño del manual que subiste es muy grande.";
+                        $uploadOk = 0;
+                        $ManualArchivo = "no_modificar";
+                    }
+                    if($FileType != "pdf") {
+                        $error_archivo_manual =  " / El manual debe ser PDF.";
+                        $uploadOk = 0;
+                        $ManualArchivo = "no_modificar";
+                    } else {
+                        if ($uploadOk == 1){
+                            if (move_uploaded_file($_FILES["ManualArchivo"]["tmp_name"], $target_file)) {
+                                $ManualArchivo = $target_file;
+                            } 
+                        }
+                    }
+                    if($uploadOk == 1){
+                        $NombreManual = $_POST['NombreManual'];
+                        $VersionManual = $_POST['VersionManual'];
+                        $DescripcionManual = $_POST['DescripcionManual'];
+                        
+                        $resultado = registrar_manual($NombreManual, $VersionManual, $DescripcionManual, $Id_trabajo,$ManualArchivo);
+                    }
+                }
+                
+                if(isset ($uploadOk) && $uploadOk == 1 && $resultado == 1){
+                    echo '<div id="notify" class="alert alert-success" role="alert">
+                        ¡El manual se creó de manera exitosa!
+                        </div>';
+                    echo '<script>
+                      setTimeout(function(){$("#notify").remove();}, 3000);
+                        </script>';
+                } else if ($resultado == "falta_permiso"){
+                    echo '<div id="notify" class="alert alert-danger"    role="alert">
+                        Hubo un error al crear el manual. Debes elegir por lo menos un servicio para relacionar al manual.
+                        </div>';
+                    echo '<script>
+                      setTimeout(function(){$("#notify").remove();}, 6000);
+                    </script>'; 
+                } else if (isset($error_archivo_manual)){
+                    echo '<div id="notify" class="alert alert-danger"    role="alert">
+                        Hubo un error al crear el manual. '.$error_archivo_manual.'
+                        </div>';
+                    echo '<script>
+                      setTimeout(function(){$("#notify").remove();}, 6000);
+                    </script>'; 
+                } else {
+                    echo '<div id="notify" class="alert alert-danger"    role="alert">
+                        No se pudo crear el manual, hubo un error.
+                        </div>';
+                echo '<script>
+                        setTimeout(function(){$("#notify").remove();}, 4000);
+                        </script>';
+                }
+            } else {
+                echo '<div id="notify" class="alert alert-danger"    role="alert">
+                        No se pudo crear el manual, faltó agregar el archivo.
+                        </div>';
+                echo '<script>
+                        setTimeout(function(){$("#notify").remove();}, 4000);
+                        </script>';
+            }
+        }
 
         if(isset($_POST['nombreMarca'])){
             $nombreM = $_POST['nombreMarca'];
