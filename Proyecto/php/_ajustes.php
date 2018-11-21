@@ -10,18 +10,13 @@ if (isset($_SESSION["Usuario"])){
         require_once("./model_registrar_modeloDis.php");
         require_once("./model_registrar_tipoDis.php");
         require_once("./model_registrar_usuario.php");
-<<<<<<< HEAD
         require_once("./_registrar_servicio.php");
         require_once("./_registrar_rol.php");
-=======
-        //require_once("./_registrar_servicio.php");
->>>>>>> c8d95a2f59b3c3dcfd9afc78da162477c94bd730
-
 
 
         include('../html/_header.html');
         include('../html/_menu.html');
-<<<<<<< HEAD
+
         
         $lista_permisos = lista_permisos();
         $lista_servicios_manuales = lista_servicios_manuales();
@@ -108,11 +103,6 @@ if (isset($_SESSION["Usuario"])){
             }
         }
         
-=======
-
-        $lista_servicios_manuales = lista_servicios_manuales();
-
->>>>>>> c8d95a2f59b3c3dcfd9afc78da162477c94bd730
         if(isset($_POST['nombreMarca'])){
             $nombreM = $_POST['nombreMarca'];
             $descripcionMarca = $_POST['descripcionMarca'];
@@ -519,60 +509,10 @@ if (isset($_SESSION["Usuario"])){
                 }
 
             }
-<<<<<<< HEAD
-            
-                        if(isset($_POST['categoriaSer']) && $_POST['categoriaSer'] != ""){
-                
-            
-                if(!isset($_POST['nombreSer']) ||  $_POST['nombreSer'] == ""){
-                    $errorn = '<a class ="error">*</a>';
-                }else{
-                    $nombreSer = $_POST['nombreSer'];
-                }
-                if(!isset($_POST['tiempEdeT']) ||  $_POST['tiempEdeT'] == ""){
-                    $errort = '<a class ="error">*</a>';
-                }else{
-                    $tiempEdeT = $_POST['tiempEdeT'];
-                }
-                if(!isset($_POST['categoriaSer']) ||  $_POST['categoriaSer'] == ""){
-                    $errorc = '<a class ="error">*</a>';
-                }else{
-                    $categoriaSer = $_POST['categoriaSer'];
-                }
-                if(!isset($_POST['esc']) ||  $_POST['esc'] == ""){
-                    $errord = '<a class ="error">*</a>';
-                }else{
-                    $esc = $_POST['esc'];
-                }
-                
-                $resultdep = registrar_servcio($nombreSer, $tiempEdeT, $categoriaSer, $esc);
-                
-                //MENSAJE DE RETROALIMENTACION
-                if($resultdep == TRUE){
-                    echo '<div id="notify" class="alert alert-success" role="alert">
-                        ¡El servicio ha sido registrado de manera exitosa!
-                        </div>';
-                    echo '<script>
-                        setTimeout(function(){$("#notify").remove();}, 4000);
-                        </script>';
-                }else{
-                    echo '<div id="notify" class="alert alert-danger"    role="alert">
-                        Hubo un error al crear el servicio
-                        </div>';
-                    echo '<script>
-                        setTimeout(function(){$("#notify").remove();}, 4000);
-                        </script>';
-                }
-                
-            }
             
             
-//COSAS DE DORIS NO TOCAR    
-=======
+        //COSAS DE DORIS NO TOCAR    
 
-
-//COSAS DE DORIS NO TOCAR
->>>>>>> c8d95a2f59b3c3dcfd9afc78da162477c94bd730
             if(isset($_GET["result"]) &&  $_GET["result"]==1){
                 switch($_GET["creo"]){
                     case 'mesa':
