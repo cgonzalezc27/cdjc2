@@ -1,5 +1,8 @@
 <form method="post" action="../php/update_dispositivo.php?id=<?=$_GET['id']?>&fecha=<?=$_GET['fecha']?>">
   <h4 class="display-4 titulo_pagina">Modificar dispositivo</h4><br>
+  <div class="col-2" style="right:-1080px;bottom:50px;">
+    <a href = "./_consultar_dispositivo.php?id=<?=$_GET['id']?>&fecha=<?=$_GET['fecha']?>"><i class="material-icons">keyboard_backspace</i> Atrás   </a>
+  </div>
   <div class="form-row justify-content-center">
     <div class="form-group col-lg-4 col-md-10 col-sm-12">
       <label for="no_serie">Número de serie</label>
