@@ -120,6 +120,23 @@ function actualizar_busqueda_mesas(){
     }
   })
 }
+
+function consulta_tipo_dispo() {
+  let form=$('#forma_buscar_dispositivo').serialize();
+  $('#table').remove();
+
+  $.ajax({
+    url: "model_consulta_tipo_dis.php",
+    type: 'post',
+    data: forma,
+    success: function(response){
+      
+        $("#table_query").append('<div id="table"></div>');
+        $("#table").append(response);
+
+    }
+  })
+}
 function redirectto(id,fecha){
 //redirigir
   window.location.replace("./_consultar_dispositivo.php?id="+id+"&fecha="+fecha);

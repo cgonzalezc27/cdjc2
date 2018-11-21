@@ -12,49 +12,57 @@
             <div class="form-row">
                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label for="inputPassword4">Razón Social</label>
-                    <input type="text" class="form-control" id="#" name="razonSocial" value="<?=$mesa['Razon_social']?>">
+
+                    <input type="text" class="form-control" id="#" name="razonSocial" value="<?=$mesa['Razon_social']?>" required maxlength="150">
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label for="inputEmail4">RFC</label>
-                    <input type="text" class="form-control" id="#" name="rfc" value="<?=$mesa['RFC']?>">
+                    <input type="text" class="form-control" id="#" name="rfc" value="<?=$mesa['RFC']?>" required maxlength="150">
+
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Calle</label>
-                <input type="text" class="form-control" id="inputAddress2" name="calle" value="<?=$mesa['Calle']?>">
+
+                <input type="text" class="form-control" id="inputAddress2" name="calle" value="<?=$mesa['Calle']?>" required maxlength="30">
+
             </div>
             <div class="form-row">
                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label for="#">Número Exterior</label>
-                    <input type="text" class="form-control" id="#" name="numExterior" value="<?=$mesa['Numero_exterior']?>">
+
+                    <input type="text" class="form-control" id="#" name="numExterior" value="<?=$mesa['Numero_exterior']?>" required maxlength="6">
+
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label for="#">Número Interior</label>
-                    <input type="text" class="form-control" id="#" name="numInterior" value="<?=$mesa['Numero_interior']?>">
+                    <input type="text" class="form-control" id="#" name="numInterior" value="<?=$mesa['Numero_interior']?>" maxlength="6">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label for="inputCity">Ciudad</label>
-                    <input type="text" class="form-control" id="inputCity" name="ciudad" value="<?=$mesa['Ciudad']?>">
+
+                    <input type="text" class="form-control" id="inputCity" name="ciudad" value="<?=$mesa['Ciudad']?>" required maxlength="20">
                 </div>
                 <div class="form-group col-lg-4 col-md-6 col-sm-12">
                     <label for="inputState">Estado</label>
-                    <input type="text" class="form-control" id="inputCity" name="estado" value="<?=$mesa['Estado']?>">
+                    <input type="text" class="form-control" id="inputCity" name="estado" value="<?=$mesa['Estado']?>" required maxlength="20">
                 </div>
                 <div class="form-group col-lg-2 col-md-12 col-sm-12">
                     <label for="inputZip">Código Postal</label>
-                    <input type="number" class="form-control" id="inputZip" name="cp" value="<?=$mesa['CP']?>">
+                    <input type="number" class="form-control" id="inputZip" name="cp" value="<?=$mesa['CP']?>" required maxlength="5">
                 </div>
                 <div class="form-group col">
                     <label for="inputCorreo">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="inputEmail" name="correo" value="<?=$mesa['Correo_electronico']?>">
+                    <input type="email" class="form-control" id="inputEmail" name="correo" value="<?=$mesa['Correo_electronico']?>" required maxlength="60">
+
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-12">
                     <label for="inputCity">Comentario</label>
-                    <textarea class="form-control" rows="4" name="comentario"><?=$mesa['Descripcion']?></textarea>
+                    <textarea class="form-control" rows="4" name="comentario" maxlength="200"><?=$mesa['Descripcion']?></textarea>
                 </div>
             </div>
 
