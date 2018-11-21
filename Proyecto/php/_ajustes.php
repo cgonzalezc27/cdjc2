@@ -103,6 +103,7 @@ if (isset($_SESSION["Usuario"])){
             }
         }
         
+
         if(isset($_POST['nombreMarca'])){
             $nombreM = $_POST['nombreMarca'];
             $descripcionMarca = $_POST['descripcionMarca'];
@@ -509,9 +510,9 @@ if (isset($_SESSION["Usuario"])){
                 }
 
             }
-            
-            
-        //COSAS DE DORIS NO TOCAR    
+
+
+//COSAS DE DORIS NO TOCAR
 
             if(isset($_GET["result"]) &&  $_GET["result"]==1){
                 switch($_GET["creo"]){

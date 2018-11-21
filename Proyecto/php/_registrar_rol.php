@@ -15,7 +15,7 @@ function lista_permisos(){
     $s = 0;
     
     for($c=0; $c<3; $c++){
-        $select='<dic class="col-lg-4 col-md-12 col-sm-12">';
+        $selectn='<dic class="col-lg-4 col-md-12 col-sm-12">';
         if ($c == 2 && fmod($i,3) != 0){
             for ($s = $s;$s < $columnas + ($c * $columnas) - ($columnas + ($c * $columnas) - $i); $s++){
                 $select .= '<div class="form-check col-form-label">
