@@ -25,11 +25,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                     <label for="inputPassword4">Razón Social</label>
-                                                    <input type="text" name="razonS" class="form-control" id="" placeholder="Web Systems Development" required>
+                                                    <input type="text" name="razonS" class="form-control" id="" placeholder="Web Systems Development" required maxlength="150">
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                     <label for="inputEmail4">RFC</label>
-                                                    <input type="text" name="rfc" class="form-control" id="#" placeholder="ITE238OP92k10" required>
+                                                    <input type="text" name="rfc" class="form-control" id="#" placeholder="ITE238OP92k10" required maxlength="150">
                                                 </div>
                                             </div>
                                           <!--  <div class="form-group">
@@ -38,40 +38,40 @@
                                             </div> -->
                                             <div class="form-group">
                                                 <label for="inputAddress2">Dirección</label>
-                                                <input type="text" name="calle" class="form-control" id="inputAddress2" placeholder="Epigmenio González" required>
+                                                <input type="text" name="calle" class="form-control" id="inputAddress2" placeholder="Epigmenio González" required maxlength="30">
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                     <label for="#">Número Exterior</label>
-                                                    <input type="text" name="no_ext" class="form-control" id="#" placeholder="520" required>
+                                                    <input type="text" name="no_ext" class="form-control" id="#" placeholder="520" required maxlength="6">
                                                 </div>
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                     <label for="#">Número Interior</label>
-                                                    <input type="text" name="no_int" class="form-control" id="#" placeholder="1A">
+                                                    <input type="text" name="no_int" class="form-control" id="#" placeholder="1A" maxlength="6">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                     <label for="inputCity">Ciudad</label>
-                                                    <input type="text" name="ciudad" class="form-control" id="inputCity" placeholder="México" required>
+                                                    <input type="text" name="ciudad" class="form-control" id="inputCity" placeholder="México" required maxlength="20">
                                                 </div>
                                                 <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                                     <label for="inputState">Estado</label>
-                                                    <input type="text" name="estado" class="form-control" id="inputCity" placeholder="Querétaro" required>
+                                                    <input type="text" name="estado" class="form-control" id="inputCity" placeholder="Querétaro" required maxlength="20">
                                                 </div>
                                                 <div class="form-group col-lg-2 col-md-12 col-sm-12">
                                                     <label for="inputZip">Código Postal</label>
-                                                    <input type="number" name="cp" class="form-control" id="inputZip" placeholder="76130" required>
+                                                    <input type="number" name="cp" class="form-control" id="inputZip" placeholder="76130" required maxlength="5">
                                                 </div>
                                                 <div class="form-group col">
                                                     <label for="inputCorreo">Correo Electrónico</label>
-                                                    <input type="email" name="correo" class="form-control" id="inputEmail" placeholder="ejemplo@correo.com" required>
+                                                    <input type="email" name="correo" class="form-control" id="inputEmail" placeholder="ejemplo@correo.com" required maxlength="60">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="inputCity">Comentario</label>
-                                                    <textarea class="form-control" name="descripcion" rows="4"></textarea>
+                                                    <textarea class="form-control" name="descripcion" rows="4" maxlength="200"></textarea>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Terminar</button>
@@ -927,7 +927,7 @@
                                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                                     <label for="customFile">Subir Archivo PDF</label>
                                                     <input type="file" id="customFile" name = "ManualArchivo" required>
-                                                        
+
                                                 </div>
                                                 <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                                     <label for="exampleFormPhoto">Versión del archivo</label>
@@ -941,7 +941,7 @@
                                                     <label for="inputPassword4">Catálogos de Servicio Asignables</label>
                                                 </div>
                                             </div>
-                                            <div class="form-row">       
+                                            <div class="form-row">
                                                 <?= $lista_servicios_manuales?>
                                             </div>
                                             <br>
