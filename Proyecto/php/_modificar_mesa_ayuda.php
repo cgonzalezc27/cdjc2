@@ -7,7 +7,7 @@
         include('../html/_menu.html');
 
         function getconsultaMesa(){
-          $query='SELECT m.Id_mesa,d.Razon_social, d.RFC, d.Calle,d.Numero_exterior,d.Numero_interior,d.CP,d.Estado,d.Ciudad, m.Correo_electronico, d.Descripcion 
+          $query='SELECT m.Id_mesa,d.Razon_social, d.RFC, d.Calle,d.Numero_exterior,d.Numero_interior,d.CP,d.Estado,d.Ciudad, m.Correo_electronico, d.Descripcion
                   FROM Mesas m
                   INNER JOIN NombresMesas nm ON m.Id_mesa=nm.Id_mesa
                   INNER JOIN Destino d ON m.Id_destino=d.Id_destino
