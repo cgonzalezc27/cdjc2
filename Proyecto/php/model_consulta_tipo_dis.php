@@ -22,7 +22,8 @@ $query='SELECT tdd.Id_tipo_dispositivo, tdd.Nombre AS Nombre, tdd.descripcion, c
 
        $result=get_data($query);
 
-       $res='<table class="table table-hover table-responsive-sm>
+       $res='<h4 class="display-4 titulo_pagina">Tipo de dispositivos </h4><br>
+       <table class="table table-hover table-responsive-sm>
        <thead>
        <tr class="text-center" style="text-align:center;">
        <th>Nombre</th>
