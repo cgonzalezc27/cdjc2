@@ -26,19 +26,20 @@ if(sizeof($conditions)>0){
 
 $result=get_data($query);
 
-$res='<table class="table table-hover table-responsive-sm>
-        <thead>
-            <tr style="text-align:center;">
-              <th>Razón Social</th>
-              <th>RFC</th>
-              <th>Dirección</th>
-              <th>Estado</th>
-              <th>Ciudad</th>
-              <th>Persona Encargada</th>
-              <th>Tiempo Espera</th>
-              <th>Comentario</th>
-            </tr>
-        </thead>
+$res='<h4 class="display-4 titulo_pagina">Dependencias </h4><br>
+      <table class="table table-hover table-responsive-sm>
+      <thead>
+      <tr style="text-align:center;">
+        <th>Razón Social</th>
+        <th>RFC</th>
+        <th>Dirección</th>
+        <th>Estado</th>
+        <th>Ciudad</th>
+        <th>Persona Encargada</th>
+        <th>Tiempo Espera</th>
+        <th>Comentario</th>
+      </tr>
+      </thead>
       <tbody>';
 
 if($result){

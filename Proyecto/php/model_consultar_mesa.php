@@ -27,7 +27,8 @@ $query='SELECT m.Id_mesa,d.Razon_social, d.RFC, d.Calle,d.Estado,d.Ciudad, m.Cor
 
        $result=get_data($query);
 
-       $res='<table class="table table-hover table-responsive-sm>
+       $res='<h4 class="display-4 titulo_pagina">Mesas de Ayuda </h4><br>
+       <table class="table table-hover table-responsive-sm>
        <thead>
        <tr class="text-center" style="text-align:center;">
        <th>Razón Social</th>
