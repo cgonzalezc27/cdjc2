@@ -122,7 +122,7 @@ function actualizar_busqueda_mesas(){
 }
 
 function consulta_tipo_dispo() {
-  let form=$('#forma_buscar_dispositivo').serialize();
+  let forma=$('#forma_buscar_dispositivo').serialize();
   $('#table').remove();
 
   $.ajax({
@@ -130,7 +130,7 @@ function consulta_tipo_dispo() {
     type: 'post',
     data: forma,
     success: function(response){
-      
+
         $("#table_query").append('<div id="table"></div>');
         $("#table").append(response);
 
