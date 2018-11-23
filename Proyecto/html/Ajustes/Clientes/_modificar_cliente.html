@@ -27,55 +27,56 @@
           <input type="text" class="form-control" id="#" value="<?=$dependencia['RFC']?>" disabled>
         </div>
       </div>
-          <!--
-          <div class="form-group">
-            <label for="inputAddress">Colonia</label>
-            <input type="text" class="form-control" id="inputAddress" value="Fracc. San Pablo">
-                            </div>
-                          -->
-          <div class="form-group">
-            <label for="inputAddress2">Calle</label>
-            <input type="text" class="form-control" id="inputAddress2" value="<?=$dependencia['Calle']?>" disabled>
-                            </div>
-            <div class="form-row">
-              <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                <label for="#">Número Exterior</label>
-                <input type="text" class="form-control" id="#" value="<?=$dependencia['Numero_exterior']?>" disabled>
-                                </div>
-                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                  <label for="#">Número Interior</label>
-                  <input type="text" class="form-control" id="#" value="<?=$dependencia['Numero_interior']?>" disabled>
-                                </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                    <label for="inputCity">Ciudad</label>
-                    <input type="text" class="form-control" id="inputCity" value="<?=$dependencia['Ciudad']?>" disabled>
-                                </div>
-                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                      <label for="inputState">Estado</label>
-                      <input type="text" class="form-control" id="inputCity" value="<?=$dependencia['Estado']?>" disabled>
-                                </div>
-                      <div class="form-group col-lg-2 col-md-12 col-sm-12">
-                        <label for="inputZip">C.P</label>
-                        <input type="number" class="form-control" id="inputZip" value="<?=$dependencia['CP']?>" disabled>
-                                </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                          <label for="inputEncargado">Persona Encargada</label>
-                          <input type="text" class="form-control" id="inputEmail" value="<?=$dependencia['Persona']?>" disabled>
-                                </div>
-                          <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                            <label for="inputEncargado">Tiempo máximo de espera</label>
-                            <input type="time" class="form-control" id="inputEmail" value="<?=$dependencia['Tiempo']?>" disabled>
-                                </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="form-group col-12">
-                              <label for="inputCity">Comentario</label>
-                              <textarea class="form-control" rows="4"><?=$dependencia['Descripcion']?></textarea>
-                            </div>
-                          </div>
-                          <!--  <button type="submit" class="btn btn-primary">Terminar</button> -->
+      <div class="form-group">
+        <label for="inputAddress2">Mesa Propietaria</label>
+        <select type="list" name="mesa" class="form-control" id="mesa" disabled>
+          <option value="<?=$dependencia['Id_mesa']?>" selected><?=$dependencia['mesa']?></option>
+        </select>
+      <div class="form-group">
+        <label for="inputAddress2">Calle</label>
+        <input type="text" class="form-control" id="inputAddress2" value="<?=$dependencia['Calle']?>" disabled>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="#">Número Exterior</label>
+          <input type="text" class="form-control" id="#" value="<?=$dependencia['Numero_exterior']?>" disabled>
+        </div>
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="#">Número Interior</label>
+          <input type="text" class="form-control" id="#" value="<?=$dependencia['Numero_interior']?>" disabled>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="inputCity">Ciudad</label>
+          <input type="text" class="form-control" id="inputCity" value="<?=$dependencia['Ciudad']?>" disabled>
+        </div>
+        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+          <label for="inputState">Estado</label>
+          <input type="text" class="form-control" id="inputCity" value="<?=$dependencia['Estado']?>" disabled>
+        </div>
+        <div class="form-group col-lg-2 col-md-12 col-sm-12">
+          <label for="inputZip">C.P</label>
+          <input type="number" class="form-control" id="inputZip" value="<?=$dependencia['CP']?>" disabled>
+        </div>
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="inputEncargado">Persona Encargada</label>
+          <input type="text" class="form-control" id="inputEmail" value="<?=$dependencia['Persona']?>" disabled>
+        </div>
+        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+          <label for="inputEncargado">Tiempo máximo de espera</label>
+          <select class="form-control" id="tesperadep" name="tiempo" required disabled>
+            <?=$tiempos?>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label for="inputCity">Comentario</label>
+          <textarea class="form-control" rows="4"><?=$dependencia['Descripcion']?></textarea>
+        </div>
+      </div>
+                      <!--  <button type="submit" class="btn btn-primary">Terminar</button> -->
     </form>
   </div>
 </div>
