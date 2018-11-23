@@ -2,7 +2,14 @@
     <div class="row">
         <div class="col-lg-9 col-md-8 col-sm-7">
             <h4>Modificar Estatus de Ticket</h4>
+            
         </div>
+        <div class="col-lg-3 col-md-4 col-sm-5 text-right">
+            <a href="./_view_modificar_ticket.php?id=<?= $datos[0]['Id_ticket']?>">
+                <i class="material-icons">keyboard_backspace</i>
+                Atrás
+            </a>
+        </div> 
     </div><br>
     <input name="Id_ticket" value ="<?= $_GET['id'] ?>" hidden>
     <div class="form-row">
