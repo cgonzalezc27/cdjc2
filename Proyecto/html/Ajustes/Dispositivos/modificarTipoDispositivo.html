@@ -1,23 +1,22 @@
 
-                <form><br>
+                <form action="./updateTipoDispositivo.php?id=<?=$_GET['id']?>" method="post"><br>
                     <div class="row">
                         <div class="col-lg-9 col-md-8 col-sm-7">
-                            <h4>Consultar Tipo de Dispositivo</h4>
+                            <h4>Modificar Tipo de Dispositivo</h4>
                         </div>
                         <div class="col-lg-3 col-md-4 col-sm-5">
-                          <a href = "./_consultar_tipodis.php"><i class="material-icons">keyboard_backspace</i> Atrás </a>
-                          <a href="./modificarTipoDispositivo.php?id=<?=$_GET['id']?>"><i class="material-icons">create</i>Modificar</a>
+                          <a href = "./_modificar_tipodis.php?id=<?=$_GET['id']?>"><i class="material-icons">keyboard_backspace</i> Atrás </a>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-8 col-md-6 col-sm-12">
                             <label for="inputPassword4">Nombre</label>
-                            <input type="text" class="form-control" id="#" value="<?=$tipo_de_dispo['Nombre']?>" disabled>
+                            <input type="text" class="form-control" name="nombre" value="<?=$tipo_de_dispo['Nombre']?>" required maxlength="50">
                         </div>
 
                         <div class="form-group col-lg-4 col-md-6 col-sm-12">
                             <label for="exampleFormControlSelect1">Clase de Dispositivo</label>
-                            <select class="form-control" id="exampleFormControlSelect1" disabled>
+                            <select class="form-control" name="clase" id="exampleFormControlSelect1" required>
                                 <?=$clases?>
                             </select>
                         </div>
@@ -26,7 +25,9 @@
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label for="inputCity">Descripción</label>
-                            <textarea class="form-control " rows="4" disabled><?=$tipo_de_dispo['Descripcion']?></textarea>
+                            <textarea class="form-control " rows="4" name="descripcion" maxlength="150"><?=$tipo_de_dispo['Descripcion']?></textarea>
                         </div>
                     </div>
+
+                    <button type="submit" class="btn btn-primary">Modificar</button>
                 </form>

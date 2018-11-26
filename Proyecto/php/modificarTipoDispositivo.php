@@ -33,15 +33,9 @@
         $tipo_de_dispo=getTipoDis();
         $clases= clase_de_dispositivo($tipo_de_dispo['Id_clase_dispositivo']);
 
-        if(isset($_GET["result"]) &&  $_GET["result"]==1){
-          echo '<div id="notify" class="alert alert-success" role="alert"> ¡el tipo de dispositivo se ha modificado de manera exitosa! </div>';
-          echo '<script>setTimeout(function(){$("#notify").remove();}, 3000);</script>';
-        }else if(isset($_GET["result"]) &&  $_GET["result"]==0){
-          echo '<div id="notify" class="alert alert-danger" role="alert"> Hubo un error al modificar el tipo de dispositivo </div>';
-          echo '<script>setTimeout(function(){$("#notify").remove();}, 3000);</script>';
-        }
+        
 
-        include('../html/Ajustes/Dispositivos/_modificar_tipodis.html');
+        include('../html/Ajustes/Dispositivos/modificarTipoDispositivo.html');
         include('../html/_footer.html');
     } else {
         header("location:/index.php");

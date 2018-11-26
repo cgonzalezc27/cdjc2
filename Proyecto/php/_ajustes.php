@@ -10,8 +10,9 @@ if (isset($_SESSION["Usuario"])){
         require_once("./model_registrar_modeloDis.php");
         require_once("./model_registrar_tipoDis.php");
         require_once("./model_registrar_usuario.php");
-        require_once("./_registrar_servicio.php");
-        require_once("./_registrar_rol.php");
+
+        require_once("./model_registrar_categoriaSer.php");
+        //require_once("./_registrar_servicio.php");
 
 
         include('../html/_header.html');
@@ -471,6 +472,46 @@ if(isset($_POST['NombreManual'])){
             }else{
                 echo '<div id="notify" class="alert alert-danger"    role="alert">
                     Hubo un error al crear el modelo de dispositivo :c
+                    </div>';
+                echo '<script>
+                    setTimeout(function(){$("#notify").remove();}, 4000);
+                    </script>';
+            }
+
+        }
+        
+        
+//Registra una categoria de servicio en la base de datos
+        if(isset($_POST['nombreCatServicio']) && $_POST['nombreCatServicio'] != ""){
+
+            //echo "SI ESTA ENTRANDO";
+            if(!isset($_POST['nombreCatServicio']) ||  $_POST['nombreCatServicio'] == ""){
+                $errorrazon = '<a class ="error">*</a>';
+            }else{
+                $nombreCatServicio = $_POST['nombreCatServicio'];
+            }
+
+            if(!isset($_POST['descripcionCatSer']) ||  $_POST['descripcionCatSer'] == ""){
+                $descripcionCatSer = NULL;
+            }else{
+                $descripcionCatSer = $_POST['descripcionCatSer'];
+            }
+
+            $resultadomod = registrar_categoria_servicio($nombreCatServicio, $descripcionCatSer);
+            //echo "CACA";
+
+
+            //MENSAJE DE RETROALIMENTACION
+            if($resultadomod == TRUE){
+                echo '<div id="notify" class="alert alert-success" role="alert">
+                    ¡La categoría de servicio ha sido registrada de manera exitosa!
+                    </div>';
+                echo '<script>
+                    setTimeout(function(){$("#notify").remove();}, 4000);
+                    </script>';
+            }else{
+                echo '<div id="notify" class="alert alert-danger"    role="alert">
+                    Hubo un error al crear la categoría de servicio :c
                     </div>';
                 echo '<script>
                     setTimeout(function(){$("#notify").remove();}, 4000);

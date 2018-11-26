@@ -254,16 +254,66 @@
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <form>
-                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                    
+                                            
+                                            
+                                            
+                                           <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <br>
-                                                <h4>Servicios</h4>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4>Servicios</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-md-8 col-sm-12">
 
-                                                    <div class="card ">
+                                                            <br>
+                                                            <div class="form-row">
+                                                                <div class="form-text col">
+                                                                    <h4>Crear Nuevo Servicio</h4>
+                                                                </div>
+                                                            </div>
+                                                        <form method="POST" action="_ajustes.php">
+                                                            <div class="form-row">
+                                                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                                                    <label for="nombreServicio">Nombre *</label>
+                                                                    <input type="text" class="form-control" id="nombreServicio" name = "nombreServicio" placeholder="Ej. Instalar Computadora" required maxlength="50">
+                                                                </div>
+                                                            
+                                                            
+                                                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                                                    <label for="tie">Tiempo estándar del trabajo *</label>
+                                                                    <select class="form-control" id="testandarser" name="testandarser" required>
+                                                                        <?php
+                                                                             obtener_tiempos();
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col">
+                                                                    <label for="exampleFormControlSelect1">Categoría de Servicio *</label>
+                                                                    <select class="form-control" id="catSerSelect" name = "catSerSelect" required>
+                                                                        <!--Cambiar aqui por la funcion necesaria-->
+                                                                        <?php
+                                                                            //obtener_marcas();
+                                                                        div?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-row">
+                                                                <div class="form-group col-12">
+                                                                    <label for="inputCity">Descripción</label>
+                                                                    <textarea class="form-control" rows="4" id = "descripcionSer" name="descripcionSer" maxlength="150"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Terminar</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                                        <div class="card ">
                                                         <img class="card-img-top imagen_superior_tarjeta" src="../img/cat_servicio.png" alt="Card image cap">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Servicios Existentes</h5>
@@ -271,71 +321,52 @@
                                                             <a class="btn btn-primary" href="_consultar_servicios.php">Ir ahora</a>
                                                         </div>
                                                     </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <br>
-                                                    <h4>Crear Nuevo Servicio</h4>
-                                                </div>
-
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <form>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                                                                <label for="inputPassword4">Nombre</label>
-                                                                <input type="text" class="form-control" id="#" placeholder="Ej. Cambiar Teclados">
-                                                            </div>
-
-                                                            <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                                                                <label for="inputPassword4">Tiempo estándar del trabajo</label>
-                                                                <input type="time" class="form-control" id="#" placeholder="02:40">
-                                                            </div>
-
-                                                            <div class="form-group col-12">
-                                                                <label for="inputPassword4">Categoría de Servicio</label>
-                                                                <select id="inputCategoria" class="form-control">
-                                                                    <option selected>Servicio 1</option>
-                                                                    <option>Instalación de ratón</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-row">
-                                                            <div class="form-group col">
-                                                                <label for="inputCity">Descripción</label>
-                                                                <textarea class="form-control" rows="4"></textarea>
-                                                            </div>
-                                                        </div>
-
-                                                        <button type="submit" class="btn btn-primary">Terminar</button>
-
-                                                    </form>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-
-
-
-
-
-
-
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <form>
+                                            </div> 
+                                            
+                                    
+                                            
+                                    
+                                    
+                                    
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <br>
-                                                <h4>Categorías de Servicio</h4>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4>Categorías de Servicios</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-md-8 col-sm-12">
 
-                                                    <div class="card ">
+                                                            <br>
+                                                            <div class="form-row">
+                                                                <div class="form-text col">
+                                                                    <h4>Crear Nueva Categoría Servicio</h4>
+                                                                </div>
+                                                            </div>
+                                                        <form method="POST" action="_ajustes.php">
+                                                            <div class="form-row">
+                                                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                                                    <label for="nombreModDis">Nombre *</label>
+                                                                    <input type="text" class="form-control" id="nombreCatServicio" name = "nombreCatServicio" placeholder="Ej. Instalar Equipo" required maxlength="50">
+                                                                </div>
+                                                            </div>
+                                                            
+
+                                                            <div class="form-row">
+                                                                <div class="form-group col-12">
+                                                                    <label for="inputCity">Descripción</label>
+                                                                    <textarea class="form-control" rows="4" id = "descripcionCatSer" name="descripcionCatSer" maxlength="150"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Terminar</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                                        <br>
+                                                        <div class="card ">
                                                         <img class="card-img-top imagen_superior_tarjeta" src="../img/cat_servicio.png" alt="Card image cap">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Categorías de Servicio Existentes</h5>
@@ -343,42 +374,9 @@
                                                             <a class="btn btn-primary" href="_consultar_catservicio.php">Ir ahora</a>
                                                         </div>
                                                     </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <br>
-                                                    <h4>Crear Nueva Categoría de Servicio</h4>
-                                                </div>
-
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <form>
-                                                        <div class="form-row">
-                                                            <div class="form-group col">
-                                                                <label for="inputPassword4">Nombre</label>
-                                                                <input type="text" class="form-control" id="#" placeholder="Ej. Instalación de Hardware">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-row">
-                                                            <div class="form-group col">
-                                                                <label for="inputCity">Descripción</label>
-                                                                <textarea class="form-control" rows="4"></textarea>
-                                                            </div>
-                                                        </div>
-
-                                                        <button type="submit" class="btn btn-primary">Terminar</button>
-
-                                                    </form>
-                                                </div>
-                                            </div>
-
-                                            <!--</div>-->
-
-                                        </form>
-                                    </div>
-
+                                            </div> 
                                 </div>
                             </div>
                         </div>
@@ -416,7 +414,7 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col">
-                                                    <label for="nombreM">Nombre</label>
+                                                    <label for="nombreM">Nombre *</label>
                                                     <input type="text" class="form-control" id="nombreMarca" placeholder="Ej. Lenovo" name="nombreMarca" required maxlength="30">
                                                 </div>
                                             </div>

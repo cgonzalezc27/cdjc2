@@ -29,20 +29,21 @@ function disconnect($conexion) {
 
 
 
-function buscar_modelo($nombreModeloBus){
+function buscar_cat_ser($nombreCatSerBus){
     $conexion = connect();
     $query = "
-        SELECT M.Nombre AS Nombre, M.Descripcion, M.Id_modelo_dispositivo, Mar.Nombre AS NombreMar 
-        FROM Modelos_de_dispositivos M 
-        INNER JOIN Marca_de_dispositivos Mar ON M.Id_marca_dispositivo = Mar.Id_marca_dispositivo AND M.Visible = 1
-        WHERE M.Nombre LIKE '%".$nombreModeloBus."%' OR M.Descripcion LIKE '%".$nombreModeloBus."%' OR Mar.Nombre LIKE '%".$nombreModeloBus."%' 
-        ORDER BY M.Nombre";
+    
+        SELECT CAS2.Nombre, CAS2.Descripcion, CAS2.Id_categoria
+        FROM (SELECT CAS.Nombre AS Nombre, CAS.Descripcion AS Descripcion, CAS.Id_categoria AS Id_categoria
+              FROM Categoria_de_servicios CAS
+              WHERE Visible = 1) CAS2
+        WHERE CAS2.Nombre LIKE '%".$nombreCatSerBus."%' OR CAS2.Descripcion LIKE '%".$nombreCatSerBus."%' OR CAS2.Descripcion LIKE '%".$nombreCatSerBus."%'
+        ORDER BY CAS2.Nombre";
     $results = mysqli_query($conexion, $query);
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-        $rows['Id_modelo_dispositivo'] [$i] = $row['Id_modelo_dispositivo'];
+        $rows['Id_categoria'] [$i] = $row['Id_categoria'];
         $rows['Nombre'] [$i] = $row['Nombre'];
-        $rows['NombreMar'] [$i] = $row['NombreMar'];
         if(strlen($row['Descripcion'])>50){
             $rows['Descripcion'] [$i] = substr($row['Descripcion'],0,50)."...";
         }else{
@@ -51,7 +52,7 @@ function buscar_modelo($nombreModeloBus){
         $i++;
     }
     mysqli_free_result($results);
-    if (isset($rows['Id_modelo_dispositivo'] [0]) && $rows['Id_modelo_dispositivo'] [0] != ""){
+    if (isset($rows['Id_categoria'] [0]) && $rows['Id_categoria'] [0] != ""){
     $tabla = '
         <div class="table-responsive col-12">
         <table class="table table-hover table-responsive-xl">
@@ -59,18 +60,16 @@ function buscar_modelo($nombreModeloBus){
                 <tr class="text-center">
                     <th>Nombre</th>
                     <th>Descripción</th>
-                    <th>Marca</th>
                 </tr>
             </thead>
             <tbody>';
-    $link = 'window.location.href="./_modificar_moddispositivos.php?buscar='.$nombreModeloBus.'&Id_modelo_dispositivo=';
+    $link = 'window.location.href="./_modificar_catservicios.php?buscar='.$nombreCatSerBus.'&Id_categoria=';
     $i=0;
     foreach ($rows['Nombre'] as $a){
         $tabla .= '
-        <tr class="row_buscar_dispositivo text-center" onclick='.$link.$rows['Id_modelo_dispositivo'][$i].'">
+        <tr class="row_buscar_dispositivo text-center" onclick='.$link.$rows['Id_categoria'][$i].'">
             <td>'.$rows['Nombre'][$i].'</td>
             <td>'.$rows['Descripcion'][$i].'</td>
-            <td>'.$rows['NombreMar'][$i].'</td>
         </tr>';
         $i++;
     }
@@ -82,36 +81,34 @@ function buscar_modelo($nombreModeloBus){
     return $tabla;
 }
 
-function consultar_modelo($Id_modelo_dispositivo){
+function consultar_cat_ser($Id_categoria){
     $conexion = connect();
     $query = "
-        SELECT M.Nombre AS Nombre, M.Descripcion, M.Id_marca_dispositivo, Mar.Nombre AS NombreMar 
-        FROM Modelos_de_dispositivos M 
-        INNER JOIN Marca_de_dispositivos Mar ON M.Id_marca_dispositivo = Mar.Id_marca_dispositivo 
-        WHERE M.Id_modelo_dispositivo = ".$Id_modelo_dispositivo."";
+        SELECT CAS.Nombre AS Nombre, CAS.Descripcion AS Descripcion, CAS.Id_categoria AS Id_categoria
+        FROM Categoria_de_servicios CAS  
+        WHERE CAS.Id_categoria = ".$Id_categoria."";
     
     
     
     
-    //SELECT M.Nombre AS Nombre, M.Descripcion FROM Modelos_de_dispositivos M WHERE M.Id_modelo_dispositivo = '".$Id_modelo_dispositivo."'";
+    //SELECT M.Nombre AS Nombre, M.Descripcion FROM Categoria_de_servicios M WHERE M.Id_categoria = '".$Id_categoria."'";
     $results = mysqli_query($conexion, $query);
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
         $resultado['Nombre'] [$i] = $row['Nombre'];
         $resultado['Descripcion'] [$i] = $row['Descripcion'];
-        $resultado['Id_marca_dispositivo'] [$i] = $row['Id_marca_dispositivo'];
-        $resultado['NombreMar'] [$i] = $row['NombreMar'];
+        $resultado['Id_categoria'] [$i] = $row['Id_categoria'];
         $i++;
     }
     mysqli_free_result($results);
-
+    //echo"HLA";
     disconnect($conexion);
     return $resultado;
 }
 
-function modificar_modelo($Id_modelo_dispositivo, $NombreM, $DescripcionM, $NombreMarSel){
+function modificar_categoria($Id_categoria, $NombreCat, $DescripcionCat){
     $conexion = connect();
-    $query = "UPDATE Modelos_de_dispositivos SET Nombre = '".$NombreM."', Id_marca_dispositivo = '".$NombreMarSel."', Descripcion = '".$DescripcionM."' WHERE Id_modelo_dispositivo = ".$Id_modelo_dispositivo;
+    $query = "UPDATE Categoria_de_servicios SET Nombre = '".$NombreCat."', Descripcion = '".$DescripcionCat."' WHERE Id_categoria = ".$Id_categoria;
     if ($conexion->query($query) === TRUE) {
         $resultado = TRUE;
     } else {
@@ -121,9 +118,9 @@ function modificar_modelo($Id_modelo_dispositivo, $NombreM, $DescripcionM, $Nomb
     disconnect($conexion);
     return $resultado;
 }
-function eliminar_modelo($Id_modelo_dispositivo){
+function eliminar_categoria($Id_categoria){
     $conexion = connect();
-    $query = "UPDATE Modelos_de_dispositivos SET Visible = 0 WHERE Id_modelo_dispositivo = ".$Id_modelo_dispositivo;
+    $query = "UPDATE Categoria_de_servicios SET Visible = 0 WHERE Id_categoria = ".$Id_categoria;
     if ($conexion->query($query) === TRUE) {
         $resultado = TRUE;
     } else {
@@ -132,22 +129,5 @@ function eliminar_modelo($Id_modelo_dispositivo){
     
     disconnect($conexion);
     return $resultado;
-}
-
-function obtener_marcas($ignorar){
-    $conexion = connect();
-    
-    $query = ("SELECT Nombre, Id_marca_dispositivo FROM Marca_de_dispositivos WHERE Nombre != '".$ignorar."';");
-
-    $results = mysqli_query($conexion, $query);
-
-
-    $i = 0;
-    while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-        echo '<option value="'.$row['Id_marca_dispositivo'].'">'.$row['Nombre'].'</option>';
-        $i++;
-    }
-    mysqli_free_result($results);
-    disconnect($conexion);
 }
 ?>

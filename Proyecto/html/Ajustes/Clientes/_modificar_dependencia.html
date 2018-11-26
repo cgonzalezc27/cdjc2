@@ -8,30 +8,51 @@
   <div class="form-row">
     <div class="form-group col-lg-6 col-md-6 col-sm-12">
       <label for="inputPassword4">Razón Social</label>
+<<<<<<< HEAD
       <input type="text" class="form-control" id="#" name="razonSocial" value="<?=$dependencia['razon_social']?>">
     </div>
     <div class="form-group col-lg-6 col-md-6 col-sm-12">
       <label for="inputEmail4">RFC</label>
       <input type="text" class="form-control" id="#" name="rfc" value="<?=$dependencia['rfc']?>">
+=======
+      <input type="text" class="form-control" id="#" name="razonSocial" value="<?=$dependencia['razon_social']?>" required maxlength="150">
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+      <label for="inputEmail4">RFC</label>
+      <input type="text" class="form-control" id="#" name="rfc" value="<?=$dependencia['rfc']?>" required maxlength="150">
+>>>>>>> 2fefdcacbc0b29cee0c8c0e9525cac1d26bff73a
     </div>
   </div>
+  <label for="inputAddress2">Mesa Propietaria</label>
+  <select type="list" name="mesa" class="form-control" id="mesa" required>
+    <?=$mesas?>
+  </select>
   <div class="form-group">
     <label for="inputAddress2">Calle</label>
+<<<<<<< HEAD
     <input type="text" class="form-control" id="inputAddress2" name="calle" value="<?=$dependencia['Calle']?>">
+=======
+    <input type="text" class="form-control" id="inputAddress2" name="calle" value="<?=$dependencia['Calle']?>" required maxlength="30">
+>>>>>>> 2fefdcacbc0b29cee0c8c0e9525cac1d26bff73a
   </div>
   <div class="form-row">
     <div class="form-group col-lg-6 col-md-6 col-sm-12">
       <label for="#">Número Exterior</label>
+<<<<<<< HEAD
       <input type="text" class="form-control" id="#" name="numExterior" value="<?=$dependencia['Numero_exterior']?>">
+=======
+      <input type="text" class="form-control" id="#" name="numExterior" value="<?=$dependencia['Numero_exterior']?>" required maxlength="6">
+>>>>>>> 2fefdcacbc0b29cee0c8c0e9525cac1d26bff73a
     </div>
     <div class="form-group col-lg-6 col-md-6 col-sm-12">
       <label for="#">Número Interior</label>
-      <input type="text" class="form-control" id="#" name="numInterior" value="<?=$dependencia['Numero_interior']?>">
+      <input type="text" class="form-control" id="#" name="numInterior" value="<?=$dependencia['Numero_interior']?>" maxlength="6">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-lg-6 col-md-6 col-sm-12">
       <label for="inputCity">Ciudad</label>
+<<<<<<< HEAD
       <input type="text" class="form-control" id="inputCity" name="ciudad" value="<?=$dependencia['Ciudad']?>">
     </div>
     <div class="form-group col-lg-4 col-md-6 col-sm-12">
@@ -49,12 +70,34 @@
     <div class="form-group col-lg-6 col-md-6 col-sm-12">
       <label for="inputEncargado">Tiempo máximo de espera</label>
       <input type="time" class="form-control" id="inputEmail" name="tiempo" value="<?=$dependencia['tiempo']?>">
+=======
+      <input type="text" class="form-control" id="inputCity" name="ciudad" value="<?=$dependencia['Ciudad']?>" required maxlength="20">
+    </div>
+    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+      <label for="inputState">Estado</label>
+      <input type="text" class="form-control" id="inputCity" name="estado" value="<?=$dependencia['Estado']?>" required maxlength="20">
+    </div>
+    <div class="form-group col-lg-2 col-md-12 col-sm-12">
+      <label for="inputZip">C.P</label>
+      <input type="number" class="form-control" id="inputZip" name="cp" value="<?=$dependencia['CP']?>" required maxlength="5">
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+      <label for="inputEncargado">Persona Encargada</label>
+      <input type="text" class="form-control" id="inputEmail" name="persona" value="<?=$dependencia['persona']?>" required maxlength="80">
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-12">
+      <label for="inputEncargado">Tiempo máximo de espera</label>
+      <!--<input type="time" class="form-control" id="inputEmail" name="tiempo" value="<?=$dependencia['tiempo']?>" required>-->
+      <select class="form-control" id="tesperadep" name="tiempo" required>
+        <?=$tiempos?>
+      </select>
+>>>>>>> 2fefdcacbc0b29cee0c8c0e9525cac1d26bff73a
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-12">
       <label for="inputCity">Comentario</label>
-      <textarea class="form-control" rows="4" name="comentario"><?=$dependencia['Descripcion']?></textarea>
+      <textarea class="form-control" rows="4" name="comentario" maxlength="200"><?=$dependencia['Descripcion']?></textarea>
     </div>
   </div>
   <div class="form-row justify-content-center">
