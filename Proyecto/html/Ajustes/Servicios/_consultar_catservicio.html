@@ -1,12 +1,11 @@
-                <form>
-                    <h4 class="display-4 titulo_pagina">Consultar Categoría de Servicios </h4><br>
-                    <form>
+                    <h4 class="display-4 titulo_pagina">Consultar Categoría de Servicio </h4><br>
+                    <form action="../php/_consultar_catservicio.php" method="post">
                         <div class="form-row justify-content-center">
-                            <div class="form-row  ">
+                            <div class="form-row">
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12 align-self-center">
-                                    <label for="inputPassword4">Nombre</label>
-                                    <input type="text" class="form-control" id="#" placeholder="Instituto Nacional Electoral">
-                                </div>                               
+                                    <label for="nombreCatSerBus">Nombre</label>
+                                    <input type="text" class="form-control" id="nombreCatSerBus" name="nombreCatSerBus" placeholder="Instalación de Hardware" <?php if (isset($nombreCatSerBus)): ?>value="<?=$nombreCatSerBus?>"<?php endif ?>>
+                                </div>
                             </div>
                             <div class="form-row col-12 justify-content-center">
                                 <div class="form-group col-1">
@@ -15,12 +14,15 @@
                             </div>
                         </div>
                     </form>
-                    
+
+                    <?php if(isset($tabla)): ?> <?= $tabla ?> <?php endif; ?>
+                    <!--
                     <div class="form-text col">
                         <h4>Servicios</h4>
                     </div><br>
-                    
+                    -->
                     <!--<div class="container">-->
+                    <!--
                         <div class="table-responsive col-12">
                             <table class="table table-hover table-responsive-xl">
                                 <thead>
@@ -40,9 +42,9 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div>-->
                     <!--</div>-->
-                </form>
+               <!-- </form>
             </div>
-            
+            -->
       
