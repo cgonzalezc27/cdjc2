@@ -52,7 +52,7 @@ function obtener_tiempos(){
     $duracion = "";
     for ($c=1;$c <= 20; $c++){
         if ($asignador == 0){
-            $duracion .=  "<option value=''>Seleccione el tiempo esperado de respuesta...</option>";
+            $duracion .=  "<option value=''>Seleccione el tiempo esperado...</option>";
         } else {
             $duracion .=  "<option value".$asignador.">".$asignador." horas</option>";
         }
