@@ -218,38 +218,140 @@ function servicio_ingeniero(){
         response.innerHTML = data;
     })
 }
-
-//Libera categoria de servicio
-function categoriade_servicio_muestra(){
-        var response = document.getElementById('categoria_select');
+//Libera Categoria de servicio 1
+function catservicios_elegible1(){
+    $("#response_cat_ser1").empty();
+    $("#response_ser1").empty();
+    $("#response_cat_ser2").empty();
+    $("#response_ser2").empty();  
+    $("#response_cat_ser3").empty();
+    $("#response_ser3").empty();
+    $("#response_cat_ser4").empty();
+    $("#response_ser4").empty(); 
+    $.get("../php/controller_registrar_movimientos.php",{num_servicios: document.getElementById("num_servicios").value })
+        .done(function(data){
+        var response = document.getElementById('cat_ser1_select');
         response.style.display = "block";
+        response = document.getElementById('response_cat_ser1');
+        response.innerHTML = data;
+    })
 }
+
+function servicio_elegible1(){
+    $.get("../php/controller_registrar_movimientos.php",{cateSer: document.getElementById("cateSer").value, num_servicios: document.getElementById("num_servicios").value })
+        .done(function(data){
+        var response = document.getElementById('ser1_select');
+        response.style.display = "block";
+        response = document.getElementById('response_ser1');
+        response.innerHTML = data;
+    })
+}
+
+//Libera Categoria de servicio 2
+function catservicios_elegible2(){
+    $.get("../php/controller_registrar_movimientos.php",{cateSer: document.getElementById("cateSer").value, Ser: document.getElementById("Ser").value, num_servicios: document.getElementById("num_servicios").value })
+        .done(function(data){
+        var response = document.getElementById('cat_ser2_select');
+        response.style.display = "block";
+        response = document.getElementById('response_cat_ser2');
+        response.innerHTML = data;
+    })
+}
+
+function servicio_elegible2(){
+    $.get("../php/controller_registrar_movimientos.php",{cateSer: document.getElementById("cateSer").value, cateSer2: document.getElementById("cateSer2").value, Ser: document.getElementById("Ser").value, num_servicios: document.getElementById("num_servicios").value })
+        .done(function(data){
+        var response = document.getElementById('ser2_select');
+        response.style.display = "block";
+        response = document.getElementById('response_ser2');
+        response.innerHTML = data;
+    })
+}
+
+
+//Libera Categoria de servicio 3
+function catservicios_elegible3(){
+    $.get("../php/controller_registrar_movimientos.php",{cateSer: document.getElementById("cateSer").value, Ser: document.getElementById("Ser").value, cateSer2: document.getElementById("cateSer2").value, Ser2: document.getElementById("Ser2").value, num_servicios: document.getElementById("num_servicios").value })
+        .done(function(data){
+        var response = document.getElementById('cat_ser3_select');
+        response.style.display = "block";
+        response = document.getElementById('response_cat_ser3');
+        response.innerHTML = data;
+    })
+}
+
+function servicio_elegible3(){
+    $.get("../php/controller_registrar_movimientos.php",{cateSer: document.getElementById("cateSer").value, Ser: document.getElementById("Ser").value, cateSer2: document.getElementById("cateSer2").value, Ser2: document.getElementById("Ser2").value, cateSer3: document.getElementById("cateSer3").value, num_servicios: document.getElementById("num_servicios").value })
+        .done(function(data){
+        var response = document.getElementById('ser3_select');
+        response.style.display = "block";
+        response = document.getElementById('response_ser3');
+        response.innerHTML = data;
+    })
+}
+
+//Libera Categoria de servicio 4
+function catservicios_elegible4(){
+    $.get("../php/controller_registrar_movimientos.php",{cateSer: document.getElementById("cateSer").value, Ser: document.getElementById("Ser").value, cateSer2: document.getElementById("cateSer2").value, Ser2: document.getElementById("Ser2").value, cateSer3: document.getElementById("cateSer3").value, Ser3: document.getElementById("Ser3").value,num_servicios: document.getElementById("num_servicios").value })
+        .done(function(data){
+        var response = document.getElementById('cat_ser4_select');
+        response.style.display = "block";
+        response = document.getElementById('response_cat_ser4');
+        response.innerHTML = data;
+    })
+}
+
+function servicio_elegible4(){
+    $.get("../php/controller_registrar_movimientos.php",{cateSer: document.getElementById("cateSer").value, Ser: document.getElementById("Ser").value, cateSer2: document.getElementById("cateSer2").value, Ser2: document.getElementById("Ser2").value, cateSer3: document.getElementById("cateSer3").value, Ser3: document.getElementById("Ser3").value, cateSer4: document.getElementById("cateSer4").value, num_servicios: document.getElementById("num_servicios").value })
+        .done(function(data){
+        var response = document.getElementById('ser4_select');
+        response.style.display = "block";
+        response = document.getElementById('response_ser4');
+        response.innerHTML = data;
+    })
+}
+
+
+//Libera Servicios 1234
+/*function servicios_elegible(){
+    $.get("../php/controller_registrar_movimientos.php",{Ser: document.getElementById("cateSer").value, num_servicios: document.getElementById("num_servicios").value })
+    .done(function(data){
+        var response = document.getElementById('ser1_select');
+        response.style.display = "block";
+        response = document.getElementById('response_ser1');
+        response.innerHTML = data;
+        
+    })
+}*/
 
 //Libera duracion estandar
 function duracion_estimada(){
-        var response = document.getElementById('testimado_select');
+        var response = document.getElementById('tiempo_estimado_select');
         response.style.display = "block";
-        var response2 = document.getElementById('fecha_hora_select');
+}
+
+//Libera Calendario
+function calendario(){
+    var response = document.getElementById('fecha_hora_select');
+        response.style.display = "block";
+    var response2 = document.getElementById('num_inges_select');
         response2.style.display = "block";
 }
 
 //Libera categoria de servicio
 function categoriade_servicio_muestra(){
-        var response = document.getElementById('categoria_select');
-        response.style.display = "block";
-}
-
-
-//Libera Seleccionar número de ingenieros
-function muestra_num_inges(){
-        var response = document.getElementById('num_inges_select');
+        var response = document.getElementById('num_categoria_select');
         response.style.display = "block";
 }
 
 
 //Genera Selecionar Ingeniero
 function ingeniero_elegible(){
-    $.get("../php/controller_registrar_movimientos.php",{Ser: document.getElementById("Ser").value, num_inges: document.getElementById("num_inges").value })
+    $("#response_ser").empty();
+    $("#response_ing2").empty();
+    $("#response_ing3").empty();
+    $("#response_ing4").empty();
+    $.get("../php/controller_registrar_movimientos.php",{num_inges: document.getElementById("num_inges").value })
         .done(function(data){
         var response = document.getElementById('ser_select');
         response.style.display = "block";
@@ -261,7 +363,7 @@ function ingeniero_elegible(){
 //Seleccionar Ingeniero 2
 
 function ingeniero_elegible2(){
-    $.get("../php/controller_registrar_movimientos.php",{Ser: document.getElementById("Ser").value, Ing: document.getElementById("Ing").value, num_inges: document.getElementById("num_inges").value })
+    $.get("../php/controller_registrar_movimientos.php",{Ing: document.getElementById("Ing").value, num_inges: document.getElementById("num_inges").value })
         .done(function(data){
         var response = document.getElementById('ing2_select');
         response.style.display = "block";
@@ -273,7 +375,7 @@ function ingeniero_elegible2(){
 //Seleccionar Ingeniero 3
 
 function ingeniero_elegible3(){
-    $.get("../php/controller_registrar_movimientos.php",{Ser: document.getElementById("Ser").value, Ing: document.getElementById("Ing").value, Ing2: document.getElementById("Ing2").value, num_inges: document.getElementById("num_inges").value})
+    $.get("../php/controller_registrar_movimientos.php",{Ing: document.getElementById("Ing").value, Ing2: document.getElementById("Ing2").value, num_inges: document.getElementById("num_inges").value})
         .done(function(data){
         var response = document.getElementById('ing3_select');
         response.style.display = "block";
@@ -285,7 +387,7 @@ function ingeniero_elegible3(){
 //Seleccionar Ingeniero 4
 
 function ingeniero_elegible4(){
-    $.get("../php/controller_registrar_movimientos.php",{Ser: document.getElementById("Ser").value, Ing: document.getElementById("Ing").value, Ing2: document.getElementById("Ing2").value, Ing3: document.getElementById("Ing3").value,num_inges: document.getElementById("num_inges").value})
+    $.get("../php/controller_registrar_movimientos.php",{Ing: document.getElementById("Ing").value, Ing2: document.getElementById("Ing2").value, Ing3: document.getElementById("Ing3").value,num_inges: document.getElementById("num_inges").value})
         .done(function(data){
         var response = document.getElementById('ing4_select');
         response.style.display = "block";
