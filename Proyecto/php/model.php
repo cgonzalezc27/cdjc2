@@ -712,7 +712,7 @@ function consulta_modificar_ticket($id){
     }
     
     $mesas = "<option>".$ticket_actual [0]['NombreM']."</option>";
-    $query = "SELECT ME.NombreM FROM NombresMesas ME WHERE ME.Id_mesa != ".$ticket_actual [0]['Id_mesa'];
+    $query = "SELECT ME.NombreM FROM NombresMesas ME WHERE ME.Id_mesa != ".$ticket_actual [0]['Id_mesa']." ORDER BY ME.NombreM ASC";
     $results = mysqli_query($conexion, $query);
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
         $mesas .= "<option>".$row['NombreM']."</option>";
@@ -720,7 +720,7 @@ function consulta_modificar_ticket($id){
     mysqli_free_result($results);
 
     $dependencias = "<option>".$ticket_actual [0]['NombreD']."</option>";
-    $query = "SELECT DE.Razon_social AS NombreD FROM Destino DE, Dependencias D WHERE DE.Id_destino = D.Id_destino AND D.Id_mesa = ".$ticket_actual [0]['Id_mesa']." AND DE.Razon_social !='".$ticket_actual [0]['NombreD']."'";
+    $query = "SELECT DE.Razon_social AS NombreD FROM Destino DE, Dependencias D WHERE DE.Id_destino = D.Id_destino AND D.Id_mesa = ".$ticket_actual [0]['Id_mesa']." AND DE.Razon_social !='".$ticket_actual [0]['NombreD']."' ORDER BY DE.Razon_social ASC";
     $results = mysqli_query($conexion, $query);
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
         $dependencias .= "<option>".$row['NombreD']."</option>";
@@ -729,7 +729,7 @@ function consulta_modificar_ticket($id){
 
 
     $medios = "<option>".$ticket_actual [0]['NombreMT']."</option>";
-    $query = "SELECT M.Nombre AS NombreMT FROM Medios_de_transporte M WHERE M.Nombre != '".$ticket_actual [0]['NombreMT']."'";
+    $query = "SELECT M.Nombre AS NombreMT FROM Medios_de_transporte M WHERE M.Nombre != '".$ticket_actual [0]['NombreMT']."' ORDER BY M.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
         $medios .= "<option>".$row['NombreMT']."</option>";
@@ -737,14 +737,14 @@ function consulta_modificar_ticket($id){
     mysqli_free_result($results);
 
     $estatus = "<option>".$ticket_actual [0]['NombreE']."</option>";
-    $query = "SELECT E.Nombre AS NombreE FROM Estatus_de_tickets E WHERE E.Nombre != '".$ticket_actual [0]['NombreE']."'";
+    $query = "SELECT E.Nombre AS NombreE FROM Estatus_de_tickets E WHERE E.Nombre != '".$ticket_actual [0]['NombreE']."' ORDER BY E.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
         $estatus .= "<option>".$row['NombreE']."</option>";
     }
     mysqli_free_result($results);
     
-    $query = "SELECT I.Id_ingeniero, U.Nombre, U.Apellido1, U.Apellido2 FROM Usuarios U, Ingenieros I WHERE I.Id_usuario = U.Id_usuario AND I.Visible = 1 GROUP BY I.Id_ingeniero";
+    $query = "SELECT I.Id_ingeniero, U.Nombre, U.Apellido1, U.Apellido2 FROM Usuarios U, Ingenieros I WHERE I.Id_usuario = U.Id_usuario AND I.Visible = 1 GROUP BY I.Id_ingeniero ORDER BY U.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     
     $i=0;
@@ -816,7 +816,7 @@ function consulta_modificar_ticket($id){
         }
     }
     
-    $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1";
+    $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1 ORDER BY S.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     
     $i=0;
@@ -1026,7 +1026,7 @@ function registrar_movimiento($destino,$ticket,$dispositivo){
 
 function buscar_usuario($buscar){
     $conexion = connect();
-    $query="SELECT U.Id_usuario, U.Nombre_de_usuario AS 'Nombre_usuario', U.Nombre AS 'Nombre', U.Apellido1, U.RFC, R.Nombre AS 'ROL' FROM Usuarios U, Ultimo_rol_por_usuario UR, Roles R WHERE U.Id_usuario = UR.Id_usuario AND UR.Id_rol = R.Id_rol AND U.Visible = TRUE AND (U.Nombre LIKE '%".$buscar."%' OR U.Apellido1 LIKE '%".$buscar."%' OR U.Apellido2 LIKE '%".$buscar."%' OR concat(U.Nombre, ' ', U.Apellido1, ' ', U.Apellido2) LIKE '%".$buscar."%' OR U.Nombre_de_usuario LIKE '%".$buscar."%' OR U.RFC LIKE '%".$buscar."%' OR R.Nombre LIKE '%".$buscar."%')";
+    $query="SELECT U.Id_usuario, U.Nombre_de_usuario AS 'Nombre_usuario', U.Nombre AS 'Nombre', U.Apellido1, U.RFC, R.Nombre AS 'ROL' FROM Usuarios U, Ultimo_rol_por_usuario UR, Roles R WHERE U.Id_usuario = UR.Id_usuario AND UR.Id_rol = R.Id_rol AND U.Visible = TRUE AND (U.Nombre LIKE '%".$buscar."%' OR U.Apellido1 LIKE '%".$buscar."%' OR U.Apellido2 LIKE '%".$buscar."%' OR concat(U.Nombre, ' ', U.Apellido1, ' ', U.Apellido2) LIKE '%".$buscar."%' OR U.Nombre_de_usuario LIKE '%".$buscar."%' OR U.RFC LIKE '%".$buscar."%' OR R.Nombre LIKE '%".$buscar."%') ORDER BY U.Nombre_de_usuario ASC";
     $results = mysqli_query($conexion, $query);
     $rows = [];
     $i=0;
@@ -1096,7 +1096,7 @@ function consultar_usuario($id,$disabled){
     mysqli_free_result($results);
     if($disabled == 1){$disabled ='disabled';}else{$disabled ='';};
     $rows ['Roles'] = '<select class="form-control" id="exampleFormControlSelect1" name = "Rol" '.$disabled.'> <option id =" '.$rows ['Id_rol'].'"> '.$rows ['Rol'].'</option>';
-    $query="SELECT R.Nombre, R.Id_rol FROM Roles R WHERE R.Id_rol !='".$rows ['Id_rol']."'";
+    $query="SELECT R.Nombre, R.Id_rol FROM Roles R WHERE R.Id_rol !='".$rows ['Id_rol']."' ORDER BY R.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
@@ -1372,7 +1372,7 @@ function modificar_usuario($Id_usuario,$Nombre_de_usuario,$Nombre,$Apellido1,$Ap
 
 function consultar_estatus($id){
     $conexion = connect();
-    $query= "SELECT T.No_ticket, E.Nombre as 'NombreE' FROM Tickets T, Ultimo_estatus_ticket UE, Estatus_de_tickets E WHERE T.Id_ticket = UE.Id_ticket AND UE.Id_estatus = E.Id_estatus AND T.Id_ticket =".$id;
+    $query= "SELECT T.No_ticket, E.Nombre as 'NombreE' FROM Tickets T, Ultimo_estatus_ticket UE, Estatus_de_tickets E WHERE T.Id_ticket = UE.Id_ticket AND UE.Id_estatus = E.Id_estatus AND T.Id_ticket =".$id." ORDER BY E.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     $rows = [];
     $i=0;
@@ -1382,7 +1382,7 @@ function consultar_estatus($id){
     mysqli_free_result($results);
     $estatus_actual = $rows ['NombreE'];
     $rows = '<select type="list" class="form-control" id="Estatus" name="Estatus"><option>'.$estatus_actual.'</option>';
-    $query="SELECT E.Nombre as 'NombreE' FROM Estatus_de_tickets E WHERE E.Nombre != '".$estatus_actual."'";
+    $query="SELECT E.Nombre as 'NombreE' FROM Estatus_de_tickets E WHERE E.Nombre != '".$estatus_actual."' ORDER BY E.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
         $rows .= '<option>'.$row['NombreE'].'</option>';
@@ -1749,7 +1749,7 @@ function buscar_marca($nombreM){
 
 function consultar_marca($Id_marca_dispositivo){
     $conexion = connect();
-    $query = "SELECT M.Nombre, M.Descripcion FROM Marca_de_dispositivos M WHERE M.Id_marca_dispositivo = '".$Id_marca_dispositivo."' AND M.Visible = TRUE";
+    $query = "SELECT M.Nombre, M.Descripcion FROM Marca_de_dispositivos M WHERE M.Id_marca_dispositivo = '".$Id_marca_dispositivo."' AND M.Visible = TRUE ORDER BY M.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
@@ -1815,7 +1815,7 @@ function fecha_hora_eliminar_movimiento($Id_dispositivo){
 
 function buscar_manual($buscar){
     $conexion = connect();
-    $query = "SELECT M.Nombre, M.Id_manual, M.Version, M.Descripcion FROM Catalogo_de_servicios_Manuales SM, Catalogo_de_servicios S, Manuales M WHERE SM.Id_trabajo = S.Id_trabajo AND SM.Id_manual = M.Id_manual AND (M.Nombre LIKE '%".$buscar."%' OR S.Nombre LIKE '%".$buscar."%' OR S.Descripcion LIKE '%".$buscar."%' OR M.Version LIKE '%".$buscar."%' OR M.Descripcion LIKE '%".$buscar."%') GROUP BY M.Id_manual";
+    $query = "SELECT M.Nombre, M.Id_manual, M.Version, M.Descripcion FROM Catalogo_de_servicios_Manuales SM, Catalogo_de_servicios S, Manuales M WHERE SM.Id_trabajo = S.Id_trabajo AND SM.Id_manual = M.Id_manual AND (M.Nombre LIKE '%".$buscar."%' OR S.Nombre LIKE '%".$buscar."%' OR S.Descripcion LIKE '%".$buscar."%' OR M.Version LIKE '%".$buscar."%' OR M.Descripcion LIKE '%".$buscar."%') GROUP BY M.Id_manual ORDER BY M.Nombre ASC";
     $results = mysqli_query($conexion, $query);
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
