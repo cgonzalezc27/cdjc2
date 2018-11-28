@@ -137,7 +137,7 @@ function eliminar_modelo($Id_modelo_dispositivo){
 function obtener_marcas($ignorar){
     $conexion = connect();
     
-    $query = ("SELECT Nombre, Id_marca_dispositivo FROM Marca_de_dispositivos WHERE Nombre != '".$ignorar."';");
+    $query = ("SELECT Nombre, Id_marca_dispositivo FROM Marca_de_dispositivos WHERE Nombre != '".$ignorar."' ORDER BY Nombre;");
 
     $results = mysqli_query($conexion, $query);
 

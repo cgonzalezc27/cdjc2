@@ -88,12 +88,15 @@
                         <li <?php if ($menu == 'ingenieros') : ?> class = " active " <?php endif; ?>>
                             <a class="navbar_a" href="/php/_ingenieros_todos.php"><i class="material-icons">assignment_ind</i> Ingenieros</a>
                         </li>
+
                         <?php endif; ?>
+<!--
                         <?php if ($_SESSION['Permisos'][10] == TRUE || $_SESSION['Permisos'][9] == TRUE): ?>
                         <li <?php if ($menu == 'reportes') : ?> class = " active " <?php endif; ?>>
                             <a class="navbar_a" href="/php/_reportes.php"><i class="material-icons">table_chart</i> Reportes</a>
                         </li>
                         <?php endif; ?>
+-->
                     <?php if ($_SESSION['Permisos'][16] == TRUE || $_SESSION['Permisos'][4] == TRUE): ?>
                     <li <?php if ($menu == 'manuales') : ?> class = " active " <?php endif; ?>>
                         <a class="navbar_a" href="/php/_consultar_manuales.php"><i class="material-icons">library_books</i> Manuales</a>
