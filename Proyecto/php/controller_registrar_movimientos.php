@@ -603,17 +603,19 @@ if(isset($_GET['SelMesa'])){
     $mesa = $_GET['SelMesa'];
     //$mesa = "mesa2";
     $conexion = connect();
-    $query="SELECT Razon_social FROM Destino DE, Dependencias D, NombresMesas M WHERE M.Id_mesa = D.Id_mesa AND D.Id_destino = DE.Id_destino AND M.NombreM = '".$mesa."'";
+    $query="
+    
+    SELECT Razon_social, DE.Id_destino AS 'Id_destino' FROM Destino DE, Dependencias D, NombresMesas M WHERE M.Id_mesa = D.Id_mesa AND D.Id_destino = DE.Id_destino AND M.Id_mesa = '".$mesa."' ORDER BY Razon_social";
     $results = mysqli_query($conexion, $query);
     $rows = '
 
                         <label for="dependencia">Dependencia: </label>
                             <select type="list" class="form-control" id="dependencia" name="dependencia" onchange = "categoriade_servicio_muestra()">
-                                <option>Sleccione una dependencia...</option>
+                                <option value="">Sleccione una dependencia...</option>
             ';
     $i=0;
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-        $rows .= '<option>'.$row["Razon_social"].'</option>';
+        $rows .= '<option value="'.$row["Id_destino"].'">'.$row["Razon_social"].'</option>';
     }
     $rows .= '</select>';
     mysqli_free_result($results);   
@@ -622,35 +624,480 @@ if(isset($_GET['SelMesa'])){
     echo $seleccion;
 }
 
+//Categira y Servicio 1
 
-//OBTIENE UN SERVICIO DEPENDIENDO DE LA CATEGORIA DE SERVICIO
-if(isset($_GET['cateSer'])){
-    $cat_ser = $_GET['cateSer'];
-    //$mesa = "mesa2";
-    $conexion = connect();
-    $query="SELECT CATT.Nombre AS 'CATTNOM' FROM Catalogo_de_servicios CATT, Categoria_de_servicios CATS WHERE CATS.Id_categoria = CATT.Id_categoria AND CATS.Nombre = '".$cat_ser."'";
-    $results = mysqli_query($conexion, $query);
-    $rows = '
+if(isset($_GET['num_servicios'])){
+    $num_servicios = $_GET['num_servicios'];
 
-                    <label for="cataSer">Servicio: </label>
-                        <select class="form-control" id="Ser" name="Ser" onchange = "duracion_estimada()">
-                            <option>Seleccione un servicio...</option>
-            ';
-    $i=0;
-    while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-        $rows .= '<option value="'.$row["CATTNOM"].'">'.$row["CATTNOM"].'</option>';
+    if(!isset($_GET['cateSer'])){
+        $conexion = connect();
+
+        if($num_servicios == 1){
+
+            $query="
+                SELECT CDS.Nombre as 'NombreCDS', CDS.Id_categoria AS 'Id_categoria'
+                FROM Categoria_de_servicios CDS 
+                INNER JOIN Catalogo_de_servicios CAS ON CAS.Id_categoria = CDS.Id_categoria
+                GROUP BY CDS.Nombre
+                ORDER BY CDS.Nombre
+
+                ";
+            $results = mysqli_query($conexion, $query);
+            $rows = '        
+                    <div class="form-group">
+                        <label for="cateSer">Categoría de Servicio: </label>
+                            <select class="form-control" id="cateSer" name="cateSer" onchange = "servicio_elegible1()">
+                                <option>Seleccione una categoia de servicio...</option>
+                ';
+            $i=0;
+            while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                $rows .= '<option value="'.$row['Id_categoria'].'">'.$row['NombreCDS'].'</option>';
+            }
+            $rows .= '</select></div> ';
+
+            mysqli_free_result($results);
+            $num_servicios = $_GET['num_servicios'];
+            disconnect($conexion);
+
+        } else if ($num_servicios >= 2){
+
+            $query="
+                SELECT CDS.Nombre as 'NombreCDS', CDS.Id_categoria AS 'Id_categoria'
+                FROM Categoria_de_servicios CDS 
+                INNER JOIN Catalogo_de_servicios CAS ON CAS.Id_categoria = CDS.Id_categoria
+                GROUP BY CDS.Nombre
+                ORDER BY CDS.Nombre
+
+                
+                ";
+            $results = mysqli_query($conexion, $query);
+            $rows = '
+                    <div class="form-group">
+                        <label for="cateSer">Categoría de Servicio: </label>
+                            <select class="form-control" id="cateSer" name="cateSer" onchange = "servicio_elegible1()">
+                                <option>Seleccione una categoria de servicio...</option>
+                ';
+            $i=0;
+            while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                $rows .= '<option value="'.$row['Id_categoria'].'">'.$row['NombreCDS'].'</option>';
+            }
+            $rows .= '</select></div> ';
+
+            mysqli_free_result($results);
+            disconnect($conexion);
+
+
+        }
+
+        $seleccion = $rows;
+        echo $seleccion;
     }
-    $rows .= '</select>';
-    mysqli_free_result($results);   
-    disconnect($conexion);
-    $seleccion = $rows;
-    echo $seleccion;
 }
 
-//OBTIENE LOS INGENIEROS DEPENDIENDO DEL TRABAJO SELECCIONADO
-if(isset($_GET['Ser'])){
-    $ser = $_GET['Ser'];
 
+if(isset($_GET['num_servicios'])){
+    $num_servicios = $_GET['num_servicios'];
+    
+    if(isset($_GET['cateSer'])){
+    $cateSer = $_GET['cateSer'];
+
+        if(!isset($_GET['Ser'])){
+            $conexion = connect();
+
+
+                $query="
+                    SELECT CATT.Nombre AS 'CATTNOM', CATT.Id_trabajo AS 'Id_trabajo'
+                    FROM Catalogo_de_servicios CATT
+                    INNER JOIN Categoria_de_servicios CATS ON CATS.Id_categoria = CATT.Id_categoria
+                    WHERE CATS.Id_categoria = ".$cateSer." AND CATT.Visible = 1
+                    ORDER BY CATTNOM
+
+                    ";
+                $results = mysqli_query($conexion, $query);
+                $rows = '        
+                        <div class="form-group">
+                            <label for="Ser">Servicio: </label>
+                                <select required class="form-control" id="Ser" name="Ser" onchange ="';
+                                    if($num_servicios == 1){
+                                        $rows .= 'duracion_estimada()';
+                                           
+                                    }else if($num_servicios >= 2){
+                                        $rows .= 'catservicios_elegible2()'; 
+                                    };
+                $rows .= '
+                                ">
+                                    <option>Seleccione una categoia de servicio...</option>
+                    ';
+                $i=0;
+                while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                    $rows .= '<option value="'.$row['Id_trabajo'].'">'.$row['CATTNOM'].'</option>';
+                }
+                $rows .= '</select></div> ';
+
+                mysqli_free_result($results);
+
+                disconnect($conexion);
+
+            $seleccion = $rows;
+            echo $seleccion;
+        }
+    }
+}
+
+
+
+//Categira y Servicio 2
+
+if(isset($_GET['num_servicios'])){
+    $num_servicios = $_GET['num_servicios'];
+    
+    if(isset($_GET['cateSer'])){
+    $cateSer = $_GET['cateSer'];
+    
+        if(isset($_GET['Ser'])){
+        $Ser = $_GET['Ser'];
+
+            if(!isset($_GET['cateSer2'])){
+                $conexion = connect();
+
+                    $query="
+                        SELECT CDS.Nombre as 'NombreCDS', CDS.Id_categoria AS 'Id_categoria'
+                        FROM Categoria_de_servicios CDS 
+                        INNER JOIN Catalogo_de_servicios CAS ON CAS.Id_categoria = CDS.Id_categoria
+                        GROUP BY CDS.Nombre
+                        ORDER BY CDS.Nombre
+
+                        ";
+                    $results = mysqli_query($conexion, $query);
+                    $rows = '        
+                            <div class="form-group">
+                                <label for="cateSer">Categoría de Servicio 2: </label>
+                                    <select class="form-control" id="cateSer2" name="cateSer2" onchange = "servicio_elegible2()">
+                                        <option>Seleccione una categoia de servicio...</option>
+                        ';
+                    $i=0;
+                    while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                        $rows .= '<option value="'.$row['Id_categoria'].'">'.$row['NombreCDS'].'</option>';
+                    }
+                    $rows .= '</select></div> ';
+
+                    mysqli_free_result($results);
+                    $num_servicios = $_GET['num_servicios'];
+                    disconnect($conexion);
+
+                $seleccion = $rows;
+                echo $seleccion;
+            }
+        }
+    }
+}
+
+if(isset($_GET['num_servicios'])){
+    $num_servicios = $_GET['num_servicios'];
+    
+    if(isset($_GET['cateSer'])){
+    $cateSer = $_GET['cateSer'];
+        
+        if(isset($_GET['Ser'])){
+        $Ser = $_GET['Ser'];
+        
+            if(isset($_GET['cateSer2'])){
+            $cateSer2 = $_GET['cateSer2'];
+
+                if(!isset($_GET['Ser2'])){
+                    $conexion = connect();
+
+
+                        $query="
+                            SELECT CATT.Nombre AS 'CATTNOM', CATT.Id_trabajo AS 'Id_trabajo'
+                            FROM Catalogo_de_servicios CATT
+                            INNER JOIN Categoria_de_servicios CATS ON CATS.Id_categoria = CATT.Id_categoria
+                            WHERE CATS.Id_categoria = ".$cateSer2." AND CATT.Id_trabajo != ".$Ser." AND CATT.Visible = 1
+                            ORDER BY CATTNOM
+
+                            ";
+                        $results = mysqli_query($conexion, $query);
+                        $rows = '        
+                                <div class="form-group">
+                                    <label for="Ser">Servicio 2: </label>
+                                        <select required class="form-control" id="Ser2" name="Ser2" onchange ="';
+                                            if($num_servicios == 2){
+                                                $rows .= 'duracion_estimada()';
+
+                                            }else if($num_servicios >= 3){
+                                                $rows .= 'catservicios_elegible3()'; 
+                                            };
+                        $rows .= '
+                                        ">
+                                            <option>Seleccione una categoia de servicio...</option>
+                            ';
+                        $i=0;
+                        while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                            $rows .= '<option value="'.$row['Id_trabajo'].'">'.$row['CATTNOM'].'</option>';
+                        }
+                        $rows .= '</select></div> ';
+
+                        mysqli_free_result($results);
+
+                        disconnect($conexion);
+
+                    $seleccion = $rows;
+                    echo $seleccion;
+                }
+            }
+        }
+    }
+}
+
+
+//Categira y Servicio 3
+
+if(isset($_GET['num_servicios'])){
+    $num_servicios = $_GET['num_servicios'];
+    
+    if(isset($_GET['cateSer'])){
+        $cateSer = $_GET['cateSer'];
+    
+        if(isset($_GET['Ser'])){
+            $Ser = $_GET['Ser'];
+            
+            if(isset($_GET['cateSer2'])){
+                $cateSer2 = $_GET['cateSer2'];
+
+                    if(isset($_GET['Ser2'])){
+                        $Ser2 = $_GET['Ser2'];
+
+                        if(!isset($_GET['cateSer3'])){
+                            $conexion = connect();
+
+                                $query="
+                                    SELECT CDS.Nombre as 'NombreCDS', CDS.Id_categoria AS 'Id_categoria'
+                                    FROM Categoria_de_servicios CDS 
+                                    INNER JOIN Catalogo_de_servicios CAS ON CAS.Id_categoria = CDS.Id_categoria
+                                    GROUP BY CDS.Nombre
+                                    ORDER BY CDS.Nombre
+
+                                    ";
+                                $results = mysqli_query($conexion, $query);
+                                $rows = '        
+                                        <div class="form-group">
+                                            <label for="cateSer">Categoría de Servicio 3: </label>
+                                                <select class="form-control" id="cateSer3" name="cateSer3" onchange = "servicio_elegible3()">
+                                                    <option>Seleccione una categoia de servicio...</option>
+                                    ';
+                                $i=0;
+                                while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                                    $rows .= '<option value="'.$row['Id_categoria'].'">'.$row['NombreCDS'].'</option>';
+                                }
+                                $rows .= '</select></div> ';
+
+                                mysqli_free_result($results);
+                                $num_servicios = $_GET['num_servicios'];
+                                disconnect($conexion);
+
+                            $seleccion = $rows;
+                            echo $seleccion;
+                        }
+                    }
+            }
+        }
+    }
+}
+
+if(isset($_GET['num_servicios'])){
+    $num_servicios = $_GET['num_servicios'];
+    
+    if(isset($_GET['cateSer'])){
+        $cateSer = $_GET['cateSer'];
+        
+        if(isset($_GET['Ser'])){
+            $Ser = $_GET['Ser'];
+        
+            if(isset($_GET['cateSer2'])){
+                $cateSer2 = $_GET['cateSer2'];
+                    
+                
+                if(isset($_GET['Ser2'])){
+                    $Ser2 = $_GET['Ser2'];
+                    
+                    if(isset($_GET['cateSer3'])){
+                        $cateSer3 = $_GET['cateSer3'];
+
+                        if(!isset($_GET['Ser3'])){
+                            $conexion = connect();
+
+
+                                $query="
+                                    SELECT CATT.Nombre AS 'CATTNOM', CATT.Id_trabajo AS 'Id_trabajo'
+                                    FROM Catalogo_de_servicios CATT
+                                    INNER JOIN Categoria_de_servicios CATS ON CATS.Id_categoria = CATT.Id_categoria
+                                    WHERE CATS.Id_categoria = ".$cateSer3." AND CATT.Id_trabajo != ".$Ser." AND CATT.Id_trabajo != ".$Ser2." AND CATT.Visible = 1
+                                    ORDER BY CATTNOM
+
+                                    ";
+                                $results = mysqli_query($conexion, $query);
+                                $rows = '        
+                                        <div class="form-group">
+                                            <label for="Ser">Servicio 3: </label>
+                                                <select required class="form-control" id="Ser3" name="Ser3" onchange ="';
+                                                    if($num_servicios == 3){
+                                                        $rows .= 'duracion_estimada()';
+
+                                                    }else if($num_servicios >= 4){
+                                                        $rows .= 'catservicios_elegible4()'; 
+                                                    };
+                                $rows .= '
+                                                ">
+                                                    <option>Seleccione una categoia de servicio...</option>
+                                    ';
+                                $i=0;
+                                while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                                    $rows .= '<option value="'.$row['Id_trabajo'].'">'.$row['CATTNOM'].'</option>';
+                                }
+                                $rows .= '</select></div> ';
+
+                                mysqli_free_result($results);
+
+                                disconnect($conexion);
+
+                            $seleccion = $rows;
+                            echo $seleccion;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Categira y Servicio 4
+if(isset($_GET['num_servicios'])){
+    $num_servicios = $_GET['num_servicios'];
+    
+    if(isset($_GET['cateSer'])){
+        $cateSer = $_GET['cateSer'];
+    
+        if(isset($_GET['Ser'])){
+            $Ser = $_GET['Ser'];
+            
+            if(isset($_GET['cateSer2'])){
+                $cateSer2 = $_GET['cateSer2'];
+
+                    if(isset($_GET['Ser2'])){
+                        $Ser2 = $_GET['Ser2'];
+                        
+                        if(isset($_GET['cateSer3'])){
+                            $cateSer3 = $_GET['cateSer3'];
+
+                                if(isset($_GET['Ser3'])){
+                                    $Ser3 = $_GET['Ser3'];
+
+                                    if(!isset($_GET['cateSer4'])){
+                                        $conexion = connect();
+
+                                            $query="
+                                                SELECT CDS.Nombre as 'NombreCDS', CDS.Id_categoria AS 'Id_categoria'
+                                                FROM Categoria_de_servicios CDS 
+                                                INNER JOIN Catalogo_de_servicios CAS ON CAS.Id_categoria = CDS.Id_categoria
+                                                GROUP BY CDS.Nombre
+                                                ORDER BY CDS.Nombre
+
+                                                ";
+                                            $results = mysqli_query($conexion, $query);
+                                            $rows = '        
+                                                    <div class="form-group">
+                                                        <label for="cateSer">Categoría de Servicio 4: </label>
+                                                            <select class="form-control" id="cateSer4" name="cateSer4" onchange = "servicio_elegible4()">
+                                                                <option>Seleccione una categoia de servicio...</option>
+                                                ';
+                                            $i=0;
+                                            while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                                                $rows .= '<option value="'.$row['Id_categoria'].'">'.$row['NombreCDS'].'</option>';
+                                            }
+                                            $rows .= '</select></div> ';
+
+                                            mysqli_free_result($results);
+                                            $num_servicios = $_GET['num_servicios'];
+                                            disconnect($conexion);
+
+                                        $seleccion = $rows;
+                                        echo $seleccion;
+                                    }
+                                }
+                        }
+                    }
+            }
+        }
+    }
+}
+
+if(isset($_GET['num_servicios'])){
+    $num_servicios = $_GET['num_servicios'];
+    
+    if(isset($_GET['cateSer'])){
+        $cateSer = $_GET['cateSer'];
+        
+        if(isset($_GET['Ser'])){
+            $Ser = $_GET['Ser'];
+        
+            if(isset($_GET['cateSer2'])){
+                $cateSer2 = $_GET['cateSer2'];
+                    
+                
+                if(isset($_GET['Ser2'])){
+                    $Ser2 = $_GET['Ser2'];
+                    
+                    if(isset($_GET['cateSer3'])){
+                        $cateSer3 = $_GET['cateSer3'];
+                        
+                        if(isset($_GET['Ser3'])){
+                            $Ser3 = $_GET['Ser3'];
+
+                            if(isset($_GET['cateSer4'])){
+                                $cateSer4 = $_GET['cateSer4'];
+
+                                if(!isset($_GET['Ser4'])){
+                                    $conexion = connect();
+
+
+                                        $query="
+                                            SELECT CATT.Nombre AS 'CATTNOM', CATT.Id_trabajo AS 'Id_trabajo'
+                                            FROM Catalogo_de_servicios CATT
+                                            INNER JOIN Categoria_de_servicios CATS ON CATS.Id_categoria = CATT.Id_categoria
+                                            WHERE CATS.Id_categoria = ".$cateSer3." AND CATT.Id_trabajo != ".$Ser." AND CATT.Id_trabajo != ".$Ser2." AND CATT.Id_trabajo != ".$Ser3." AND CATT.Visible = 1
+                                            ORDER BY CATTNOM
+
+                                            ";
+                                        $results = mysqli_query($conexion, $query);
+                                        $rows = '        
+                                                <div class="form-group">
+                                                    <label for="Ser">Servicio 4: </label>
+                                                        <select required class="form-control" id="Ser4" name="Ser4" onchange ="duracion_estimada()">
+                                                            <option>Seleccione una categoia de servicio...</option>
+                                            ';
+                                        $i=0;
+                                        while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
+                                            $rows .= '<option value="'.$row['Id_trabajo'].'">'.$row['CATTNOM'].'</option>';
+                                        }
+                                        $rows .= '</select></div> ';
+
+                                        mysqli_free_result($results);
+
+                                        disconnect($conexion);
+
+                                    $seleccion = $rows;
+                                    echo $seleccion;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//OBTIENE LOS INGENIEROS
 
     if(isset($_GET['num_inges'])){
         $num_inges = $_GET['num_inges'];
@@ -660,7 +1107,11 @@ if(isset($_GET['Ser'])){
 
             if($num_inges == 1){
 
-                $query="SELECT USR.Nombre AS 'NombreUSR' FROM Catalogo_de_servicios CATT, Grados_de_complejidad_Ingenieros GCI, Ingenieros ING, Usuarios USR WHERE CATT.Id_grado = GCI.Id_grado AND GCI.Id_ingeniero = ING.Id_ingeniero AND ING.Id_usuario = USR.Id_usuario AND CATT.Nombre = '".$ser."'";
+                $query="
+                    SELECT USR.Nombre AS 'NombreUSR', USR.Apellido1 AS 'Apellido1', USR.Apellido2 AS 'Apellido2', ING.Id_Ingeniero AS 'Id_inge'
+                    FROM Ingenieros ING, Usuarios USR 
+                    WHERE ING.Id_usuario = USR.Id_usuario AND ING.Visible = 1 
+                    ORDER BY NombreUSR";
                 $results = mysqli_query($conexion, $query);
                 $rows = '
                         <div class="form-group">
@@ -670,16 +1121,21 @@ if(isset($_GET['Ser'])){
                     ';
                 $i=0;
                 while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-                    $rows .= '<option value="'.$row["NombreUSR"].'">'.$row["NombreUSR"].'</option>';
+                    $rows .= '<option value="'.$row["Id_inge"].'">'.$row["NombreUSR"]." ".$row["Apellido1"]." ".$row["Apellido2"].'</option>';
                 }
                 $rows .= '</select></div> ';
 
                 mysqli_free_result($results);
+                $num_inges = $_GET['num_inges'];
                 disconnect($conexion);
 
             } else if ($num_inges >= 2){
 
-                $query="SELECT USR.Nombre AS 'NombreUSR' FROM Catalogo_de_servicios CATT, Grados_de_complejidad_Ingenieros GCI, Ingenieros ING, Usuarios USR WHERE CATT.Id_grado = GCI.Id_grado AND GCI.Id_ingeniero = ING.Id_ingeniero AND ING.Id_usuario = USR.Id_usuario AND CATT.Nombre = '".$ser."'";
+                $query="
+                    SELECT USR.Nombre AS 'NombreUSR', USR.Apellido1 AS 'Apellido1', USR.Apellido2 AS 'Apellido2', ING.Id_Ingeniero AS 'Id_inge'
+                    FROM Ingenieros ING, Usuarios USR 
+                    WHERE ING.Id_usuario = USR.Id_usuario AND ING.Visible = 1 
+                    ORDER BY NombreUSR";
                 $results = mysqli_query($conexion, $query);
                 $rows = '
                         <div class="form-group">
@@ -689,9 +1145,11 @@ if(isset($_GET['Ser'])){
                     ';
                 $i=0;
                 while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-                    $rows .= '<option value="'.$row["NombreUSR"].'">'.$row["NombreUSR"].'</option>';
+                    $rows .= '<option value="'.$row["Id_inge"].'">'.$row["NombreUSR"]." ".$row["Apellido1"]." ".$row["Apellido2"].'</option>';
                 }
                 $rows .= '</select></div> ';
+                
+                $num_inges = $_GET['num_inges'];
 
                 mysqli_free_result($results);
                 disconnect($conexion);
@@ -705,11 +1163,8 @@ if(isset($_GET['Ser'])){
     }
 
 
-}
-//INGENIERO 2
-if(isset($_GET['Ser'])){
-    $ser = $_GET['Ser'];
 
+//INGENIERO 2
 
     if(isset($_GET['num_inges'])){
         $num_inges = $_GET['num_inges'];
@@ -724,7 +1179,13 @@ if(isset($_GET['Ser'])){
 
                 if($num_inges == 2){
 
-                    $query="SELECT USR.Nombre AS 'NombreUSR' FROM Catalogo_de_servicios CATT, Grados_de_complejidad_Ingenieros GCI, Ingenieros ING, Usuarios USR WHERE CATT.Id_grado = GCI.Id_grado AND GCI.Id_ingeniero = ING.Id_ingeniero AND ING.Id_usuario = USR.Id_usuario AND CATT.Nombre = '".$ser."' AND USR.Nombre != '".$ing1."'";
+                    $query="
+                    
+                    SELECT USR.Nombre AS 'NombreUSR', USR.Apellido1 AS 'Apellido1', USR.Apellido2 AS 'Apellido2', ING.Id_Ingeniero AS 'Id_inge'
+                    FROM Ingenieros ING, Usuarios USR 
+                    WHERE ING.Id_usuario = USR.Id_usuario AND ING.Id_ingeniero != ".$ing1." AND ING.Visible = 1 
+                    ORDER BY NombreUSR";
+                    
                     $results = mysqli_query($conexion, $query);
                     $rows = '
                             <div class="form-group">
@@ -734,7 +1195,7 @@ if(isset($_GET['Ser'])){
                         ';
                     $i=0;
                     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-                        $rows .= '<option value="'.$row["NombreUSR"].'">'.$row["NombreUSR"].'</option>';
+                        $rows .= '<option value="'.$row["Id_inge"].'">'.$row["NombreUSR"]." ".$row["Apellido1"]." ".$row["Apellido2"].'</option>';
                     }
                     $rows .= '</select></div> ';
 
@@ -743,7 +1204,11 @@ if(isset($_GET['Ser'])){
 
                 } else if ($num_inges >= 3){
 
-                    $query="SELECT USR.Nombre AS 'NombreUSR' FROM Catalogo_de_servicios CATT, Grados_de_complejidad_Ingenieros GCI, Ingenieros ING, Usuarios USR WHERE CATT.Id_grado = GCI.Id_grado AND GCI.Id_ingeniero = ING.Id_ingeniero AND ING.Id_usuario = USR.Id_usuario AND CATT.Nombre = '".$ser."' AND USR.Nombre != '".$ing1."'";
+                    $query="
+                    SELECT USR.Nombre AS 'NombreUSR', USR.Apellido1 AS 'Apellido1', USR.Apellido2 AS 'Apellido2', ING.Id_Ingeniero AS 'Id_inge'
+                    FROM Ingenieros ING, Usuarios USR 
+                    WHERE ING.Id_usuario = USR.Id_usuario AND USR.Nombre != '".$ing1."' AND ING.Visible = 1 
+                    ORDER BY NombreUSR";
                     $results = mysqli_query($conexion, $query);
                     $rows = '
                             <div class="form-group">
@@ -753,9 +1218,11 @@ if(isset($_GET['Ser'])){
                         ';
                     $i=0;
                     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-                        $rows .= '<option value="'.$row["NombreUSR"].'">'.$row["NombreUSR"].'</option>';
+                        $rows .= '<option value="'.$row["Id_inge"].'">'.$row["NombreUSR"]." ".$row["Apellido1"]." ".$row["Apellido2"].'</option>';
                     }
                     $rows .= '</select></div> ';
+                    
+                    $num_inges = $_GET['num_inges'];
 
                     mysqli_free_result($results);
                     disconnect($conexion);
@@ -771,12 +1238,9 @@ if(isset($_GET['Ser'])){
 
 
     }
-}
+
 
 //INGENIERO 3
-if(isset($_GET['Ser'])){
-    $ser = $_GET['Ser'];
-
 
     if(isset($_GET['num_inges'])){
         $num_inges = $_GET['num_inges'];
@@ -793,8 +1257,14 @@ if(isset($_GET['Ser'])){
 
                     if($num_inges == 3){
 
-                        $query="SELECT USR.Nombre AS 'NombreUSR' FROM Catalogo_de_servicios CATT, Grados_de_complejidad_Ingenieros GCI, Ingenieros ING, Usuarios USR WHERE CATT.Id_grado = GCI.Id_grado AND GCI.Id_ingeniero = ING.Id_ingeniero AND ING.Id_usuario = USR.Id_usuario AND CATT.Nombre = '".$ser."' AND USR.Nombre != '".$ing1."' AND USR.Nombre != '".$ing2."'";
+                        $query="
+                            SELECT USR.Nombre AS 'NombreUSR', USR.Apellido1 AS 'Apellido1', USR.Apellido2 AS 'Apellido2', ING.Id_Ingeniero AS 'Id_inge'
+                            FROM Ingenieros ING, Usuarios USR 
+                            WHERE ING.Id_usuario = USR.Id_usuario AND ING.Id_Ingeniero != ".$ing1." AND ING.Id_Ingeniero != ".$ing2." AND ING.Visible = 1 
+                            ORDER BY NombreUSR";
+                        
                         $results = mysqli_query($conexion, $query);
+                        
                         $rows = '
                                 <div class="form-group">
                                     <label for="Ing">Ingeniero 3: </label>
@@ -803,7 +1273,7 @@ if(isset($_GET['Ser'])){
                             ';
                         $i=0;
                         while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-                            $rows .= '<option value="'.$row["NombreUSR"].'">'.$row["NombreUSR"].'</option>';
+                            $rows .= '<option value="'.$row["Id_inge"].'">'.$row["NombreUSR"]." ".$row["Apellido1"]." ".$row["Apellido2"].'</option>';
                         }
                         $rows .= '</select></div> ';
 
@@ -812,7 +1282,11 @@ if(isset($_GET['Ser'])){
 
                     } else if ($num_inges >= 3){
 
-                        $query="SELECT USR.Nombre AS 'NombreUSR' FROM Catalogo_de_servicios CATT, Grados_de_complejidad_Ingenieros GCI, Ingenieros ING, Usuarios USR WHERE CATT.Id_grado = GCI.Id_grado AND GCI.Id_ingeniero = ING.Id_ingeniero AND ING.Id_usuario = USR.Id_usuario AND CATT.Nombre = '".$ser."' AND USR.Nombre != '".$ing1."' AND USR.Nombre != '".$ing2."'";
+                        $query="
+                            SELECT USR.Nombre AS 'NombreUSR', USR.Apellido1 AS 'Apellido1', USR.Apellido2 AS 'Apellido2', ING.Id_Ingeniero AS 'Id_inge'
+                            FROM Ingenieros ING, Usuarios USR 
+                            WHERE ING.Id_usuario = USR.Id_usuario AND ING.Id_Ingeniero != '".$ing1."' AND ING.Id_Ingeniero != '".$ing2."' AND ING.Visible = 1 
+                            ORDER BY NombreUSR";
                         $results = mysqli_query($conexion, $query);
                         $rows = '
                                 <div class="form-group">
@@ -822,9 +1296,11 @@ if(isset($_GET['Ser'])){
                             ';
                         $i=0;
                         while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-                            $rows .= '<option value="'.$row["NombreUSR"].'">'.$row["NombreUSR"].'</option>';
+                            $rows .= '<option value="'.$row["Id_inge"].'">'.$row["NombreUSR"]." ".$row["Apellido1"]." ".$row["Apellido2"].'</option>';
                         }
                         $rows .= '</select></div> ';
+                        
+                        $num_inges = $_GET['num_inges'];
 
                         mysqli_free_result($results);
                         disconnect($conexion);
@@ -841,13 +1317,9 @@ if(isset($_GET['Ser'])){
 
 
     }
-}                        
+                      
 
 //INGENIERO 4
-
-if(isset($_GET['Ser'])){
-    $ser = $_GET['Ser'];
-
 
     if(isset($_GET['num_inges'])){
         $num_inges = $_GET['num_inges'];
@@ -867,7 +1339,12 @@ if(isset($_GET['Ser'])){
 
                         if($num_inges == 4){
 
-                            $query="SELECT USR.Nombre AS 'NombreUSR' FROM Catalogo_de_servicios CATT, Grados_de_complejidad_Ingenieros GCI, Ingenieros ING, Usuarios USR WHERE CATT.Id_grado = GCI.Id_grado AND GCI.Id_ingeniero = ING.Id_ingeniero AND ING.Id_usuario = USR.Id_usuario AND CATT.Nombre = '".$ser."' AND USR.Nombre != '".$ing1."' AND USR.Nombre != '".$ing2."' AND USR.Nombre != '".$ing3."'";
+                            $query="
+                                SELECT USR.Nombre AS 'NombreUSR', USR.Apellido1 AS 'Apellido1', USR.Apellido2 AS 'Apellido2', ING.Id_Ingeniero AS 'Id_inge'
+                                FROM Ingenieros ING, Usuarios USR 
+                                WHERE ING.Id_usuario = USR.Id_usuario AND ING.Id_Ingeniero != '".$ing1."' AND ING.Id_Ingeniero != '".$ing2."' AND ING.Id_Ingeniero != '".$ing3."' AND ING.Visible = 1 
+                                ORDER BY NombreUSR";
+                            
                             $results = mysqli_query($conexion, $query);
                             $rows = '
                                     <div class="form-group">
@@ -877,9 +1354,11 @@ if(isset($_GET['Ser'])){
                                 ';
                             $i=0;
                             while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
-                                $rows .= '<option                   value="'.$row["NombreUSR"].'">'.$row["NombreUSR"].'</option>';
+                                $rows .= '<option value="'.$row["Id_inge"].'">'.$row["NombreUSR"]." ".$row["Apellido1"]." ".$row["Apellido2"].'</option>';
                             }
                             $rows .= '</select></div> ';
+                            
+                            $num_inges = $_GET['num_inges'];
 
                             mysqli_free_result($results);
                             disconnect($conexion);
@@ -897,6 +1376,6 @@ if(isset($_GET['Ser'])){
 
         }
     } 
-}
+
 
 ?>

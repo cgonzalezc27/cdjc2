@@ -5,7 +5,7 @@
       <div class="form-row justify-content-center">
         <div class="form-group col-lg-7 col-md-12 col-sm-12">
           <label for="numTicket">Ticket #: </label>
-          <input type="text" class="form-control" id="numTicket" name="numTicket" placeholder="Ej. EF00000001345">
+          <input type="text" class="form-control" id="numTicket" name="numTicket" placeholder="Ej. EF00000001345" required>
         </div>
       </div>
 </section>
@@ -15,7 +15,7 @@
       <div class="form-row justify-content-center">
         <div class="form-group col-lg-7 col-md-12 col-sm-12">
           <label for="mesa">Mesa: </label>
-            <select class="form-control" id="SelMesa" name="SelMesa" onchange = "dependencias_mesas_crearT()">
+            <select required class="form-control" id="SelMesa" name="SelMesa" onchange = "dependencias_mesas_crearT()">
                 <!--<option>Mesa1</option>
                 <option>Mesa2</option>
                 -->
@@ -47,18 +47,104 @@
       </div>
 </section>
         
+        
+<!--Número de Servicios-->
+<section>
+    
+     <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "num_categoria_select" style ="display:none">
+          <label for="mesa">Número de servicios: </label>
+            <select required class="form-control" id="num_servicios" name="num_servicios" onchange = "catservicios_elegible1()">
+                <option value = "NULL">Seleccione el número de servicios a asignar...</option>
+                <option value = "1">1</option>
+                <option value = "2">2</option>
+                <option value = "3">3</option>
+                <option value = "4">4</option>
+            </select>
+        </div>
+        
+          
+      </div>
+</section>
+        
+        
+        <!--
+            <label for="cateSer">Categoría de Servicio: </label>
+            <select class="form-control" id="cateSer" name="cateSer" onchange = "servicios_elegible()">
+                <?php
+                    //registrar_ticket(2);
+                ?>
+            </select>
+-->
+        
+<!--Categorias y Servicios-->
+<section>    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "cat_ser1_select" style ="display:none">
+            
+            <div id="response_cat_ser1"></div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "ser1_select" style ="display:none">
+            <div id="response_ser1"></div>
+        </div> 
+    </div>
+
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "cat_ser2_select" style ="display:none">
+            <div id="response_cat_ser2"></div>
+        </div> 
+    </div>
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "ser2_select" style ="display:none">
+            <div id="response_ser2"></div>
+        </div> 
+    </div>
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "cat_ser3_select" style ="display:none">
+            <div id="response_cat_ser3"></div>
+        </div> 
+    </div>
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "ser3_select" style ="display:none">
+            <div id="response_ser3"></div>
+        </div> 
+    </div>
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "cat_ser4_select" style ="display:none">
+            <div id="response_cat_ser4"></div>
+        </div> 
+    </div>
+    
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "ser4_select" style ="display:none">
+            <div id="response_ser4"></div>
+        </div> 
+    </div>
+
+    
+</section>
+        
 <!--Seleccionar Categoria de Servicio-->
 <section>
-      <div class="form-row justify-content-center">
+      <!--<div class="form-row justify-content-center">
         <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "categoria_select" style ="display:none">
           <label for="cateSer">Categoría de Servicio: </label>
             <select class="form-control" id="cateSer" name="cateSer" onchange = "categoria_servicio()">
                 <?php
-                    registrar_ticket(2);
+                    //registrar_ticket(2);
                 ?>
             </select>
         </div>
-       </div>
+       </div>-->
 </section>
 
 <!--Seleccionar Servicio-->
@@ -73,12 +159,16 @@
 
 <!--Duracion Estimada de Trabajo-->
 <section>
-      <div class="form-row justify-content-center">
-        <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "testimado_select" style ="display:none">
-          <label for="duracion">Duracion Estándar (HH:MM:SS): </label>
-          <input type="text" class="form-control" placeholder="Ej. 02:34:00" id="duracion" name="duracion">
+    <div class="form-row justify-content-center">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12" id="tiempo_estimado_select" style="display:none">
+            <label for="duracion">Tiempo estimado *</label>
+            <select required class="form-control" id="duracion" name="duracion" required onchange="calendario()">
+                <?php
+                     obtener_tiempos();
+                ?>
+            </select>
         </div>
-      </div>
+    </div>
 </section>
 
 <!--Fecha y Hora Inicial-->
@@ -86,7 +176,7 @@
       <div class="form-row justify-content-center">
         <div class="form-group col-lg-7 col-md-12 col-sm-12" id = "fecha_hora_select" style ="display:none">
                 <label for="date">Fecha y Hora Inicial: </label>
-                  <input class="form-control" type="datetime-local" value="2018-14-09 06:42" id="fecha_inicio" name="fecha_inicio" onchange="muestra_num_inges()">
+                  <input class="form-control" type="datetime-local" value="2018-14-09 06:42" id="fecha_inicio" name="fecha_inicio" required>
         </div>
       </div>
 </section>
