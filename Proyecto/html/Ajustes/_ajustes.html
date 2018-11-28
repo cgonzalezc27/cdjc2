@@ -1,402 +1,402 @@
-            <h4 class="display-4 titulo_pagina">Ajustes</h4>
-            <section>
-                <div class="accordion" id="accordionExample">
-                    <!--Card 1 Mesas de Ayuda-->
-                    <section>
-                        <div class="card">
-                        <div class="card-header card-header-ajustes" id="headingOne">
-                            <h5 class="mb-0">
-                            <button class="btn btn-link texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+<h4 class="display-4 titulo_pagina">Ajustes</h4>
+<section>
+    <div class="accordion" id="accordionExample">
+        <!--Card 1 Mesas de Ayuda-->
+        <section>
+            <div class="card">
+                <div class="card-header card-header-ajustes" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <i class="material-icons">headset_mic</i> Mesas de Ayuda
-                            </button>
-                            </h5>
-                        </div>
+                        </button>
+                    </h5>
+                </div>
 
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-12 col-sm-12">
-                                        <h4>Crear Nueva Mesa de Ayuda</h4>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                <h4>Crear Nueva Mesa de Ayuda</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9 col-md-12 col-sm-12">
+                                <form method="POST" action="../php/model_registrar_mesa.php">
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="inputPassword4">Razón Social</label>
+                                            <input type="text" name="razonS" class="form-control" id="" placeholder="Web Systems Development" required maxlength="150">
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="inputEmail4">RFC</label>
+                                            <input type="text" name="rfc" class="form-control" id="#" placeholder="ITE238OP92k10" required maxlength="150">
+                                        </div>
+                                    </div>
+                                    <!--  <div class="form-group">
+<label for="inputAddress">Colonia</label>
+<input type="text" class="form-control" id="inputAddress" placeholder="Fracc. San Pablo">
+</div> -->
+                                    <div class="form-group">
+                                        <label for="inputAddress2">Dirección</label>
+                                        <input type="text" name="calle" class="form-control" id="inputAddress2" placeholder="Epigmenio González" required maxlength="30">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="#">Número Exterior</label>
+                                            <input type="text" name="no_ext" class="form-control" id="#" placeholder="520" required maxlength="6">
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="#">Número Interior</label>
+                                            <input type="text" name="no_int" class="form-control" id="#" placeholder="1A" maxlength="6">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="inputCity">Ciudad</label>
+                                            <input type="text" name="ciudad" class="form-control" id="inputCity" placeholder="México" required maxlength="20">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="inputState">Estado</label>
+                                            <input type="text" name="estado" class="form-control" id="inputCity" placeholder="Querétaro" required maxlength="20">
+                                        </div>
+                                        <div class="form-group col-lg-2 col-md-12 col-sm-12">
+                                            <label for="inputZip">Código Postal</label>
+                                            <input type="number" name="cp" class="form-control" id="inputZip" placeholder="76130" required maxlength="5">
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="inputCorreo">Correo Electrónico</label>
+                                            <input type="email" name="correo" class="form-control" id="inputEmail" placeholder="ejemplo@correo.com" required maxlength="60">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="inputCity">Comentario</label>
+                                            <textarea class="form-control" name="descripcion" rows="4" maxlength="200"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminar</button>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-sm-12">
+                                <br>
+                                <div class="card">
+                                    <img class="card-img-top imagen_superior_tarjeta" src="../img/mesa_ayuda.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Mesas Existentes</h5>
+                                        <p class="card-text">Muestra las mesas que ya estan registradas en el sistema...</p>
+                                        <a class="btn btn-primary" href="_consultar_mesas_ayuda.php">Ir ahora</a>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-9 col-md-12 col-sm-12">
-                                        <form method="POST" action="../php/model_registrar_mesa.php">
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="inputPassword4">Razón Social</label>
-                                                    <input type="text" name="razonS" class="form-control" id="" placeholder="Web Systems Development" required maxlength="150">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="inputEmail4">RFC</label>
-                                                    <input type="text" name="rfc" class="form-control" id="#" placeholder="ITE238OP92k10" required maxlength="150">
-                                                </div>
-                                            </div>
-                                          <!--  <div class="form-group">
-                                                <label for="inputAddress">Colonia</label>
-                                                <input type="text" class="form-control" id="inputAddress" placeholder="Fracc. San Pablo">
-                                            </div> -->
-                                            <div class="form-group">
-                                                <label for="inputAddress2">Dirección</label>
-                                                <input type="text" name="calle" class="form-control" id="inputAddress2" placeholder="Epigmenio González" required maxlength="30">
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="#">Número Exterior</label>
-                                                    <input type="text" name="no_ext" class="form-control" id="#" placeholder="520" required maxlength="6">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="#">Número Interior</label>
-                                                    <input type="text" name="no_int" class="form-control" id="#" placeholder="1A" maxlength="6">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="inputCity">Ciudad</label>
-                                                    <input type="text" name="ciudad" class="form-control" id="inputCity" placeholder="México" required maxlength="20">
-                                                </div>
-                                                <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                                    <label for="inputState">Estado</label>
-                                                    <input type="text" name="estado" class="form-control" id="inputCity" placeholder="Querétaro" required maxlength="20">
-                                                </div>
-                                                <div class="form-group col-lg-2 col-md-12 col-sm-12">
-                                                    <label for="inputZip">Código Postal</label>
-                                                    <input type="number" name="cp" class="form-control" id="inputZip" placeholder="76130" required maxlength="5">
-                                                </div>
-                                                <div class="form-group col">
-                                                    <label for="inputCorreo">Correo Electrónico</label>
-                                                    <input type="email" name="correo" class="form-control" id="inputEmail" placeholder="ejemplo@correo.com" required maxlength="60">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-12">
-                                                    <label for="inputCity">Comentario</label>
-                                                    <textarea class="form-control" name="descripcion" rows="4" maxlength="200"></textarea>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Terminar</button>
-                                        </form>
-                                    </div>
 
-                                    <div class="col-lg-3 col-md-12 col-sm-12">
-                                        <br>
-                                        <div class="card">
-                                            <img class="card-img-top imagen_superior_tarjeta" src="../img/mesa_ayuda.png" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Mesas Existentes</h5>
-                                                <p class="card-text">Muestra las mesas que ya estan registradas en el sistema...</p>
-                                                <a class="btn btn-primary" href="_consultar_mesas_ayuda.php">Ir ahora</a>
-                                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Card 2 Dependencias-->
+        <section>
+            <div class="card">
+                <div class="card-header card-header-ajustes" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="material-icons">domain</i> Dependenias
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                <h4>Crear Nueva Dependencia</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9 col-md-12 col-sm-12">
+                                <form method="POST" action="_ajustes.php">
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="inputPassword4">Razón Social *<?php if (isset($errorrazon)) : ?>
+                                                <?=$errorrazon?>
+                                                <?php endif; ?></label>
+                                            <input type="text" class="form-control" id="razonSdep" name="razonSdep" placeholder="Ej. Instituto Nacional Electoral" required maxlength="150">
+
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="inputEmail4">RFC *<?php if (isset($errorrfc)) : ?>
+                                                <?=$errorrfc?>
+                                                <?php endif; ?></label>
+                                            <input type="text" class="form-control" id="rfcdep" name="rfcdep" placeholder="INE4567891123" required maxlength="13">
+
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group">
+<label for="inputAddress">Colonia *<?php if (isset($errorcolonia)) : ?>
+<?=$errorcolonia?>
+<?php endif; ?></label>
+<input type="text" class="form-control" id="coloniadep" name="coloniadep" placeholder="Fracc. San Pablo" required>
+
+</div>-->
+                                    <div class="form-group">
+                                        <label for="inputAddress2">Dirección *<?php if (isset($errorcalle)) : ?>
+                                            <?=$errorcalle?>
+                                            <?php endif; ?></label>
+                                        <input type="text" class="form-control" id="calledep" name="calledep" placeholder="Epigmenio González" required maxlength="30">
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="#">Número Exterior *<?php if (isset($errornum)) : ?>
+                                                <?=$errornum?>
+                                                <?php endif; ?></label>
+                                            <input type="text" class="form-control" id="num1dep" name="num1dep" placeholder="520" required maxlength="6">
+
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="#">Número Interior</label>
+                                            <input type="text" class="form-control" id="num2dep" name="num2dep" placeholder="" maxlength="6">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="inputCity">Ciudad *<?php if (isset($errorciudad)) : ?>
+                                                <?=$errorciudad?>
+                                                <?php endif; ?></label>
+                                            <input type="text" class="form-control" id="ciudaddep" name="ciudaddep" required maxlength="20">
+
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="inputState">Estado *<?php if (isset($errorestado)) : ?>
+                                                <?=$errorestado?>
+                                                <?php endif; ?></label>
+                                            <input type="text" class="form-control" id="estadodep" name="estadodep" placeholder="Querétaro" required maxlength="20">
+
+                                        </div>
+                                        <div class="form-group col-lg-2 col-md-12 col-sm-12">
+                                            <label for="inputZip">C.P *<?php if (isset($errorcp)) : ?>
+                                                <?=$errorcp?>
+                                                <?php endif; ?></label>
+                                            <input type="number" class="form-control" id="cpdep" name="cpdep" placeholder="76130" required>
+
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="inputEncargado">Nombre de Área o Persona Encargada <?php if (isset($errorencargado)) : ?>
+                                                <?=$errorencargado?>
+                                                <?php endif; ?></label>
+                                            <input type="text" class="form-control" id="encrgadodep" name="encargadodep" placeholder="Ej. Juan Juanes Juanito" maxlength="80">
+
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="inputEncargado">Tiempo máximo de espera del dependencia *</label>
+                                            <select class="form-control" id="tesperadep" name="tesperadep" required>
+                                                <?php
+obtener_tiempos();
+?>
+                                            </select>
+
+
+                                            <!--<input type="text" class="form-control" id="tesperadep" name="tesperadep" placeholder="Ej. 00:05">-->
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <label for="mesa">Mesa *: </label>
+                                            <select class="form-control" id="mesadep" name="mesadep" required>
+                                                <?php
+obtener_mesas();
+?>
+                                            </select>
                                         </div>
 
+                                        <div class="form-group col-12">
+                                            <label for="comentariodep">Comentario</label>
+                                            <textarea class="form-control" rows="4" id="comentariodep" name="comentariodep"></textarea>
+                                        </div>
+                                    </div>
 
+                                    <button type="submit" class="btn btn-primary">Terminar</button>
+
+                                    <!--<input type="submit" value="Terminar" name="submit" class="btn btn-primary">-->
+                                </form>
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-sm-12">
+                                <br>
+                                <div class="card ">
+                                    <img class="card-img-top imagen_superior_tarjeta" src="../img/mesa_ayuda.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Dependenias Existentes</h5>
+                                        <p class="card-text">Muestra las Dependenias que ya estan registradas en el sistema...</p>
+                                        <a class="btn btn-primary" href="_consultar_clientes.php">Ir ahora</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </section>
+                </div>
+            </div>
+        </section>
 
-                    <!--Card 2 Dependencias-->
-                    <section>
-                        <div class="card">
-                        <div class="card-header card-header-ajustes" id="headingTwo">
-                            <h5 class="mb-0">
-                            <button class="btn btn-link texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                <i class="material-icons">domain</i> Dependenias
-                            </button>
-                            </h5>
-                        </div>
+        <!--Card 3 Servicios-->
+        <section>
+            <div class="card">
+                <div class="card-header card-header-ajustes" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="material-icons">work</i> Servicios
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
 
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
+
+
+
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <br>
                                 <div class="row">
-                                    <div class="col-lg-5 col-md-12 col-sm-12">
-                                        <h4>Crear Nueva Dependencia</h4>
+                                    <div class="col">
+                                        <h4>Servicios</h4>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-9 col-md-12 col-sm-12">
+                                    <div class="col-lg-8 col-md-8 col-sm-12">
+
+                                        <br>
+                                        <div class="form-row">
+                                            <div class="form-text col">
+                                                <h4>Crear Nuevo Servicio</h4>
+                                            </div>
+                                        </div>
                                         <form method="POST" action="_ajustes.php">
                                             <div class="form-row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="inputPassword4">Razón Social *<?php if (isset($errorrazon)) : ?>
-                                                        <?=$errorrazon?>
-                                                    <?php endif; ?></label>
-                                                    <input type="text" class="form-control" id="razonSdep" name="razonSdep" placeholder="Ej. Instituto Nacional Electoral" required maxlength="150">
-
+                                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                                    <label for="nombreServicio">Nombre *</label>
+                                                    <input type="text" class="form-control" id="nombreServicio" name = "nombreServicio" placeholder="Ej. Instalar Computadora" required maxlength="50">
                                                 </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="inputEmail4">RFC *<?php if (isset($errorrfc)) : ?>
-                                                        <?=$errorrfc?>
-                                                    <?php endif; ?></label>
-                                                    <input type="text" class="form-control" id="rfcdep" name="rfcdep" placeholder="INE4567891123" required maxlength="13">
 
-                                                </div>
-                                            </div>
-                                            <!--<div class="form-group">
-                                                <label for="inputAddress">Colonia *<?php if (isset($errorcolonia)) : ?>
-                                                        <?=$errorcolonia?>
-                                                    <?php endif; ?></label>
-                                                <input type="text" class="form-control" id="coloniadep" name="coloniadep" placeholder="Fracc. San Pablo" required>
 
-                                            </div>-->
-                                            <div class="form-group">
-                                                <label for="inputAddress2">Dirección *<?php if (isset($errorcalle)) : ?>
-                                                        <?=$errorcalle?>
-                                                    <?php endif; ?></label>
-                                                <input type="text" class="form-control" id="calledep" name="calledep" placeholder="Epigmenio González" required maxlength="30">
-
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="#">Número Exterior *<?php if (isset($errornum)) : ?>
-                                                        <?=$errornum?>
-                                                    <?php endif; ?></label>
-                                                    <input type="text" class="form-control" id="num1dep" name="num1dep" placeholder="520" required maxlength="6">
-
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="#">Número Interior</label>
-                                                    <input type="text" class="form-control" id="num2dep" name="num2dep" placeholder="" maxlength="6">
+                                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                                    <label for="tie">Tiempo estándar del trabajo *</label>
+                                                    <select class="form-control" id="testandarser" name="testandarser" required>
+                                                        <?php
+obtener_tiempos();
+?>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                     <label for="inputCity">Ciudad *<?php if (isset($errorciudad)) : ?>
-                                                        <?=$errorciudad?>
-                                                    <?php endif; ?></label>
-                                                    <input type="text" class="form-control" id="ciudaddep" name="ciudaddep" required maxlength="20">
-
-                                                </div>
-                                                <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                                    <label for="inputState">Estado *<?php if (isset($errorestado)) : ?>
-                                                        <?=$errorestado?>
-                                                    <?php endif; ?></label>
-                                                    <input type="text" class="form-control" id="estadodep" name="estadodep" placeholder="Querétaro" required maxlength="20">
-
-                                                </div>
-                                                <div class="form-group col-lg-2 col-md-12 col-sm-12">
-                                                    <label for="inputZip">C.P *<?php if (isset($errorcp)) : ?>
-                                                        <?=$errorcp?>
-                                                    <?php endif; ?></label>
-                                                    <input type="number" class="form-control" id="cpdep" name="cpdep" placeholder="76130" required>
-
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="inputEncargado">Nombre de Área o Persona Encargada <?php if (isset($errorencargado)) : ?>
-                                                        <?=$errorencargado?>
-                                                    <?php endif; ?></label>
-                                                    <input type="text" class="form-control" id="encrgadodep" name="encargadodep" placeholder="Ej. Juan Juanes Juanito" maxlength="80">
-
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="inputEncargado">Tiempo máximo de espera del dependencia *</label>
-                                                    <select class="form-control" id="tesperadep" name="tesperadep" required>
-                                                            <?php
-                                                                 obtener_tiempos();
-                                                            ?>
-                                                        </select>
-
-
-                                                    <!--<input type="text" class="form-control" id="tesperadep" name="tesperadep" placeholder="Ej. 00:05">-->
+                                                <div class="form-group col">
+                                                    <label for="exampleFormControlSelect1">Categoría de Servicio *</label>
+                                                    <select class="form-control" id="catSerSelect" name = "catSerSelect" required>
+                                                        <!--Cambiar aqui por la funcion necesaria-->
+                                                        <?php
+obtener_cat_servicio();
+div?>
+                                                    </select>
                                                 </div>
                                             </div>
+
                                             <div class="form-row">
-
-                                                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="mesa">Mesa *: </label>
-                                                        <select class="form-control" id="mesadep" name="mesadep" required>
-                                                            <?php
-                                                                obtener_mesas();
-                                                            ?>
-                                                        </select>
-                                                    </div>
-
                                                 <div class="form-group col-12">
-                                                    <label for="comentariodep">Comentario</label>
-                                                    <textarea class="form-control" rows="4" id="comentariodep" name="comentariodep"></textarea>
+                                                    <label for="inputCity">Descripción</label>
+                                                    <textarea class="form-control" rows="4" id = "descripcionSer" name="descripcionSer" maxlength="150"></textarea>
                                                 </div>
                                             </div>
-
                                             <button type="submit" class="btn btn-primary">Terminar</button>
-
-                                            <!--<input type="submit" value="Terminar" name="submit" class="btn btn-primary">-->
                                         </form>
                                     </div>
-
-                                    <div class="col-lg-3 col-md-12 col-sm-12">
-                                        <br>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
                                         <div class="card ">
-                                            <img class="card-img-top imagen_superior_tarjeta" src="../img/mesa_ayuda.png" alt="Card image cap">
+                                            <img class="card-img-top imagen_superior_tarjeta" src="../img/cat_servicio.png" alt="Card image cap">
                                             <div class="card-body">
-                                                <h5 class="card-title">Dependenias Existentes</h5>
-                                                <p class="card-text">Muestra las Dependenias que ya estan registradas en el sistema...</p>
-                                                <a class="btn btn-primary" href="_consultar_clientes.php">Ir ahora</a>
+                                                <h5 class="card-title">Servicios Existentes</h5>
+                                                <p class="card-text">Muestra los servicio que ya estan registrados en el sistema...</p>
+                                                <a class="btn btn-primary" href="_consultar_servicios.php">Ir ahora</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    </section>
+                            </div> 
 
-                    <!--Card 3 Servicios-->
-                    <section>
-                        <div class="card">
-                        <div class="card-header card-header-ajustes" id="headingThree">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="material-icons">work</i> Servicios
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div class="card-body">
+
+
+
+
+
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <br>
                                 <div class="row">
-                                    
-                                            
-                                            
-                                            
-                                           <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h4>Servicios</h4>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-8 col-md-8 col-sm-12">
-
-                                                            <br>
-                                                            <div class="form-row">
-                                                                <div class="form-text col">
-                                                                    <h4>Crear Nuevo Servicio</h4>
-                                                                </div>
-                                                            </div>
-                                                        <form method="POST" action="_ajustes.php">
-                                                            <div class="form-row">
-                                                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                                                                    <label for="nombreServicio">Nombre *</label>
-                                                                    <input type="text" class="form-control" id="nombreServicio" name = "nombreServicio" placeholder="Ej. Instalar Computadora" required maxlength="50">
-                                                                </div>
-                                                            
-                                                            
-                                                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                                                                    <label for="tie">Tiempo estándar del trabajo *</label>
-                                                                    <select class="form-control" id="testandarser" name="testandarser" required>
-                                                                        <?php
-                                                                             obtener_tiempos();
-                                                                        ?>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row">
-                                                                <div class="form-group col">
-                                                                    <label for="exampleFormControlSelect1">Categoría de Servicio *</label>
-                                                                    <select class="form-control" id="catSerSelect" name = "catSerSelect" required>
-                                                                        <!--Cambiar aqui por la funcion necesaria-->
-                                                                        <?php
-                                                                            //obtener_marcas();
-                                                                        div?>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-row">
-                                                                <div class="form-group col-12">
-                                                                    <label for="inputCity">Descripción</label>
-                                                                    <textarea class="form-control" rows="4" id = "descripcionSer" name="descripcionSer" maxlength="150"></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary">Terminar</button>
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                                        <div class="card ">
-                                                        <img class="card-img-top imagen_superior_tarjeta" src="../img/cat_servicio.png" alt="Card image cap">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Servicios Existentes</h5>
-                                                            <p class="card-text">Muestra los servicio que ya estan registrados en el sistema...</p>
-                                                            <a class="btn btn-primary" href="_consultar_servicios.php">Ir ahora</a>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                            
-                                    
-                                            
-                                    
-                                    
-                                    
-                                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <h4>Categorías de Servicios</h4>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-8 col-md-8 col-sm-12">
-
-                                                            <br>
-                                                            <div class="form-row">
-                                                                <div class="form-text col">
-                                                                    <h4>Crear Nueva Categoría Servicio</h4>
-                                                                </div>
-                                                            </div>
-                                                        <form method="POST" action="_ajustes.php">
-                                                            <div class="form-row">
-                                                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                                                    <label for="nombreModDis">Nombre *</label>
-                                                                    <input type="text" class="form-control" id="nombreCatServicio" name = "nombreCatServicio" placeholder="Ej. Instalar Equipo" required maxlength="50">
-                                                                </div>
-                                                            </div>
-                                                            
-
-                                                            <div class="form-row">
-                                                                <div class="form-group col-12">
-                                                                    <label for="inputCity">Descripción</label>
-                                                                    <textarea class="form-control" rows="4" id = "descripcionCatSer" name="descripcionCatSer" maxlength="150"></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary">Terminar</button>
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                                        <br>
-                                                        <div class="card ">
-                                                        <img class="card-img-top imagen_superior_tarjeta" src="../img/cat_servicio.png" alt="Card image cap">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Categorías de Servicio Existentes</h5>
-                                                            <p class="card-text">Muestra las categorías de servicio que ya estan registradas en el sistema...</p>
-                                                            <a class="btn btn-primary" href="_consultar_catservicio.php">Ir ahora</a>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
+                                    <div class="col">
+                                        <h4>Categorías de Servicios</h4>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-12">
+
+                                        <br>
+                                        <div class="form-row">
+                                            <div class="form-text col">
+                                                <h4>Crear Nueva Categoría Servicio</h4>
+                                            </div>
+                                        </div>
+                                        <form method="POST" action="_ajustes.php">
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                                    <label for="nombreModDis">Nombre *</label>
+                                                    <input type="text" class="form-control" id="nombreCatServicio" name = "nombreCatServicio" placeholder="Ej. Instalar Equipo" required maxlength="50">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label for="inputCity">Descripción</label>
+                                                    <textarea class="form-control" rows="4" id = "descripcionCatSer" name="descripcionCatSer" maxlength="150"></textarea>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Terminar</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <br>
+                                        <div class="card ">
+                                            <img class="card-img-top imagen_superior_tarjeta" src="../img/cat_servicio.png" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Categorías de Servicio Existentes</h5>
+                                                <p class="card-text">Muestra las categorías de servicio que ya estan registradas en el sistema...</p>
+                                                <a class="btn btn-primary" href="_consultar_catservicio.php">Ir ahora</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
                     </div>
-                    </section>
+                </div>
+            </div>
+        </section>
 
-                    <!--Card 4 Dispositivos-->
-                    <section>
-                        <div class="card">
-                        <div class="card-header card-header-ajustes" id="headingFour">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"><i class="material-icons">devices_other</i> Dispositivos
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="row">
+        <!--Card 4 Dispositivos-->
+        <section>
+            <div class="card">
+                <div class="card-header card-header-ajustes" id="headingFour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"><i class="material-icons">devices_other</i> Dispositivos
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
 
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
                                 <br>
                                 <div class="row">
                                     <div class="col">
@@ -450,12 +450,12 @@
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-sm-12">
 
-                                            <br>
-                                            <div class="form-row">
-                                                <div class="form-text col">
-                                                    <h4>Registrar Nuevo Modelo de Dispositivos</h4>
-                                                </div>
+                                        <br>
+                                        <div class="form-row">
+                                            <div class="form-text col">
+                                                <h4>Registrar Nuevo Modelo de Dispositivos</h4>
                                             </div>
+                                        </div>
                                         <form method="POST" action="_ajustes.php">
                                             <div class="form-row">
                                                 <div class="form-group col">
@@ -469,8 +469,8 @@
                                                     <label for="exampleFormControlSelect1">Marca de Dispositivo *</label>
                                                     <select class="form-control" id="marcaDisSelect" name = "marcaDisSelect" required>
                                                         <?php
-                                                            obtener_marcas();
-                                                div        ?>
+obtener_marcas();
+div        ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -497,483 +497,350 @@
                                 </div>
                             </div>
 
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <h4>Tipo de Dispositivos</h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-8 col-md-8 col-sm-12">
-                                                <form method="POST" action="../php/_ajustes.php">
-                                                    <br>
-                                                    <div class="form-row">
-                                                        <div class="form-text col">
-                                                            <h4>Registrar Nuevo Tipo de Dispositivos</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col">
-                                                            <label for="inputPassword4">Nombre *</label>
-                                                            <input type="text" class="form-control" id="nombreTipoDis" name="nombreTipoDis" placeholder="Ej. Instalación de Hardware" required maxlength="50">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col">
-                                                            <label for="exampleFormControlSelect1">Clase de Dispositivo *</label>
-                                                            <select class="form-control" id="claseTipoDis" name="claseTipoDis" required>
-                                                                <?php
-                                                                    obtener_clases();
-                                                                ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-row">
-                                                        <div class="form-group col-12">
-                                                            <label for="inputCity">Descripción</label>
-                                                            <textarea class="form-control" rows="4" id="comentarioTipoDis" name="comentarioTipoDis" maxlenght="150"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Terminar</button>
-                                                </form>
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-12">
-                                                <div class="card">
-                                                    <img class="card-img-top imagen_superior_tarjeta" src="../img/cat_servicio.png" alt="Card image cap">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Tipo de Dispositivos Existentes</h5>
-                                                        <p class="card-text">Muestra los tipos de los distintos dispositivos que ya estan registradas en el sistema...</p>
-                                                        <a class="btn btn-primary" href="./_consultar_tipodis.php">Ir ahora</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </section>
-
-                    <!--Card 5 Usuarios-->
-                    <section>
-                        <div class="card">
-                        <div class="card-header card-header-ajustes" id="headingFive">
-                            <h5 class="mb-0">
-                            <button class="btn btn-link texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                                <i class="material-icons">person</i> Usuarios
-                            </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                            <div class="card-body">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <br>
                                 <div class="row">
-                                    <div class="col-lg-5 col-md-12 col-sm-12">
-                                        <h4>Crear Nuevo Usuario</h4>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="row">
-
-                                    <div class="col-lg-9 col-md-12 col-sm-12">
-                                        <form method="POST" action="_ajustes.php" enctype="multipart/form-data">
-
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-4 col-md-12 col-sm-12">
-                                                    <label for="inputPassword4">Nombre(s)*</label>
-                                                    <input type="text" class="form-control" id="nombre_usr" name = "nombre_usr" placeholder="Ej. Juan Armando" required maxlength="50">
-                                                </div>
-                                                <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                                    <label for="inputEmail4">Apellido Paterno*</label>
-                                                    <input type="text" class="form-control" id="apellido1_usr" name="apellido1_usr" accept=""placeholder="Ej. Hernández" required maxlength="25">
-                                                </div>
-                                                <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                                    <label for="inputEmail4">Apellido Materno*</label>
-                                                    <input type="text" class="form-control" id="apellido2_usr" name="apellido2_usr" placeholder="Ej. Llapur" required maxlength="25">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-4 col-md-12 col-sm-12">
-                                                    <label for="inputPassword4">RFC*</label>
-                                                    <input type="text" class="form-control" id="rfc_usr" name="rfc_usr" placeholder="RFC" required maxlength="13">
-                                                </div>
-                                                <div class="form-group col-lg-4 col-md-12 col-sm-12">
-                                                    <label for="inputEmail4">Nombre de Usuario*</label>
-                                                    <input type="text" class="form-control" id="mote_usr" name="mote_usr" placeholder="Ej. JAHL" required maxlength="30">
-                                                </div>
-                                                <div class="form-group col-lg-4 col-md-12 col-sm-12">
-                                                    <label for="inputEmail4">Contraseña*</label>
-                                                    <input type="text" class="form-control" id="pass_usr" name="pass_usr" value="admin" readonly maxlength="65">
-                                                </div>
-                                            </div>
-                                            <!--<div class="form-group">
-                                                <label for="inputAddress">Colonia*</label>
-                                                <input type="text" class="form-control" id="colonia_usr" name="colonia_usr" placeholder="Fracc. San Pablo" required>
-                                            </div>-->
-                                            <div class="form-group">
-                                                <label for="inputAddress2">Dirección*</label>
-                                                <input type="text" class="form-control" id="calle_usr" name="calle_usr" placeholder="Epigmenio González" required maxlength="100">
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="#">Número Exterior*</label>
-                                                    <input type="text" class="form-control" id="num1_usr" name="num1_usr" placeholder="520" required maxlength="6">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="#">Número Interior</label>
-                                                    <input type="text" class="form-control" id="num2_usr" name="num2_usr" placeholder="" maxlength="6">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-lg -6 col-md-6 col-sm-12">
-                                                    <label for="inputCity">Ciudad*</label>
-                                                    <input type="text" class="form-control" id="ciudad_usr" name="ciudad_usr" required maxlength="20">
-                                                </div>
-                                                <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                                    <label for="inputState">Estado*</label>
-                                                    <input type="text" class="form-control" id="estado_usr" name="estado_usr" placeholder="Querétaro" required maxlength="20">
-                                                </div>
-                                                <div class="form-group col-lg-2 col-md-12 col-sm-12">
-                                                    <label for="inputZip">Código Postal*</label>
-                                                    <input type="number" class="form-control" id="cp_usr" name="cp_usr" placeholder="76130" required required maxlength="5">
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <label for="inputCorreo">Correo Electrónico*</label>
-                                                    <input type="email" class="form-control" id="mail_usr" name="mail_usr" placeholder="ejemplo@correo.com" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-12">
-                                                    <label for="exampleFormControlSelect1">Rol de Usuario*</label>
-                                                        <select class="form-control" id="rol_usr" name="rol_usr" required>
-                                                          <?php
-                                                                obtener_roles();
-                                                            ?>
-                                                        </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group col-12">
-                                                    <label for="exampleFormPhoto">Subir Foto de Usuario*</label>
-                                                    <div>
-                                                        <input type="file" id="Foto" name="Foto" required>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Terminar</button>
-                                        </form>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-12 col-sm-12">
-                                        <br>
-                                        <div class="card">
-                                            <img class="card-img-top imagen_superior_tarjeta" src="../img/user.png" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Usuarios Existentes</h5>
-                                                <p class="card-text">Muestra los usuarios que ya estan registrados en el sistema...</p>
-                                                <a class="btn btn-primary" href="_consultar_usuarios_general.php">Ir ahora</a>
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </section>
-
-                    <!--Card 6 Roles de Usuario-->
-                    <section>
-                        <div class="card">
-                        <div class="card-header card-header-ajustes" id="headingSix">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                    <i class="material-icons">people</i> Roles de Usuario
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-12 col-sm-12">
-                                        <h4>Crear Nuevo Rol de Usuario</h4>
+                                    <div class="col">
+                                        <h4>Tipo de Dispositivos</h4>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-9 col-md-12 col-sm-12">
-                                        <form>
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-5 col-md-12 col-sm-12">
-                                                    <label for="inputPassword4">Nombre de Rol</label>
-                                                    <input type="text" class="form-control" id="#" placeholder="Ej. Coordinador de Inventario">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group col-lg-5 col-md-12 col-sm-12">
-                                                    <label for="inputPassword4">Permisos asignables</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="CatalogoServicio1">
-                                                        <label class="form-check-label" for="permisoCheck1">Permiso 1</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck2">
-                                                        <label class="form-check-label" for="permisoCheck2">Permiso 2</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck3">
-                                                        <label class="form-check-label" for="permisoCheck3">Permiso 3</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck4">
-                                                        <label class="form-check-label" for="permisoCheck4">Permiso 4</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck5">
-                                                        <label class="form-check-label" for="permisoCheck5">Permiso 5</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck6">
-                                                        <label class="form-check-label" for="permisoCheck6">Permiso 6</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck7">
-                                                        <label class="form-check-label" for="permisoCheck7">Permiso 7</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck8">
-                                                        <label class="form-check-label" for="permisoCheck8">Permiso 8</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck10">
-                                                        <label class="form-check-label" for="permisoCheck10">Permiso 10</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck11">
-                                                        <label class="form-check-label" for="permisoCheck11">Permiso 11</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck12">
-                                                        <label class="form-check-label" for="permisoCheck12">Permiso 12</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck13">
-                                                        <label class="form-check-label" for="permisoCheck13">Permiso 13</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck14">
-                                                        <label class="form-check-label" for="permisoCheck14">Permiso 14</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck15">
-                                                        <label class="form-check-label" for="permisoCheck15">Permiso 15</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck16">
-                                                        <label class="form-check-label" for="permisoCheck16">Permiso 16</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck17">
-                                                        <label class="form-check-label" for="permisoCheck17">Permiso 17</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck18">
-                                                        <label class="form-check-label" for="permisoCheck18">Permiso 18</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck19">
-                                                        <label class="form-check-label" for="permisoCheck19">Permiso 19</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck20">
-                                                        <label class="form-check-label" for="permisoCheck20">Permiso 20</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck21">
-                                                        <label class="form-check-label" for="permisoCheck21">Permiso 21</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck22">
-                                                        <label class="form-check-label" for="permisoCheck22">Permiso 22</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck23">
-                                                        <label class="form-check-label" for="permisoCheck23">Permiso 23</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck24">
-                                                        <label class="form-check-label" for="permisoCheck24">Permiso 24</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck25">
-                                                        <label class="form-check-label" for="permisoCheck25">Permiso 25</label>
-                                                    </div>
-                                                </div>
-                                                <!--<div class="col-3">
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck1">
-                                                        <label class="form-check-label" for="permisoCheck1">Permiso 1</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck2">
-                                                        <label class="form-check-label" for="permisoCheck2">Permiso 2</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck3">
-                                                        <label class="form-check-label" for="permisoCheck3">Permiso 3</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck4">
-                                                        <label class="form-check-label" for="permisoCheck4">Permiso 4</label>
-                                                    </div>
-                                                    <div class="form-check col-form-label">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck5">
-                                                        <label class="form-check-label" for="permisoCheck5">Permiso 5</label>
-                                                    </div>
-                                                    <div class="form-check form-control">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck6">
-                                                        <label class="form-check-label" for="permisoCheck6">Permiso 6</label>
-                                                    </div>
-                                                    <div class="form-check form-control">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck7">
-                                                        <label class="form-check-label" for="permisoCheck7">Permiso 7</label>
-                                                    </div>
-                                                    <div class="form-check form-control">
-                                                        <input class="form-check-input form-" type="checkbox" value="" id="permisoCheck8">
-                                                        <label class="form-check-label" for="permisoCheck8">Permiso 8</label>
-                                                    </div>
-                                                </div>-->
-                                            </div>
-
-
-                                            <div class="form-row">
-                                                <div class="form-group col-12">
-                                                    <label for="inputCity">Descripción</label>
-                                                    <textarea class="form-control" rows="4"></textarea>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Terminar</button>
-                                            <br><br><br><br>
-                                        </form>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-12 col-msm-12">
-                                        <br>
-                                        <div class="card">
-                                            <img class="card-img-top imagen_superior_tarjeta" src="../img/rol_usuario.png" alt="imagen servicios">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Roles de Usuario Existentes</h5>
-                                                <p class="card-text">Muestra los roles de usuario ya existentes en el sistema...</p>
-                                                <a class="btn btn-primary" href="./_consultar_roles.php">Ir ahora</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </section>
-
-                    <!--Card 7 Manuales-->
-                    <section>
-                        <div class="card">
-                        <div class="card-header card-header-ajustes" id="headingSeven">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                    <i class="material-icons">library_books</i> Subir Manuales
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-12 col-sm-12">
-                                        <h4>Subir Manuales</h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-9 col-md-12 col-sm-12">
-                                        <form action="../php/_ajustes.php" method="post" enctype="multipart/form-data">
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-8 col-md-6 col-sm-12">
-                                                    <label for="exampleFormPhoto">Nombre del Manual</label>
-                                                    <input name = "NombreManual" type="text" class="form-control" id="#" placeholder="Ej. Instalación de Windows" required maxlength="150">
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label for="customFile">Subir Archivo PDF</label>
-                                                    <input type="file" id="customFile" name = "ManualArchivo" required>
-
-                                                </div>
-                                                <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                                    <label for="exampleFormPhoto">Versión del archivo</label>
-                                                    <input type="text" class="form-control" id="#" placeholder="Ej. ver. 1.2"  name ="VersionManual" required maxlength="5">
-                                                </div>
-
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-5 col-md-12 col-sm-12">
-                                                    <label for="inputPassword4">Catálogos de Servicio Asignables</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <?= $lista_servicios_manuales?>
-                                            </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12">
+                                        <form method="POST" action="../php/_ajustes.php">
                                             <br>
-
+                                            <div class="form-row">
+                                                <div class="form-text col">
+                                                    <h4>Registrar Nuevo Tipo de Dispositivos</h4>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col">
+                                                    <label for="inputPassword4">Nombre *</label>
+                                                    <input type="text" class="form-control" id="nombreTipoDis" name="nombreTipoDis" placeholder="Ej. Instalación de Hardware" required maxlength="50">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col">
+                                                    <label for="exampleFormControlSelect1">Clase de Dispositivo *</label>
+                                                    <select class="form-control" id="claseTipoDis" name="claseTipoDis" required>
+                                                        <?php
+obtener_clases();
+?>
+                                                    </select>
+                                                </div>
+                                            </div>
 
                                             <div class="form-row">
                                                 <div class="form-group col-12">
                                                     <label for="inputCity">Descripción</label>
-                                                    <textarea name = "DescripcionManual" class="form-control" rows="4" maxlength="150"></textarea>
+                                                    <textarea class="form-control" rows="4" id="comentarioTipoDis" name="comentarioTipoDis" maxlenght="150"></textarea>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Terminar</button>
-                                            <br><br><br><br>
                                         </form>
                                     </div>
-
-                                    <div class="col-lg-3 col-md-12 col-sm-12">
-                                        <br>
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
                                         <div class="card">
-                                            <img class="card-img-top imagen_superior_tarjeta" src="../img/manual.png" alt="imagen servicios">
+                                            <img class="card-img-top imagen_superior_tarjeta" src="../img/cat_servicio.png" alt="Card image cap">
                                             <div class="card-body">
-                                                <h5 class="card-title">Manuales de Usuario Existentes</h5>
-                                                <p class="card-text">Muestra los manuales de usuario ya existentes en el sistema...</p>
-                                                <a class="btn btn-primary" href="_consultar_manuales.php">Ir ahora</a>
+                                                <h5 class="card-title">Tipo de Dispositivos Existentes</h5>
+                                                <p class="card-text">Muestra los tipos de los distintos dispositivos que ya estan registradas en el sistema...</p>
+                                                <a class="btn btn-primary" href="./_consultar_tipodis.php">Ir ahora</a>
                                             </div>
                                         </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Card 5 Usuarios-->
+        <section>
+            <div class="card">
+                <div class="card-header card-header-ajustes" id="headingFive">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                            <i class="material-icons">person</i> Usuarios
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                <h4>Crear Nuevo Usuario</h4>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+
+                            <div class="col-lg-9 col-md-12 col-sm-12">
+                                <form method="POST" action="_ajustes.php" enctype="multipart/form-data">
+
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                                            <label for="inputPassword4">Nombre(s)*</label>
+                                            <input type="text" class="form-control" id="nombre_usr" name = "nombre_usr" placeholder="Ej. Juan Armando" required maxlength="50">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="inputEmail4">Apellido Paterno*</label>
+                                            <input type="text" class="form-control" id="apellido1_usr" name="apellido1_usr" accept=""placeholder="Ej. Hernández" required maxlength="25">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="inputEmail4">Apellido Materno*</label>
+                                            <input type="text" class="form-control" id="apellido2_usr" name="apellido2_usr" placeholder="Ej. Llapur" required maxlength="25">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                                            <label for="inputPassword4">RFC*</label>
+                                            <input type="text" class="form-control" id="rfc_usr" name="rfc_usr" placeholder="RFC" required maxlength="13">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                                            <label for="inputEmail4">Nombre de Usuario*</label>
+                                            <input type="text" class="form-control" id="mote_usr" name="mote_usr" placeholder="Ej. JAHL" required maxlength="30">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-12 col-sm-12">
+                                            <label for="inputEmail4">Contraseña*</label>
+                                            <input type="text" class="form-control" id="pass_usr" name="pass_usr" value="admin" readonly maxlength="65">
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group">
+<label for="inputAddress">Colonia*</label>
+<input type="text" class="form-control" id="colonia_usr" name="colonia_usr" placeholder="Fracc. San Pablo" required>
+</div>-->
+                                    <div class="form-group">
+                                        <label for="inputAddress2">Dirección*</label>
+                                        <input type="text" class="form-control" id="calle_usr" name="calle_usr" placeholder="Epigmenio González" required maxlength="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="#">Número Exterior*</label>
+                                            <input type="text" class="form-control" id="num1_usr" name="num1_usr" placeholder="520" required maxlength="6">
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="#">Número Interior</label>
+                                            <input type="text" class="form-control" id="num2_usr" name="num2_usr" placeholder="" maxlength="6">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg -6 col-md-6 col-sm-12">
+                                            <label for="inputCity">Ciudad*</label>
+                                            <input type="text" class="form-control" id="ciudad_usr" name="ciudad_usr" required maxlength="20">
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="inputState">Estado*</label>
+                                            <input type="text" class="form-control" id="estado_usr" name="estado_usr" placeholder="Querétaro" required maxlength="20">
+                                        </div>
+                                        <div class="form-group col-lg-2 col-md-12 col-sm-12">
+                                            <label for="inputZip">Código Postal*</label>
+                                            <input type="number" class="form-control" id="cp_usr" name="cp_usr" placeholder="76130" required required maxlength="5">
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label for="inputCorreo">Correo Electrónico*</label>
+                                            <input type="email" class="form-control" id="mail_usr" name="mail_usr" placeholder="ejemplo@correo.com" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="exampleFormControlSelect1">Rol de Usuario*</label>
+                                            <select class="form-control" id="rol_usr" name="rol_usr" required>
+                                                <?php
+obtener_roles();
+?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="exampleFormPhoto">Subir Foto de Usuario*</label>
+                                            <div>
+                                                <input type="file" id="Foto" name="Foto" required>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminar</button>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-sm-12">
+                                <br>
+                                <div class="card">
+                                    <img class="card-img-top imagen_superior_tarjeta" src="../img/user.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Usuarios Existentes</h5>
+                                        <p class="card-text">Muestra los usuarios que ya estan registrados en el sistema...</p>
+                                        <a class="btn btn-primary" href="_consultar_usuarios_general.php">Ir ahora</a>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Card 6 Roles de Usuario-->
+        <section>
+            <div class="card">
+                <div class="card-header card-header-ajustes" id="headingSix">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <i class="material-icons">people</i> Roles de Usuario
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                <h4>Crear Nuevo Rol de Usuario</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9 col-md-12 col-sm-12">
+                                <form action="../php/_ajustes.php" method="post" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-8 col-md-6 col-sm-12">
+                                            <label for="exampleFormPhoto">Nombre del Rol</label>
+                                            <input name = "NombreRol" type="text" class="form-control" id="#" placeholder="Ej. Coordinador de Inventario" required maxlength="150">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-12 col-sm-12">
+                                            <label for="inputPassword4">Permisos asignables</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <?=$lista_permisos_asignables?>
+                                    </div>
+                                    <br>
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="inputCity">Descripción</label>
+                                            <textarea name = "DescripcionRol" class="form-control" rows="4" maxlength="150"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminar</button>
+                                    <br><br><br><br>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-msm-12">
+                                <br>
+                                <div class="card">
+                                    <img class="card-img-top imagen_superior_tarjeta" src="../img/rol_usuario.png" alt="imagen servicios">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Roles de Usuario Existentes</h5>
+                                        <p class="card-text">Muestra los roles de usuario ya existentes en el sistema...</p>
+                                        <a class="btn btn-primary" href="./_consultar_roles.php">Ir ahora</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </section>
-
-
                 </div>
-            </section>
+            </div>
+        </section>
+
+        <!--Card 7 Manuales-->
+        <section>
+            <div class="card">
+                <div class="card-header card-header-ajustes" id="headingSeven">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed texto-ajustes" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            <i class="material-icons">library_books</i> Subir Manuales
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                <h4>Subir Manuales</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9 col-md-12 col-sm-12">
+                                <form action="../php/_ajustes.php" method="post" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-8 col-md-6 col-sm-12">
+                                            <label for="exampleFormPhoto">Nombre del Manual</label>
+                                            <input name = "NombreManual" type="text" class="form-control" id="#" placeholder="Ej. Instalación de Windows" required maxlength="150">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label for="customFile">Subir Archivo PDF</label>
+                                            <input type="file" id="customFile" name = "ManualArchivo" required>
+
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                            <label for="exampleFormPhoto">Versión del archivo</label>
+                                            <input type="text" class="form-control" id="#" placeholder="Ej. ver. 1.2"  name ="VersionManual" required maxlength="5">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5 col-md-12 col-sm-12">
+                                            <label for="inputPassword4">Catálogos de Servicio Asignables</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <?= $lista_servicios_manuales?>
+                                    </div>
+                                    <br>
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="inputCity">Descripción</label>
+                                            <textarea name = "DescripcionManual" class="form-control" rows="4" maxlength="150"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminar</button>
+                                    <br><br><br><br>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-sm-12">
+                                <br>
+                                <div class="card">
+                                    <img class="card-img-top imagen_superior_tarjeta" src="../img/manual.png" alt="imagen servicios">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manuales de Usuario Existentes</h5>
+                                        <p class="card-text">Muestra los manuales de usuario ya existentes en el sistema...</p>
+                                        <a class="btn btn-primary" href="_consultar_manuales.php">Ir ahora</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+</section>

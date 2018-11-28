@@ -11,9 +11,9 @@ if (isset($_SESSION["Usuario"])){
         require_once("./model_registrar_tipoDis.php");
         require_once("./model_registrar_usuario.php");
         require_once("./model_registrar_categoriaSer.php");
-        //require_once("./_registrar_servicio.php");
-
-
+        require_once("./_registrar_servicio.php");
+        require_once("./_registrar_rol.php");     
+        
 
         include('../html/_header.html');
         include('../html/_menu.html');
@@ -117,6 +117,41 @@ if (isset($_SESSION["Usuario"])){
                         </script>';
             }
         }
+        
+        $lista_permisos_asignables = lista_permisos_asignables();
+        
+        //ROL
+        
+            if(isset($_POST['NombreRol'])){
+            $NoServicios = $_POST['no_servicios'];
+            $x = 0;
+            $Id_permiso = [];
+            for ($i = 0; $i < $NoServicios; $i++){
+                if (isset($_POST['s'.$i])){
+                    $Id_permiso[$x] = $_POST['s'.$i];
+                    $x++;
+                }
+            }
+            if(isset($_POST['NombreRol'])){
+                     $NombreRol = $_POST['NombreRol'];
+                 }
+            if(isset($_POST['DescripcionRol'])){
+                     $DescripcionRol = $_POST['DescripcionRol'];
+                 }
+            $resultado = registrar_rol($NombreRol,$DescripcionRol, $Id_permiso);
+                
+                    if($resultado == 1){
+                    echo '<div id="notify" class="alert alert-success" role="alert">
+                        ¡El manual se creó de manera exitosa!
+                        </div>';
+                    echo '<script>
+                      setTimeout(function(){$("#notify").remove();}, 3000);
+                        </script>';
+                }
+            }
+                        
+                        
+        //ROL
 
         if(isset($_POST['nombreMarca'])){
             $nombreM = $_POST['nombreMarca'];
@@ -520,34 +555,35 @@ if (isset($_SESSION["Usuario"])){
 
 
 //COSAS DE JAVIER. NO TOCAR.
-                if(isset($_POST['categoriaSer']) && $_POST['categoriaSer'] != ""){
+                if(isset($_POST['catSerSelect']) && $_POST['catSerSelect'] != ""){
 
 
-                if(!isset($_POST['nombreSer']) ||  $_POST['nombreSer'] == ""){
+                if(!isset($_POST['nombreServicio']) ||  $_POST['nombreServicio'] == ""){
                     $errorn = '<a class ="error">*</a>';
                 }else{
-                    $nombreSer = $_POST['nombreSer'];
+                    $nombreServicio = $_POST['nombreServicio'];
                 }
-                if(!isset($_POST['tiempEdeT']) ||  $_POST['tiempEdeT'] == ""){
+                if(!isset($_POST['testandarser']) ||  $_POST['testandarser'] == ""){
                     $errort = '<a class ="error">*</a>';
                 }else{
-                    $tiempEdeT = $_POST['tiempEdeT'];
+                    $testandarser = $_POST['testandarser'];
                 }
-                if(!isset($_POST['categoriaSer']) ||  $_POST['categoriaSer'] == ""){
+                if(!isset($_POST['catSerSelect']) ||  $_POST['catSerSelect'] == ""){
                     $errorc = '<a class ="error">*</a>';
                 }else{
-                    $categoriaSer = $_POST['categoriaSer'];
+                    $catSerSelect = $_POST['catSerSelect'];
                 }
-                if(!isset($_POST['esc']) ||  $_POST['esc'] == ""){
+                if(!isset($_POST['descripcionSer']) ||  $_POST['descripcionSer'] == ""){
                     $errord = '<a class ="error">*</a>';
                 }else{
-                    $esc = $_POST['esc'];
+                    $descripcionSer = $_POST['descripcionSer'];
                 }
+                    
 
-                $resultdep = registrar_servcio($nombreSer, $tiempEdeT, $categoriaSer, $esc);
+                $resultser = registrar_servicio($nombreServicio, $descripcionSer, $testandarser, $catSerSelect);
 
                 //MENSAJE DE RETROALIMENTACION
-                if($resultdep == TRUE){
+                if($resultser == TRUE){
                     echo '<div id="notify" class="alert alert-success" role="alert">
                         ¡El servicio ha sido registrada de manera exitosa!
                         </div>';

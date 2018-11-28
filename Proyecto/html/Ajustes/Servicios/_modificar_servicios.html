@@ -1,38 +1,65 @@
 
-                <form><br>
-                    <div class="row">
-                        <div class="col-lg-9 col-md-8 col-sm-7">
-                            <h4>Modificar Servicios</h4>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-5">
-                            <a href="#"><i class="material-icons">create</i> Editar Servicios</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-3 col-sm-12">
-                            <a href="#"><i class="material-icons">delete_sweep</i> Eliminar Servicios</a>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-lg-8 col-md-6 col-sm-12">
-                            <label for="inputPassword4">Nombre</label>
-                            <input type="text" class="form-control" id="#" value="Instalación de Sistema Operativo">
-                        </div>
+<form action = "../php/_modificar_servicios.php" method="post"><br>
+    <?php if($disabled == 1): ?>
+        <div class="row">
 
-                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                            <label for="inputPassword4">Tiempo estándar del trabajo</label>
-                                <input type="time" class="form-control" id="#" placeholder="02:40">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-12">
-                            <label for="inputCity">Descripción</label>
-                            <textarea class="form-control " rows="4">Windows con software tal tal tal y tal</textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Terminar</button>
-                </form>
+            <div class="col-lg-7 col-md-8 col-sm-7">
+                <h4>Consultar Servicio</h4>
             </div>
+            <div class="col-lg-4 col-md-3 col-sm-3 align-self-end">
+                <a <?php if (isset($_GET['buscar'])): ?>
+                href="./_consultar_servicios.php?buscar=<?= $_GET['buscar'] ?>"
+                <?php else: ?>
+                href="./_consultar_servicios.php?"
+                <?php endif;?>
+                ><i class="material-icons">keyboard_backspace</i> Atrás</a>
+                &nbsp
+                <a href="./_modificar_servicios.php?Id_trabajo=<?= $Id_trabajo?>&editar=1"><i class="material-icons">create</i> Modificar</a>
+            </div>
+        </div>
+    
+    <?php elseif($disabled == 0): ?>
+    
+    
+    <div class="row">
+        
+        <div class="col-lg-8 col-md-6 col-sm-6">
+            <h4>Modificar Servicio</h4>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-3">
+            <a href="../php/_modificar_servicios.php?Id_trabajo=<?= $Id_trabajo?>"><i class="material-icons">keyboard_backspace</i> Atrás</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5 col-md-3 col-sm-12">
+            <a href="../php/_modificar_servicios.php?Id_trabajo=<?= $Id_trabajo?>&eliminar_categoria=1"><i class="material-icons">delete_sweep</i> Eliminar</a>
+        </div>
+    </div>
+    <?php endif; ?>
+
+
+    <br>
+    <div class="form-row ">
+        <div class="form-group col-lg-7 col-md-12 col-sm-12">
+            <label for="inputPassword4">Nombre</label>
+            <input required maxlength="30" type="text" class="form-control" id="#" name = "NombreCat" value="<?= $data['Nombre'][0]?>" <?php if($disabled == 1): ?> disabled <?php endif; ?>>
+        </div>
+    
+    </div> 
+    <div class="form-row ">
+    <input type="text" hidden value="<?= $Id_trabajo?>" name="Id_trabajo">
+    
+        <div class="form-group col-lg-7 col-md-12 col-sm-12">
+            <label for="inputCity">Descripción</label>
+            <textarea maxlength="150" name="DescripcionCat" class="form-control " rows="4" <?php if($disabled == 1): ?> disabled <?php endif; ?>><?= $data['Descripcion'][0]?></textarea>
+        </div>
+    </div>
+    <?php if($disabled == 0): ?>
+        <button type="submit" class="btn btn-primary">Terminar</button>
+    <?php endif; ?>
+</form>
+            </div>
+       
             
-          

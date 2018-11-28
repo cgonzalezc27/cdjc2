@@ -62,7 +62,7 @@ if(isset($_GET['no_ingenieros'])){
 
     WHERE T.Id_ticket = IT.Id_ticket AND IT.Id_ingeniero = I.Id_ingeniero AND I.Id_usuario = U.Id_usuario AND
 
-    T.Id_ticket = '".$_GET['id']."' ORDER BY U.Nombre ASC;";
+    T.Id_ticket = '".$_GET['id']."';";
     $results = mysqli_query($conexion, $query);
     $ticket_actual = [];
     $i=0;
@@ -92,7 +92,7 @@ if(isset($_GET['no_ingenieros'])){
     }
 
 
-    $query = "SELECT I.Id_ingeniero, U.Nombre, U.Apellido1, U.Apellido2 FROM Usuarios U, Ingenieros I WHERE I.Id_usuario = U.Id_usuario AND I.Visible = 1 GROUP BY I.Id_ingeniero ORDER BY U.Nombre ASC";
+    $query = "SELECT I.Id_ingeniero, U.Nombre, U.Apellido1, U.Apellido2 FROM Usuarios U, Ingenieros I WHERE I.Id_usuario = U.Id_usuario AND I.Visible = 1 GROUP BY I.Id_ingeniero";
     $results = mysqli_query($conexion, $query);
     $ingenieros = [];
     $i=0;
@@ -194,7 +194,7 @@ if(isset($_GET['no_servicios'])){
     $query="SELECT T.Id_ticket, S.Nombre AS 'NombreS', CS.Nombre AS 'NombreCS', S.Id_trabajo, CS.Id_categoria
     FROM Tickets T, Catalogo_de_servicios S, Catalogo_de_servicios_Tickets ST, Categoria_de_servicios CS
     WHERE T.Id_ticket = ST.Id_ticket AND ST.Id_trabajo = S.Id_trabajo AND S.Id_categoria = CS.Id_categoria AND
-    T.Id_ticket = '".$id."'; ORDER BY S.Nombre ASC";
+    T.Id_ticket = '".$id."';";
     $results = mysqli_query($conexion, $query);
     $filas = [];
     $i=0;
@@ -226,7 +226,7 @@ if(isset($_GET['no_servicios'])){
     }
 
 
-    $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1 ORDER BY S.Nombre ASC";
+    $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1";
     $results = mysqli_query($conexion, $query);
 
     $i=0;
@@ -372,7 +372,7 @@ if(isset($_GET['listainge'])){
             $id_ingenieros_seleccionados [$y] = $_GET['id_ingeniero'.$y];
             $nombre_ingenieros_seleccionados [$y] = $_GET['nombre_ingeniero'.$y];
         }
-        $query = "SELECT I.Id_ingeniero, U.Nombre, U.Apellido1, U.Apellido2 FROM Usuarios U, Ingenieros I WHERE I.Id_usuario = U.Id_usuario AND I.Visible = 1 GROUP BY I.Id_ingeniero ORDER BY U.Nombre ASC";
+        $query = "SELECT I.Id_ingeniero, U.Nombre, U.Apellido1, U.Apellido2 FROM Usuarios U, Ingenieros I WHERE I.Id_usuario = U.Id_usuario AND I.Visible = 1 GROUP BY I.Id_ingeniero";
         $results = mysqli_query($conexion, $query);
         $i=0;
         while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
@@ -428,7 +428,7 @@ if(isset($_GET['listaserv'])){
         $id_categorias_seleccionadas [$_GET['listaserv']] = $_GET['id_categoria'.$_GET['listaserv']];
         $nombre_categorias_seleccionadas [$_GET['listaserv']] = $_GET['nombre_categoria'.$_GET['listaserv']];
         
-        $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1 ORDER BY S.Nombre ASC";
+        $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1";
         $results = mysqli_query($conexion, $query);
     
         $i=0;
@@ -481,7 +481,7 @@ if(isset($_GET['listaserv'])){
         }
         
        
-        $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1 ORDER BY S.Nombre ASC";
+        $query = "SELECT S.Id_trabajo, S.Nombre as 'NombreS', CS.Id_categoria, CS.Nombre as 'NombreCS' FROM Catalogo_de_servicios S, Categoria_de_servicios CS WHERE S.Id_categoria = CS.Id_categoria AND S.Visible = 1 AND CS.Visible = 1";
         $results = mysqli_query($conexion, $query);
     
         $i=0;
@@ -544,7 +544,7 @@ if(isset($_GET['listaserv'])){
 if(isset($_GET['categoria_de_servicio_modificar_ticket'])){
     $categoria_de_servicio = $_GET['categoria_de_servicio_modificar_ticket'];
     $conexion = connect();
-    $query = "SELECT S.Nombre as NombreS FROM Categoria_de_servicios CS, Catalogo_de_servicios S WHERE S.Id_categoria = CS.Id_categoria AND CS.Nombre = '".$categoria_de_servicio."' ORDER BY S.Nombre ASC";
+    $query = "SELECT S.Nombre as NombreS FROM Categoria_de_servicios CS, Catalogo_de_servicios S WHERE S.Id_categoria = CS.Id_categoria AND CS.Nombre = '".$categoria_de_servicio."'";
     $results = mysqli_query($conexion, $query);
     $rows = "<select class='form-control' id='dependencia' name='dependencia'>";
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
@@ -560,7 +560,7 @@ if(isset($_GET['categoria_de_servicio_modificar_ticket'])){
 if(isset($_GET['mesa'])){
     $mesa = $_GET['mesa'];
     $conexion = connect();
-    $query = "SELECT DE.Razon_social FROM Destino DE, Dependencias D, NombresMesas M WHERE M.Id_mesa = D.Id_mesa AND D.Id_destino = DE.Id_destino AND M.NombreM = '".$mesa."' ORDER BY DE.Razon_social ASC";
+    $query = "SELECT DE.Razon_social FROM Destino DE, Dependencias D, NombresMesas M WHERE M.Id_mesa = D.Id_mesa AND D.Id_destino = DE.Id_destino AND M.NombreM = '".$mesa."'";
     $results = mysqli_query($conexion, $query);
     $rows = "<select class='form-control' id='dependencia' name='dependencia'>";
     while($row = mysqli_fetch_array($results,MYSQLI_BOTH)){
@@ -577,7 +577,7 @@ if(isset($_GET['relacionar_ticket'])){
     $estatus = $_GET['relacionar_ticket'];
     $conexion = connect();
     if($estatus == "on"){
-        $query="SELECT T.Id_ticket, T.No_ticket FROM Tickets T, Estatus_de_tickets E, Tickets_Estatus_de_tickets TE WHERE T.Id_ticket = TE.Id_ticket AND TE.Id_estatus = E.Id_estatus AND (E.Nombre = 'En atencion' OR E.Nombre = 'Por llegar' OR E.Nombre = 'Confirmado') ORDER BY T.Id_ticket";
+        $query="SELECT T.Id_ticket, T.No_ticket FROM Tickets T, Estatus_de_tickets E, Tickets_Estatus_de_tickets TE WHERE T.Id_ticket = TE.Id_ticket AND TE.Id_estatus = E.Id_estatus AND (E.Nombre = 'En atencion' OR E.Nombre = 'Por llegar' OR E.Nombre = 'Confirmado') ORDER BY T.Fecha_y_hora_de_inicio_programada";
         $results = mysqli_query($conexion, $query);
         $rows = '<br>
                 <div class="col-lg-2 col-md-3 col-sm-4">

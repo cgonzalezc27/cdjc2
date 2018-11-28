@@ -1,12 +1,11 @@
-                <form>
                     <h4 class="display-4 titulo_pagina">Consultar Servicios </h4><br>
-                    <form>
+                    <form action="../php/_consultar_servicios.php" method="post">
                         <div class="form-row justify-content-center">
-                            <div class="form-row  ">
+                            <div class="form-row">
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12 align-self-center">
-                                    <label for="inputPassword4">Nombre</label>
-                                    <input type="text" class="form-control" id="#" placeholder="Instituto Nacional Electoral">
-                                </div>                               
+                                    <label for="nombreCatSerBus">Nombre</label>
+                                    <input type="text" class="form-control" id="nombreCatSerBus" name="nombreCatSerBus" placeholder="Instalación de Hardware" <?php if (isset($nombreCatSerBus)):?>value= "<?=$nombreCatSerBus?>"<?php endif ?>>
+                                </div>
                             </div>
                             <div class="form-row col-12 justify-content-center">
                                 <div class="form-group col-1">
@@ -15,38 +14,5 @@
                             </div>
                         </div>
                     </form>
-                    
-                    <div class="form-text col">
-                        <h4>Servicios</h4>
-                    </div><br>
-                    
-                    <!--<div class="container">-->
-                        <div class="table-responsive-sm ">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Nombre</th>
-                                        <th>Tiempo del Trabajo</th>
-                                        <th>Descripción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="row_buscar_dispositivo" onclick="window.location.href='./_modificar_servicios.php'">
-                                        <td>Instalación de Sisitema Operativo</td>
-                                        <td>03:00 Horas</td>
-                                        <td>Windows con el software tal tal tal y tal</td>
-                                    </tr>
-                                    <tr class="row_buscar_dispositivo" onclick="window.location.href='./_modificar_servicios.php'">
-                                        <td>Servicio 2</td>
-                                        <td>00:15 Minutos</td>
-                                        <td>No sé que poner aquí</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    <!--</div>-->
-                    
-                </form>
-            </div>
-            
-            
+
+                    <?php if(isset($tabla)): ?> <?= $tabla ?> <?php endif; ?>
